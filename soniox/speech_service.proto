@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package soniox.speech_service;
+
+service SpeechService {
+  rpc Transcribe(TranscribeRequest) returns (TranscribeResponse) {}
+  rpc TranscribeStream(stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {}
+
+  rpc CreateSpeechContext(CreateSpeechContextRequest) returns (CreateSpeechContextResponse) {}
+  rpc DeleteSpeechContext(DeleteSpeechContextRequest) returns (DeleteSpeechContextResponse) {}
+  rpc ListSpeechContextNames(ListSpeechContextNamesRequest) returns (ListSpeechContextNamesResponse) {}
+  rpc GetSpeechContext(GetSpeechContextRequest) returns (GetSpeechContextResponse) {}
+  rpc UpdateSpeechContext(UpdateSpeechContextRequest) returns (UpdateSpeechContextResponse) {}
+}
+
+// Transcribe
+
+message TranscribeRequest {
+  string api_key = 1;
+  TranscribeConfig config = 2;
+  bytes audio = 3;
+}
+message TranscribeConfig {
+  string audio_format = 1;
+  int32 sample_rate_hertz = 2;
+  int32 num_audio_channels = 3;
+  SpeechContext speech_context = 4;
+}
+message TranscribeResponse {
+  Result result = 1;
+}
+
+// TranscribeStream
+
+message TranscribeStreamRequest {
+  string api_key = 1;
+  TranscribeStreamConfig config = 2;
+  bytes audio = 3;
+}
+message TranscribeStreamConfig {
+  string audio_format = 1;
+  int32 sample_rate_hertz = 2;
+  int32 num_audio_channels = 3;
+  SpeechContext speech_context = 4;
+  bool include_nonfinal = 5;
+}
+message TranscribeStreamResponse {
+  Result result = 1;
+}
+
+// WebSocket init request (used in websocket, not gRPC)
+
+message TranscribeWebSocketInitRequest {
+  string api_key = 1;
+  bool include_nonfinal = 2;
+  SpeechContext speech_context = 3;
+}
+
+// Common
+
+message Result {
+  repeated Word words = 1;
+  int32 final_proc_time_ms = 2;
+  int32 total_proc_time_ms = 3;
+}
+
+message Word {
+  string text = 1;
+  int32 start_ms = 2;
+  int32 duration_ms = 3;
+  bool is_final = 4;
+}
+
+// SpeechContext
+
+message SpeechContext {
+  repeated SpeechContextEntry entries = 1;
+  string name = 2;
+}
+
+message SpeechContextEntry {
+  repeated string phrases = 1;
+  double boost = 2;
+}
+
+message CreateSpeechContextRequest {
+  string api_key = 1;
+  SpeechContext speech_context = 2;
+}
+message CreateSpeechContextResponse {
+}
+
+message DeleteSpeechContextRequest {
+  string api_key = 1;
+  string name = 2;
+}
+message DeleteSpeechContextResponse {
+}
+
+message ListSpeechContextNamesRequest {
+  string api_key = 1;
+}
+message ListSpeechContextNamesResponse {
+  repeated string names = 1;
+}
+
+message GetSpeechContextRequest {
+  string api_key = 1;
+  string name = 2;
+}
+message GetSpeechContextResponse {
+  SpeechContext speech_context = 1;
+}
+
+message UpdateSpeechContextRequest {
+  string api_key = 1;
+  SpeechContext speech_context = 2;
+}
+message UpdateSpeechContextResponse {
+}

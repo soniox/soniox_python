@@ -1,0 +1,8 @@
+cffi==1.14.4
+grpcio==1.35.0
+numpy==1.19.5
+pkg-resources==0.0.0
+protobuf==3.14.0
+pycparser==2.20
+six==1.15.0
+SoundCard==0.4.0
