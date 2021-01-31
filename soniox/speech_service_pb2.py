@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='soniox.speech_service',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\"l\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x37\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\'.soniox.speech_service.TranscribeConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\x9d\x01\n\x10TranscribeConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"C\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"x\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12=\n\x06\x63onfig\x18\x02 \x01(\x0b\x32-.soniox.speech_service.TranscribeStreamConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\xbd\x01\n\x16TranscribeStreamConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x18\n\x10include_nonfinal\x18\x05 \x01(\x08\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"\x89\x01\n\x1eTranscribeWebSocketInitRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x18\n\x10include_nonfinal\x18\x02 \x01(\x08\x12<\n\x0espeech_context\x18\x03 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"l\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\"M\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse2\xf0\x06\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\"l\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x37\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\'.soniox.speech_service.TranscribeConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\x9d\x01\n\x10TranscribeConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"C\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"x\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12=\n\x06\x63onfig\x18\x02 \x01(\x0b\x32-.soniox.speech_service.TranscribeStreamConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\xbd\x01\n\x16TranscribeStreamConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x18\n\x10include_nonfinal\x18\x05 \x01(\x08\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"l\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\"M\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse2\xf0\x06\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -287,51 +287,6 @@ _TRANSCRIBESTREAMRESPONSE = _descriptor.Descriptor(
 )
 
 
-_TRANSCRIBEWEBSOCKETINITREQUEST = _descriptor.Descriptor(
-  name='TranscribeWebSocketInitRequest',
-  full_name='soniox.speech_service.TranscribeWebSocketInitRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='api_key', full_name='soniox.speech_service.TranscribeWebSocketInitRequest.api_key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='include_nonfinal', full_name='soniox.speech_service.TranscribeWebSocketInitRequest.include_nonfinal', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='speech_context', full_name='soniox.speech_service.TranscribeWebSocketInitRequest.speech_context', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=783,
-  serialized_end=920,
-)
-
-
 _RESULT = _descriptor.Descriptor(
   name='Result',
   full_name='soniox.speech_service.Result',
@@ -372,8 +327,8 @@ _RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=922,
-  serialized_end=1030,
+  serialized_start=782,
+  serialized_end=890,
 )
 
 
@@ -424,8 +379,8 @@ _WORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1032,
-  serialized_end=1109,
+  serialized_start=892,
+  serialized_end=969,
 )
 
 
@@ -462,8 +417,8 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1111,
-  serialized_end=1200,
+  serialized_start=971,
+  serialized_end=1060,
 )
 
 
@@ -500,8 +455,8 @@ _SPEECHCONTEXTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1202,
-  serialized_end=1254,
+  serialized_start=1062,
+  serialized_end=1114,
 )
 
 
@@ -538,8 +493,8 @@ _CREATESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1256,
-  serialized_end=1363,
+  serialized_start=1116,
+  serialized_end=1223,
 )
 
 
@@ -562,8 +517,8 @@ _CREATESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1365,
-  serialized_end=1394,
+  serialized_start=1225,
+  serialized_end=1254,
 )
 
 
@@ -600,8 +555,8 @@ _DELETESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1396,
-  serialized_end=1455,
+  serialized_start=1256,
+  serialized_end=1315,
 )
 
 
@@ -624,8 +579,8 @@ _DELETESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1457,
-  serialized_end=1486,
+  serialized_start=1317,
+  serialized_end=1346,
 )
 
 
@@ -655,8 +610,8 @@ _LISTSPEECHCONTEXTNAMESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1488,
-  serialized_end=1536,
+  serialized_start=1348,
+  serialized_end=1396,
 )
 
 
@@ -686,8 +641,8 @@ _LISTSPEECHCONTEXTNAMESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1538,
-  serialized_end=1585,
+  serialized_start=1398,
+  serialized_end=1445,
 )
 
 
@@ -724,8 +679,8 @@ _GETSPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1587,
-  serialized_end=1643,
+  serialized_start=1447,
+  serialized_end=1503,
 )
 
 
@@ -755,8 +710,8 @@ _GETSPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1645,
-  serialized_end=1733,
+  serialized_start=1505,
+  serialized_end=1593,
 )
 
 
@@ -793,8 +748,8 @@ _UPDATESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1735,
-  serialized_end=1842,
+  serialized_start=1595,
+  serialized_end=1702,
 )
 
 
@@ -817,8 +772,8 @@ _UPDATESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1844,
-  serialized_end=1873,
+  serialized_start=1704,
+  serialized_end=1733,
 )
 
 _TRANSCRIBEREQUEST.fields_by_name['config'].message_type = _TRANSCRIBECONFIG
@@ -827,7 +782,6 @@ _TRANSCRIBERESPONSE.fields_by_name['result'].message_type = _RESULT
 _TRANSCRIBESTREAMREQUEST.fields_by_name['config'].message_type = _TRANSCRIBESTREAMCONFIG
 _TRANSCRIBESTREAMCONFIG.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
 _TRANSCRIBESTREAMRESPONSE.fields_by_name['result'].message_type = _RESULT
-_TRANSCRIBEWEBSOCKETINITREQUEST.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
 _RESULT.fields_by_name['words'].message_type = _WORD
 _SPEECHCONTEXT.fields_by_name['entries'].message_type = _SPEECHCONTEXTENTRY
 _CREATESPEECHCONTEXTREQUEST.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
@@ -839,7 +793,6 @@ DESCRIPTOR.message_types_by_name['TranscribeResponse'] = _TRANSCRIBERESPONSE
 DESCRIPTOR.message_types_by_name['TranscribeStreamRequest'] = _TRANSCRIBESTREAMREQUEST
 DESCRIPTOR.message_types_by_name['TranscribeStreamConfig'] = _TRANSCRIBESTREAMCONFIG
 DESCRIPTOR.message_types_by_name['TranscribeStreamResponse'] = _TRANSCRIBESTREAMRESPONSE
-DESCRIPTOR.message_types_by_name['TranscribeWebSocketInitRequest'] = _TRANSCRIBEWEBSOCKETINITREQUEST
 DESCRIPTOR.message_types_by_name['Result'] = _RESULT
 DESCRIPTOR.message_types_by_name['Word'] = _WORD
 DESCRIPTOR.message_types_by_name['SpeechContext'] = _SPEECHCONTEXT
@@ -897,13 +850,6 @@ TranscribeStreamResponse = _reflection.GeneratedProtocolMessageType('TranscribeS
   # @@protoc_insertion_point(class_scope:soniox.speech_service.TranscribeStreamResponse)
   })
 _sym_db.RegisterMessage(TranscribeStreamResponse)
-
-TranscribeWebSocketInitRequest = _reflection.GeneratedProtocolMessageType('TranscribeWebSocketInitRequest', (_message.Message,), {
-  'DESCRIPTOR' : _TRANSCRIBEWEBSOCKETINITREQUEST,
-  '__module__' : 'soniox.speech_service_pb2'
-  # @@protoc_insertion_point(class_scope:soniox.speech_service.TranscribeWebSocketInitRequest)
-  })
-_sym_db.RegisterMessage(TranscribeWebSocketInitRequest)
 
 Result = _reflection.GeneratedProtocolMessageType('Result', (_message.Message,), {
   'DESCRIPTOR' : _RESULT,
@@ -1011,8 +957,8 @@ _SPEECHSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1876,
-  serialized_end=2756,
+  serialized_start=1736,
+  serialized_end=2616,
   methods=[
   _descriptor.MethodDescriptor(
     name='Transcribe',
