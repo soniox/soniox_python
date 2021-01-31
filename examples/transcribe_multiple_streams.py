@@ -27,7 +27,7 @@ class Channel:
         for result in transcribe_stream(
             self.iter_audio(),
             self._client,
-            audio_format="pcm16le",
+            audio_format="pcm_s16le",
             sample_rate_hertz=16000,
             num_audio_channels=1,
         ):

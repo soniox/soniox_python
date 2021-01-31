@@ -27,7 +27,7 @@ def transcribe_capture(
     assert speech_context is None or isinstance(speech_context, SpeechContext)
 
     config = TranscribeStreamConfig()
-    config.audio_format = "pcm16le"
+    config.audio_format = "pcm_s16le"
     config.sample_rate_hertz = SAMPLE_RATE
     config.num_audio_channels = NUM_CHANNELS
     config.include_nonfinal = include_nonfinal
