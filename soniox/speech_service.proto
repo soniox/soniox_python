@@ -48,14 +48,6 @@ message TranscribeStreamResponse {
   Result result = 1;
 }
 
-// WebSocket init request (used in websocket, not gRPC)
-
-message TranscribeWebSocketInitRequest {
-  string api_key = 1;
-  bool include_nonfinal = 2;
-  SpeechContext speech_context = 3;
-}
-
 // Common
 
 message Result {
