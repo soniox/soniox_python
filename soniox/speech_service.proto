@@ -2,9 +2,16 @@ syntax = "proto3";
 
 package soniox.speech_service;
 
+import "google/protobuf/timestamp.proto";
+
 service SpeechService {
   rpc Transcribe(TranscribeRequest) returns (TranscribeResponse) {}
   rpc TranscribeStream(stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {}
+
+  rpc TranscribeAsync(stream TranscribeAsyncRequest) returns (TranscribeAsyncResponse) {}
+  rpc GetTranscribeAsyncStatus(GetTranscribeAsyncStatusRequest) returns (GetTranscribeAsyncStatusResponse) {}
+  rpc GetTranscribeAsyncResult(GetTranscribeAsyncResultRequest) returns (stream GetTranscribeAsyncResultResponse) {}
+  rpc DeleteTranscribeAsyncFile(DeleteTranscribeAsyncFileRequest) returns (DeleteTranscribeAsyncFileResponse) {}
 
   rpc CreateSpeechContext(CreateSpeechContextRequest) returns (CreateSpeechContextResponse) {}
   rpc DeleteSpeechContext(DeleteSpeechContextRequest) returns (DeleteSpeechContextResponse) {}
@@ -46,6 +53,54 @@ message TranscribeStreamConfig {
 }
 message TranscribeStreamResponse {
   Result result = 1;
+}
+
+// TranscribeAsync
+
+message TranscribeAsyncRequest {
+  string api_key = 1;
+  string reference_name = 3;
+  bytes audio = 4;
+}
+message TranscribeAsyncResponse {
+  string file_id = 1;
+}
+
+// GetTranscribeAsyncStatus
+
+message GetTranscribeAsyncStatusRequest {
+  string api_key = 1;
+  string file_id = 2;
+}
+message GetTranscribeAsyncStatusResponse {
+  repeated TranscribeAsyncFileStatus files = 1;
+}
+message TranscribeAsyncFileStatus {
+  string file_id = 1;
+  string reference_name = 2;
+  // One of: QUEUED, TRANSCRIBING, COMPLETED, FAILED
+  string status = 3;
+  // UTC timestamp
+  google.protobuf.Timestamp created_time = 4;
+}
+
+// GetTranscribeAsyncResult
+
+message GetTranscribeAsyncResultRequest {
+  string api_key = 1;
+  string file_id = 2;
+}
+message GetTranscribeAsyncResultResponse {
+  Result result = 1;
+}
+
+// DeleteTranscribeAsyncFile
+
+message DeleteTranscribeAsyncFileRequest {
+  string api_key = 1;
+  string file_id = 2;
+}
+message DeleteTranscribeAsyncFileResponse {
 }
 
 // Common
