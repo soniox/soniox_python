@@ -97,40 +97,76 @@ class Client:
     ) -> Iterable[Result]:
         assert isinstance(config, TranscribeStreamConfig)
 
-        def iter_requests():
-            request = speech_service_pb2.TranscribeStreamRequest()
-            request.api_key = get_api_key()
-            request.config.CopyFrom(config)
-            yield request
+        # If the request iterator throws an exception, gRPC throws its own exception
+        # that does not have the original exception as the cause, which means one does
+        # not see what the actual problem was. We fix this by remembering an exception
+        # thrown from the request iterator and attaching it as the cause of the gRPC
+        # exception below.
+        iter_exception = None
 
-            for audio in iter_audio:
-                assert isinstance(audio, bytes)
+        def iter_requests():
+            nonlocal iter_exception
+
+            try:
                 request = speech_service_pb2.TranscribeStreamRequest()
-                request.audio = audio
+                request.api_key = get_api_key()
+                request.config.CopyFrom(config)
                 yield request
 
-        responses = self._client.TranscribeStream(iter_requests())
+                for audio in iter_audio:
+                    assert isinstance(audio, bytes)
+                    request = speech_service_pb2.TranscribeStreamRequest()
+                    request.audio = audio
+                    yield request
+                
+            except Exception as e:
+                iter_exception = e
+                raise
 
-        for response in responses:
-            if response.HasField("result"):
-                yield response.result
+        try:
+            responses = self._client.TranscribeStream(iter_requests())
+
+            for response in responses:
+                if response.HasField("result"):
+                    yield response.result
+            
+        except Exception as e:
+            if iter_exception is not None:
+                raise e from iter_exception
+            raise
+
 
     def TranscribeAsync(self, reference_name: str, iter_audio: Iterable[bytes]) -> str:
         assert isinstance(reference_name, str)
 
-        def iter_requests():
-            request = speech_service_pb2.TranscribeAsyncRequest()
-            request.api_key = get_api_key()
-            request.reference_name = reference_name
-            yield request
+        # See TranscribeStream for an explanation.
+        iter_exception = None
 
-            for audio in iter_audio:
-                assert isinstance(audio, bytes)
+        def iter_requests():
+            nonlocal iter_exception
+
+            try:
                 request = speech_service_pb2.TranscribeAsyncRequest()
-                request.audio = audio
+                request.api_key = get_api_key()
+                request.reference_name = reference_name
                 yield request
 
-        response = self._client.TranscribeAsync(iter_requests())
+                for audio in iter_audio:
+                    assert isinstance(audio, bytes)
+                    request = speech_service_pb2.TranscribeAsyncRequest()
+                    request.audio = audio
+                    yield request
+                
+            except Exception as e:
+                iter_exception = e
+                raise
+
+        try:
+            response = self._client.TranscribeAsync(iter_requests())
+        except Exception as e:
+            if iter_exception is not None:
+                raise e from iter_exception
+            raise
 
         return response.file_id
 
