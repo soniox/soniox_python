@@ -18,6 +18,7 @@ def transcribe_file_short(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Result:
     assert isinstance(file_path, str)
 
@@ -31,6 +32,7 @@ def transcribe_file_short(
         sample_rate_hertz,
         num_audio_channels,
         speech_context,
+        enable_profanity_filter,
     )
 
 
@@ -41,6 +43,7 @@ def transcribe_bytes_short(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Result:
     assert isinstance(audio, bytes)
     assert isinstance(client, Client)
@@ -54,6 +57,7 @@ def transcribe_bytes_short(
     config.num_audio_channels = num_audio_channels
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
+    config.enable_profanity_filter = enable_profanity_filter
 
     return client.Transcribe(config, audio)
 
@@ -65,6 +69,7 @@ def transcribe_file_stream(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(file_path, str)
 
@@ -84,6 +89,7 @@ def transcribe_file_stream(
             sample_rate_hertz,
             num_audio_channels,
             speech_context,
+            enable_profanity_filter,
         )
 
 
@@ -94,6 +100,7 @@ def transcribe_bytes_stream(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(audio, bytes)
 
@@ -111,6 +118,7 @@ def transcribe_bytes_stream(
         sample_rate_hertz,
         num_audio_channels,
         speech_context,
+        enable_profanity_filter,
     )
 
 
@@ -121,6 +129,7 @@ def transcribe_iter_bytes_stream(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(client, Client)
     assert isinstance(sample_rate_hertz, int)
@@ -133,6 +142,7 @@ def transcribe_iter_bytes_stream(
     config.num_audio_channels = num_audio_channels
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
+    config.enable_profanity_filter = enable_profanity_filter
 
     yield from client.TranscribeStream(config, iter_audio)
 

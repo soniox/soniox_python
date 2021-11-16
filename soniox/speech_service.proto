@@ -32,6 +32,7 @@ message TranscribeConfig {
   int32 sample_rate_hertz = 2;
   int32 num_audio_channels = 3;
   SpeechContext speech_context = 4;
+  bool enable_profanity_filter = 8;
 }
 message TranscribeResponse {
   Result result = 1;
@@ -50,6 +51,7 @@ message TranscribeStreamConfig {
   int32 num_audio_channels = 3;
   SpeechContext speech_context = 4;
   bool include_nonfinal = 5;
+  bool enable_profanity_filter = 9;
 }
 message TranscribeStreamResponse {
   Result result = 1;

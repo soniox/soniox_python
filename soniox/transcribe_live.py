@@ -20,6 +20,7 @@ def transcribe_capture(
     include_nonfinal: bool = True,
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
+    enable_profanity_filter: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(capture_device, AbstractCaptureDevice)
     assert isinstance(client, Client)
@@ -33,6 +34,7 @@ def transcribe_capture(
     config.include_nonfinal = include_nonfinal
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
+    config.enable_profanity_filter = enable_profanity_filter
 
     if stop_event is None:
         stop_event = threading.Event()
@@ -54,9 +56,11 @@ def transcribe_microphone(
     include_nonfinal: bool = True,
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
+    enable_profanity_filter: bool = False,
 ):
     return transcribe_capture(
-        MicrophoneCaptureDevice(), client, include_nonfinal, speech_context, stop_event
+        MicrophoneCaptureDevice(), client, include_nonfinal, speech_context, stop_event,
+        enable_profanity_filter
     )
 
 
@@ -67,6 +71,7 @@ def transcribe_stream(
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
+    enable_profanity_filter: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(client, Client)
     assert isinstance(sample_rate_hertz, int)
@@ -80,5 +85,6 @@ def transcribe_stream(
     config.include_nonfinal = True
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
+    config.enable_profanity_filter = enable_profanity_filter
 
     yield from client.TranscribeStream(config, iter_audio)
