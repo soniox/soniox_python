@@ -118,6 +118,7 @@ message Word {
   int32 start_ms = 2;
   int32 duration_ms = 3;
   bool is_final = 4;
+  string orig_text = 8;
 }
 
 // SpeechContext
