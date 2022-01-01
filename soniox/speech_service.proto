@@ -119,6 +119,7 @@ message Word {
   int32 duration_ms = 3;
   bool is_final = 4;
   string orig_text = 8;
+  double confidence = 9;
 }
 
 // SpeechContext
