@@ -24,6 +24,11 @@ class SpeechServiceStub(object):
                 request_serializer=soniox_dot_speech__service__pb2.TranscribeStreamRequest.SerializeToString,
                 response_deserializer=soniox_dot_speech__service__pb2.TranscribeStreamResponse.FromString,
                 )
+        self.TranscribeMeeting = channel.stream_stream(
+                '/soniox.speech_service.SpeechService/TranscribeMeeting',
+                request_serializer=soniox_dot_speech__service__pb2.TranscribeMeetingRequest.SerializeToString,
+                response_deserializer=soniox_dot_speech__service__pb2.TranscribeMeetingResponse.FromString,
+                )
         self.TranscribeAsync = channel.stream_unary(
                 '/soniox.speech_service.SpeechService/TranscribeAsync',
                 request_serializer=soniox_dot_speech__service__pb2.TranscribeAsyncRequest.SerializeToString,
@@ -81,6 +86,12 @@ class SpeechServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def TranscribeStream(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TranscribeMeeting(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -152,6 +163,11 @@ def add_SpeechServiceServicer_to_server(servicer, server):
                     servicer.TranscribeStream,
                     request_deserializer=soniox_dot_speech__service__pb2.TranscribeStreamRequest.FromString,
                     response_serializer=soniox_dot_speech__service__pb2.TranscribeStreamResponse.SerializeToString,
+            ),
+            'TranscribeMeeting': grpc.stream_stream_rpc_method_handler(
+                    servicer.TranscribeMeeting,
+                    request_deserializer=soniox_dot_speech__service__pb2.TranscribeMeetingRequest.FromString,
+                    response_serializer=soniox_dot_speech__service__pb2.TranscribeMeetingResponse.SerializeToString,
             ),
             'TranscribeAsync': grpc.stream_unary_rpc_method_handler(
                     servicer.TranscribeAsync,
@@ -239,6 +255,23 @@ class SpeechService(object):
         return grpc.experimental.stream_stream(request_iterator, target, '/soniox.speech_service.SpeechService/TranscribeStream',
             soniox_dot_speech__service__pb2.TranscribeStreamRequest.SerializeToString,
             soniox_dot_speech__service__pb2.TranscribeStreamResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TranscribeMeeting(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/soniox.speech_service.SpeechService/TranscribeMeeting',
+            soniox_dot_speech__service__pb2.TranscribeMeetingRequest.SerializeToString,
+            soniox_dot_speech__service__pb2.TranscribeMeetingResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
