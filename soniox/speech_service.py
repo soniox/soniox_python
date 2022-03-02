@@ -224,3 +224,13 @@ class Client:
         request.file_id = file_id
 
         self._client.DeleteTranscribeAsyncFile(request)
+
+
+def update_result(result: Result, new_result: Result) -> None:
+    i = len(result.words)
+    while i > 0 and not result.words[i - 1].is_final:
+        i -= 1
+    del result.words[i:]
+    result.words.extend(new_result.words)
+    result.final_proc_time_ms = new_result.final_proc_time_ms
+    result.total_proc_time_ms = new_result.total_proc_time_ms

@@ -6,3 +6,4 @@ protobuf==3.14.0
 pycparser==2.20
 six==1.15.0
 SoundCard==0.4.0
+SoundFile==0.10.3.post1
