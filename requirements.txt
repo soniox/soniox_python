@@ -1,9 +1,9 @@
-cffi==1.14.4
-grpcio==1.35.0
-grpcio-tools==1.35.0
+cffi==1.15.0
+grpcio==1.46.3
+grpcio-tools==1.46.3
 numpy==1.19.5
-protobuf==3.14.0
-pycparser==2.20
-six==1.15.0
-SoundCard==0.4.0
+protobuf==3.19.4
+pycparser==2.21
+six==1.16.0
+SoundCard==0.4.2
 SoundFile==0.10.3.post1
