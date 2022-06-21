@@ -50,8 +50,8 @@ message TranscribeConfig {
 
   bool enable_profanity_filter = 8;
 
-  bool enable_streaming_speaker_diarization = 5;
   bool enable_global_speaker_diarization = 12;
+  bool enable_streaming_speaker_diarization = 5;
   int32 min_num_speakers = 13;
   int32 max_num_speakers = 14;
 
@@ -82,8 +82,8 @@ message TranscribeStreamConfig {
 
   bool enable_profanity_filter = 9;
 
-  bool enable_streaming_speaker_diarization = 6;
   bool enable_global_speaker_diarization = 13;
+  bool enable_streaming_speaker_diarization = 6;
   int32 min_num_speakers = 14;
   int32 max_num_speakers = 15;
 
