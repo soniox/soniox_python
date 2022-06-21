@@ -1,0 +1,28 @@
+{
+    "files.watcherExclude": {
+        "**/__pycache__/**": true
+    },
+    "files.exclude": {
+        "**/__pycache__/**": true
+    },
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        100
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=all",
+        "--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode",
+        "--disable=E1120,too-many-function-args",
+    ],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "100"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}"
+    }
+}
