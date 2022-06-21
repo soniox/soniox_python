@@ -25,6 +25,7 @@ setuptools.setup(
             "roots.pem",
             "test_data_files/test_audio_long.flac",
             "test_data_files/test_audio_long.raw",
+            "test_data_files/test_audio_speech_adaptation.flac",
             "test_data_files/test_audio.flac",
             "test_data_files/test_audio.raw",
             "test_data_files/test_audio.wav",

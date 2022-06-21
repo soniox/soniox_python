@@ -1,8 +1,6 @@
-import os
 from soniox.transcribe_file import transcribe_file_short
 from soniox.speech_service import Client, SpeechContext, SpeechContextEntry, set_api_key
-
-THIS_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)))
+from soniox.test_data import TEST_AUDIO_SPEECH_ADAPTATION_FLAC
 
 set_api_key("<YOUR-API-KEY>")
 
@@ -24,7 +22,7 @@ def main():
     with Client() as client:
         test(
             client,
-            os.path.join(THIS_DIR, "test_audio_speech_adaptation_1.flac"),
+            TEST_AUDIO_SPEECH_ADAPTATION_FLAC,
             SpeechContext(entries=[SpeechContextEntry(phrases=["see is"], boost=10.0,),]),
         )
 
