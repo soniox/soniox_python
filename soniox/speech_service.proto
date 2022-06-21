@@ -5,20 +5,32 @@ package soniox.speech_service;
 import "google/protobuf/timestamp.proto";
 
 service SpeechService {
+  // Synchronous transcription
   rpc Transcribe(TranscribeRequest) returns (TranscribeResponse) {}
   rpc TranscribeStream(stream TranscribeStreamRequest) returns (stream TranscribeStreamResponse) {}
   rpc TranscribeMeeting(stream TranscribeMeetingRequest) returns (stream TranscribeMeetingResponse) {}
 
+  // Asynchronous transcription
   rpc TranscribeAsync(stream TranscribeAsyncRequest) returns (TranscribeAsyncResponse) {}
   rpc GetTranscribeAsyncStatus(GetTranscribeAsyncStatusRequest) returns (GetTranscribeAsyncStatusResponse) {}
   rpc GetTranscribeAsyncResult(GetTranscribeAsyncResultRequest) returns (stream GetTranscribeAsyncResultResponse) {}
   rpc DeleteTranscribeAsyncFile(DeleteTranscribeAsyncFileRequest) returns (DeleteTranscribeAsyncFileResponse) {}
 
+  // Speech context
   rpc CreateSpeechContext(CreateSpeechContextRequest) returns (CreateSpeechContextResponse) {}
   rpc DeleteSpeechContext(DeleteSpeechContextRequest) returns (DeleteSpeechContextResponse) {}
   rpc ListSpeechContextNames(ListSpeechContextNamesRequest) returns (ListSpeechContextNamesResponse) {}
   rpc GetSpeechContext(GetSpeechContextRequest) returns (GetSpeechContextResponse) {}
   rpc UpdateSpeechContext(UpdateSpeechContextRequest) returns (UpdateSpeechContextResponse) {}
+
+  // Speaker AI
+  rpc AddSpeaker(AddSpeakerRequest) returns (AddSpeakerResponse) {}
+  rpc GetSpeaker(GetSpeakerRequest) returns (GetSpeakerResponse) {}
+  rpc RemoveSpeaker(RemoveSpeakerRequest) returns (RemoveSpeakerResponse) {}
+  rpc ListSpeakers(ListSpeakersRequest) returns (ListSpeakersResponse) {}
+  rpc AddSpeakerAudio(AddSpeakerAudioRequest) returns (AddSpeakerAudioResponse) {}
+  rpc GetSpeakerAudio(GetSpeakerAudioRequest) returns (GetSpeakerAudioResponse) {}
+  rpc RemoveSpeakerAudio(RemoveSpeakerAudioRequest) returns (RemoveSpeakerAudioResponse) {}
 }
 
 // Transcribe
@@ -28,13 +40,25 @@ message TranscribeRequest {
   TranscribeConfig config = 2;
   bytes audio = 3;
 }
+
 message TranscribeConfig {
   string audio_format = 1;
   int32 sample_rate_hertz = 2;
   int32 num_audio_channels = 3;
+
   SpeechContext speech_context = 4;
+
   bool enable_profanity_filter = 8;
+
+  bool enable_streaming_speaker_diarization = 5;
+  bool enable_global_speaker_diarization = 12;
+  int32 min_num_speakers = 13;
+  int32 max_num_speakers = 14;
+
+  bool enable_speaker_identification = 16;
+  repeated string cand_speaker_names = 17;
 }
+
 message TranscribeResponse {
   Result result = 1;
 }
@@ -46,14 +70,27 @@ message TranscribeStreamRequest {
   TranscribeStreamConfig config = 2;
   bytes audio = 3;
 }
+
 message TranscribeStreamConfig {
   string audio_format = 1;
   int32 sample_rate_hertz = 2;
   int32 num_audio_channels = 3;
-  SpeechContext speech_context = 4;
+
   bool include_nonfinal = 5;
+
+  SpeechContext speech_context = 4;
+
   bool enable_profanity_filter = 9;
+
+  bool enable_streaming_speaker_diarization = 6;
+  bool enable_global_speaker_diarization = 13;
+  int32 min_num_speakers = 14;
+  int32 max_num_speakers = 15;
+
+  bool enable_speaker_identification = 17;
+  repeated string cand_speaker_names = 18;
 }
+
 message TranscribeStreamResponse {
   Result result = 1;
 }
@@ -140,6 +177,7 @@ message Result {
   repeated Word words = 1;
   int32 final_proc_time_ms = 2;
   int32 total_proc_time_ms = 3;
+  repeated ResultSpeaker speakers = 6;
 }
 
 message Word {
@@ -150,6 +188,11 @@ message Word {
   int32 speaker = 5;
   string orig_text = 8;
   double confidence = 9;
+}
+
+message ResultSpeaker {
+  int32 speaker = 1;
+  string name = 2;
 }
 
 // SpeechContext
@@ -199,3 +242,104 @@ message UpdateSpeechContextRequest {
 }
 message UpdateSpeechContextResponse {
 }
+
+// Speaker AI
+
+// AddSpeaker
+
+message AddSpeakerRequest {
+  string api_key = 1;
+  string name = 2;
+}
+
+message AddSpeakerResponse {
+  string name = 1;
+  google.protobuf.Timestamp created = 2;
+}
+
+// GetSpeaker
+
+message GetSpeakerRequest {
+  string api_key = 1;
+  string name = 2;
+}
+
+message GetSpeakerResponse {
+  string name = 1;
+  google.protobuf.Timestamp created = 2;
+  repeated GetSpeakerResponseAudio audios = 3;
+}
+
+message GetSpeakerResponseAudio {
+  string audio_name = 1;
+  google.protobuf.Timestamp created = 2;
+  int32 duration_ms = 3;
+}
+
+// RemoveSpeaker
+
+message RemoveSpeakerRequest {
+  string api_key = 1;
+  string name = 2;
+}
+
+message RemoveSpeakerResponse {}
+
+// ListSpeakers
+
+message ListSpeakersRequest {
+  string api_key = 1;
+}
+
+message ListSpeakersResponse {
+  repeated ListSpeakersResponseSpeaker speakers = 1;
+}
+
+message ListSpeakersResponseSpeaker {
+  string name = 1;
+  google.protobuf.Timestamp created = 2;
+  int32 num_audios = 3;
+}
+
+// AddSpeakerAudio
+
+message AddSpeakerAudioRequest {
+  string api_key = 1;
+  string speaker_name = 2;
+  string audio_name = 3;
+  bytes audio = 4;
+}
+
+message AddSpeakerAudioResponse {
+  string speaker_name = 1;
+  string audio_name = 2;
+  google.protobuf.Timestamp created = 3;
+  int32 duration_ms = 4;
+}
+
+// GetSpeakerAudio
+
+message GetSpeakerAudioRequest {
+  string api_key = 1;
+  string speaker_name = 2;
+  string audio_name = 3;
+}
+
+message GetSpeakerAudioResponse {
+  string speaker_name = 1;
+  string audio_name = 2;
+  google.protobuf.Timestamp created = 3;
+  int32 duration_ms = 4;
+  bytes audio = 5;
+}
+
+// RemoveSpeakerAudio
+
+message RemoveSpeakerAudioRequest {
+  string api_key = 1;
+  string speaker_name = 2;
+  string audio_name = 3;
+}
+
+message RemoveSpeakerAudioResponse {}
+

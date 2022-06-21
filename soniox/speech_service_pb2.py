@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\x1a\x1fgoogle/protobuf/timestamp.proto\"l\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x37\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\'.soniox.speech_service.TranscribeConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\xbe\x01\n\x10TranscribeConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x08 \x01(\x08\"C\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"x\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12=\n\x06\x63onfig\x18\x02 \x01(\x0b\x32-.soniox.speech_service.TranscribeStreamConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\xde\x01\n\x16TranscribeStreamConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x18\n\x10include_nonfinal\x18\x05 \x01(\x08\x12\x1f\n\x17\x65nable_profanity_filter\x18\t \x01(\x08\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"\xd0\x01\n\x18TranscribeMeetingRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12>\n\x06\x63onfig\x18\x02 \x01(\x0b\x32..soniox.speech_service.TranscribeMeetingConfig\x12\x0f\n\x07seq_num\x18\x03 \x01(\x05\x12\x11\n\tstream_id\x18\x04 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x05 \x01(\x08\x12\r\n\x05\x61udio\x18\x06 \x01(\x0c\x12\x16\n\x0e\x65nd_of_segment\x18\x07 \x01(\x08\"\xc5\x01\n\x17TranscribeMeetingConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x05 \x01(\x08\"\xaf\x01\n\x19TranscribeMeetingResponse\x12\x0f\n\x07seq_num\x18\x01 \x01(\x05\x12\x11\n\tstream_id\x18\x02 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x03 \x01(\x08\x12\x16\n\x0e\x65nd_of_segment\x18\x04 \x01(\x08\x12-\n\x06result\x18\x05 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\r\n\x05\x65rror\x18\x06 \x01(\t\"P\n\x16TranscribeAsyncRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"*\n\x17TranscribeAsyncResponse\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\"C\n\x1fGetTranscribeAsyncStatusRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"c\n GetTranscribeAsyncStatusResponse\x12?\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x30.soniox.speech_service.TranscribeAsyncFileStatus\"\x86\x01\n\x19TranscribeAsyncFileStatus\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\x30\n\x0c\x63reated_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x1fGetTranscribeAsyncResultRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"Q\n GetTranscribeAsyncResultResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"D\n DeleteTranscribeAsyncFileRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"#\n!DeleteTranscribeAsyncFileResponse\"l\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\"\x85\x01\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\x12\x0f\n\x07speaker\x18\x05 \x01(\x05\x12\x11\n\torig_text\x18\x08 \x01(\t\x12\x12\n\nconfidence\x18\t \x01(\x01\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse2\x99\x0c\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12|\n\x11TranscribeMeeting\x12/.soniox.speech_service.TranscribeMeetingRequest\x1a\x30.soniox.speech_service.TranscribeMeetingResponse\"\x00(\x01\x30\x01\x12t\n\x0fTranscribeAsync\x12-.soniox.speech_service.TranscribeAsyncRequest\x1a..soniox.speech_service.TranscribeAsyncResponse\"\x00(\x01\x12\x8d\x01\n\x18GetTranscribeAsyncStatus\x12\x36.soniox.speech_service.GetTranscribeAsyncStatusRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncStatusResponse\"\x00\x12\x8f\x01\n\x18GetTranscribeAsyncResult\x12\x36.soniox.speech_service.GetTranscribeAsyncResultRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncResultResponse\"\x00\x30\x01\x12\x90\x01\n\x19\x44\x65leteTranscribeAsyncFile\x12\x37.soniox.speech_service.DeleteTranscribeAsyncFileRequest\x1a\x38.soniox.speech_service.DeleteTranscribeAsyncFileResponse\"\x00\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\x1a\x1fgoogle/protobuf/timestamp.proto\"l\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x37\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\'.soniox.speech_service.TranscribeConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\x8e\x03\n\x10TranscribeConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x08 \x01(\x08\x12,\n$enable_streaming_speaker_diarization\x18\x05 \x01(\x08\x12)\n!enable_global_speaker_diarization\x18\x0c \x01(\x08\x12\x18\n\x10min_num_speakers\x18\r \x01(\x05\x12\x18\n\x10max_num_speakers\x18\x0e \x01(\x05\x12%\n\x1d\x65nable_speaker_identification\x18\x10 \x01(\x08\x12\x1a\n\x12\x63\x61nd_speaker_names\x18\x11 \x03(\t\"C\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"x\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12=\n\x06\x63onfig\x18\x02 \x01(\x0b\x32-.soniox.speech_service.TranscribeStreamConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"\xae\x03\n\x16TranscribeStreamConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12\x18\n\x10include_nonfinal\x18\x05 \x01(\x08\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\t \x01(\x08\x12,\n$enable_streaming_speaker_diarization\x18\x06 \x01(\x08\x12)\n!enable_global_speaker_diarization\x18\r \x01(\x08\x12\x18\n\x10min_num_speakers\x18\x0e \x01(\x05\x12\x18\n\x10max_num_speakers\x18\x0f \x01(\x05\x12%\n\x1d\x65nable_speaker_identification\x18\x11 \x01(\x08\x12\x1a\n\x12\x63\x61nd_speaker_names\x18\x12 \x03(\t\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"\xd0\x01\n\x18TranscribeMeetingRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12>\n\x06\x63onfig\x18\x02 \x01(\x0b\x32..soniox.speech_service.TranscribeMeetingConfig\x12\x0f\n\x07seq_num\x18\x03 \x01(\x05\x12\x11\n\tstream_id\x18\x04 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x05 \x01(\x08\x12\r\n\x05\x61udio\x18\x06 \x01(\x0c\x12\x16\n\x0e\x65nd_of_segment\x18\x07 \x01(\x08\"\xc5\x01\n\x17TranscribeMeetingConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12<\n\x0espeech_context\x18\x04 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x05 \x01(\x08\"\xaf\x01\n\x19TranscribeMeetingResponse\x12\x0f\n\x07seq_num\x18\x01 \x01(\x05\x12\x11\n\tstream_id\x18\x02 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x03 \x01(\x08\x12\x16\n\x0e\x65nd_of_segment\x18\x04 \x01(\x08\x12-\n\x06result\x18\x05 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\r\n\x05\x65rror\x18\x06 \x01(\t\"P\n\x16TranscribeAsyncRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"*\n\x17TranscribeAsyncResponse\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\"C\n\x1fGetTranscribeAsyncStatusRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"c\n GetTranscribeAsyncStatusResponse\x12?\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x30.soniox.speech_service.TranscribeAsyncFileStatus\"\x86\x01\n\x19TranscribeAsyncFileStatus\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\x30\n\x0c\x63reated_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x1fGetTranscribeAsyncResultRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"Q\n GetTranscribeAsyncResultResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"D\n DeleteTranscribeAsyncFileRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"#\n!DeleteTranscribeAsyncFileResponse\"\xa4\x01\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\x12\x36\n\x08speakers\x18\x06 \x03(\x0b\x32$.soniox.speech_service.ResultSpeaker\"\x85\x01\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\x12\x0f\n\x07speaker\x18\x05 \x01(\x05\x12\x11\n\torig_text\x18\x08 \x01(\t\x12\x12\n\nconfidence\x18\t \x01(\x01\".\n\rResultSpeaker\x12\x0f\n\x07speaker\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse\"2\n\x11\x41\x64\x64SpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"O\n\x12\x41\x64\x64SpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"2\n\x11GetSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x8f\x01\n\x12GetSpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12>\n\x06\x61udios\x18\x03 \x03(\x0b\x32..soniox.speech_service.GetSpeakerResponseAudio\"o\n\x17GetSpeakerResponseAudio\x12\x12\n\naudio_name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\"5\n\x14RemoveSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x17\n\x15RemoveSpeakerResponse\"&\n\x13ListSpeakersRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"\\\n\x14ListSpeakersResponse\x12\x44\n\x08speakers\x18\x01 \x03(\x0b\x32\x32.soniox.speech_service.ListSpeakersResponseSpeaker\"l\n\x1bListSpeakersResponseSpeaker\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nnum_audios\x18\x03 \x01(\x05\"b\n\x16\x41\x64\x64SpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"\x85\x01\n\x17\x41\x64\x64SpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\"S\n\x16GetSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x94\x01\n\x17GetSpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\x12\r\n\x05\x61udio\x18\x05 \x01(\x0c\"V\n\x19RemoveSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x1c\n\x1aRemoveSpeakerAudioResponse2\xa1\x12\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12|\n\x11TranscribeMeeting\x12/.soniox.speech_service.TranscribeMeetingRequest\x1a\x30.soniox.speech_service.TranscribeMeetingResponse\"\x00(\x01\x30\x01\x12t\n\x0fTranscribeAsync\x12-.soniox.speech_service.TranscribeAsyncRequest\x1a..soniox.speech_service.TranscribeAsyncResponse\"\x00(\x01\x12\x8d\x01\n\x18GetTranscribeAsyncStatus\x12\x36.soniox.speech_service.GetTranscribeAsyncStatusRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncStatusResponse\"\x00\x12\x8f\x01\n\x18GetTranscribeAsyncResult\x12\x36.soniox.speech_service.GetTranscribeAsyncResultRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncResultResponse\"\x00\x30\x01\x12\x90\x01\n\x19\x44\x65leteTranscribeAsyncFile\x12\x37.soniox.speech_service.DeleteTranscribeAsyncFileRequest\x1a\x38.soniox.speech_service.DeleteTranscribeAsyncFileResponse\"\x00\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x12\x63\n\nAddSpeaker\x12(.soniox.speech_service.AddSpeakerRequest\x1a).soniox.speech_service.AddSpeakerResponse\"\x00\x12\x63\n\nGetSpeaker\x12(.soniox.speech_service.GetSpeakerRequest\x1a).soniox.speech_service.GetSpeakerResponse\"\x00\x12l\n\rRemoveSpeaker\x12+.soniox.speech_service.RemoveSpeakerRequest\x1a,.soniox.speech_service.RemoveSpeakerResponse\"\x00\x12i\n\x0cListSpeakers\x12*.soniox.speech_service.ListSpeakersRequest\x1a+.soniox.speech_service.ListSpeakersResponse\"\x00\x12r\n\x0f\x41\x64\x64SpeakerAudio\x12-.soniox.speech_service.AddSpeakerAudioRequest\x1a..soniox.speech_service.AddSpeakerAudioResponse\"\x00\x12r\n\x0fGetSpeakerAudio\x12-.soniox.speech_service.GetSpeakerAudioRequest\x1a..soniox.speech_service.GetSpeakerAudioResponse\"\x00\x12{\n\x12RemoveSpeakerAudio\x12\x30.soniox.speech_service.RemoveSpeakerAudioRequest\x1a\x31.soniox.speech_service.RemoveSpeakerAudioResponse\"\x00\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -116,6 +116,48 @@ _TRANSCRIBECONFIG = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_streaming_speaker_diarization', full_name='soniox.speech_service.TranscribeConfig.enable_streaming_speaker_diarization', index=5,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_global_speaker_diarization', full_name='soniox.speech_service.TranscribeConfig.enable_global_speaker_diarization', index=6,
+      number=12, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='min_num_speakers', full_name='soniox.speech_service.TranscribeConfig.min_num_speakers', index=7,
+      number=13, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_num_speakers', full_name='soniox.speech_service.TranscribeConfig.max_num_speakers', index=8,
+      number=14, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_speaker_identification', full_name='soniox.speech_service.TranscribeConfig.enable_speaker_identification', index=9,
+      number=16, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cand_speaker_names', full_name='soniox.speech_service.TranscribeConfig.cand_speaker_names', index=10,
+      number=17, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -129,7 +171,7 @@ _TRANSCRIBECONFIG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=198,
-  serialized_end=388,
+  serialized_end=596,
 )
 
 
@@ -160,8 +202,8 @@ _TRANSCRIBERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=390,
-  serialized_end=457,
+  serialized_start=598,
+  serialized_end=665,
 )
 
 
@@ -206,8 +248,8 @@ _TRANSCRIBESTREAMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=459,
-  serialized_end=579,
+  serialized_start=667,
+  serialized_end=787,
 )
 
 
@@ -241,16 +283,16 @@ _TRANSCRIBESTREAMCONFIG = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='speech_context', full_name='soniox.speech_service.TranscribeStreamConfig.speech_context', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='include_nonfinal', full_name='soniox.speech_service.TranscribeStreamConfig.include_nonfinal', index=3,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='include_nonfinal', full_name='soniox.speech_service.TranscribeStreamConfig.include_nonfinal', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='speech_context', full_name='soniox.speech_service.TranscribeStreamConfig.speech_context', index=4,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -258,6 +300,48 @@ _TRANSCRIBESTREAMCONFIG = _descriptor.Descriptor(
       name='enable_profanity_filter', full_name='soniox.speech_service.TranscribeStreamConfig.enable_profanity_filter', index=5,
       number=9, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_streaming_speaker_diarization', full_name='soniox.speech_service.TranscribeStreamConfig.enable_streaming_speaker_diarization', index=6,
+      number=6, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_global_speaker_diarization', full_name='soniox.speech_service.TranscribeStreamConfig.enable_global_speaker_diarization', index=7,
+      number=13, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='min_num_speakers', full_name='soniox.speech_service.TranscribeStreamConfig.min_num_speakers', index=8,
+      number=14, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_num_speakers', full_name='soniox.speech_service.TranscribeStreamConfig.max_num_speakers', index=9,
+      number=15, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enable_speaker_identification', full_name='soniox.speech_service.TranscribeStreamConfig.enable_speaker_identification', index=10,
+      number=17, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cand_speaker_names', full_name='soniox.speech_service.TranscribeStreamConfig.cand_speaker_names', index=11,
+      number=18, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -273,8 +357,8 @@ _TRANSCRIBESTREAMCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=582,
-  serialized_end=804,
+  serialized_start=790,
+  serialized_end=1220,
 )
 
 
@@ -305,8 +389,8 @@ _TRANSCRIBESTREAMRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=806,
-  serialized_end=879,
+  serialized_start=1222,
+  serialized_end=1295,
 )
 
 
@@ -379,8 +463,8 @@ _TRANSCRIBEMEETINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=882,
-  serialized_end=1090,
+  serialized_start=1298,
+  serialized_end=1506,
 )
 
 
@@ -439,8 +523,8 @@ _TRANSCRIBEMEETINGCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1093,
-  serialized_end=1290,
+  serialized_start=1509,
+  serialized_end=1706,
 )
 
 
@@ -506,8 +590,8 @@ _TRANSCRIBEMEETINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1293,
-  serialized_end=1468,
+  serialized_start=1709,
+  serialized_end=1884,
 )
 
 
@@ -552,8 +636,8 @@ _TRANSCRIBEASYNCREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1470,
-  serialized_end=1550,
+  serialized_start=1886,
+  serialized_end=1966,
 )
 
 
@@ -584,8 +668,8 @@ _TRANSCRIBEASYNCRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1552,
-  serialized_end=1594,
+  serialized_start=1968,
+  serialized_end=2010,
 )
 
 
@@ -623,8 +707,8 @@ _GETTRANSCRIBEASYNCSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1596,
-  serialized_end=1663,
+  serialized_start=2012,
+  serialized_end=2079,
 )
 
 
@@ -655,8 +739,8 @@ _GETTRANSCRIBEASYNCSTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1665,
-  serialized_end=1764,
+  serialized_start=2081,
+  serialized_end=2180,
 )
 
 
@@ -708,8 +792,8 @@ _TRANSCRIBEASYNCFILESTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1767,
-  serialized_end=1901,
+  serialized_start=2183,
+  serialized_end=2317,
 )
 
 
@@ -747,8 +831,8 @@ _GETTRANSCRIBEASYNCRESULTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1903,
-  serialized_end=1970,
+  serialized_start=2319,
+  serialized_end=2386,
 )
 
 
@@ -779,8 +863,8 @@ _GETTRANSCRIBEASYNCRESULTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1972,
-  serialized_end=2053,
+  serialized_start=2388,
+  serialized_end=2469,
 )
 
 
@@ -818,8 +902,8 @@ _DELETETRANSCRIBEASYNCFILEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2055,
-  serialized_end=2123,
+  serialized_start=2471,
+  serialized_end=2539,
 )
 
 
@@ -843,8 +927,8 @@ _DELETETRANSCRIBEASYNCFILERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2125,
-  serialized_end=2160,
+  serialized_start=2541,
+  serialized_end=2576,
 )
 
 
@@ -877,6 +961,13 @@ _RESULT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='speakers', full_name='soniox.speech_service.Result.speakers', index=3,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -889,8 +980,8 @@ _RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2162,
-  serialized_end=2270,
+  serialized_start=2579,
+  serialized_end=2743,
 )
 
 
@@ -963,8 +1054,47 @@ _WORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2273,
-  serialized_end=2406,
+  serialized_start=2746,
+  serialized_end=2879,
+)
+
+
+_RESULTSPEAKER = _descriptor.Descriptor(
+  name='ResultSpeaker',
+  full_name='soniox.speech_service.ResultSpeaker',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speaker', full_name='soniox.speech_service.ResultSpeaker.speaker', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.ResultSpeaker.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2881,
+  serialized_end=2927,
 )
 
 
@@ -1002,8 +1132,8 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2408,
-  serialized_end=2497,
+  serialized_start=2929,
+  serialized_end=3018,
 )
 
 
@@ -1041,8 +1171,8 @@ _SPEECHCONTEXTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2499,
-  serialized_end=2551,
+  serialized_start=3020,
+  serialized_end=3072,
 )
 
 
@@ -1080,8 +1210,8 @@ _CREATESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2553,
-  serialized_end=2660,
+  serialized_start=3074,
+  serialized_end=3181,
 )
 
 
@@ -1105,8 +1235,8 @@ _CREATESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2662,
-  serialized_end=2691,
+  serialized_start=3183,
+  serialized_end=3212,
 )
 
 
@@ -1144,8 +1274,8 @@ _DELETESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2693,
-  serialized_end=2752,
+  serialized_start=3214,
+  serialized_end=3273,
 )
 
 
@@ -1169,8 +1299,8 @@ _DELETESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2754,
-  serialized_end=2783,
+  serialized_start=3275,
+  serialized_end=3304,
 )
 
 
@@ -1201,8 +1331,8 @@ _LISTSPEECHCONTEXTNAMESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2785,
-  serialized_end=2833,
+  serialized_start=3306,
+  serialized_end=3354,
 )
 
 
@@ -1233,8 +1363,8 @@ _LISTSPEECHCONTEXTNAMESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2835,
-  serialized_end=2882,
+  serialized_start=3356,
+  serialized_end=3403,
 )
 
 
@@ -1272,8 +1402,8 @@ _GETSPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2884,
-  serialized_end=2940,
+  serialized_start=3405,
+  serialized_end=3461,
 )
 
 
@@ -1304,8 +1434,8 @@ _GETSPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2942,
-  serialized_end=3030,
+  serialized_start=3463,
+  serialized_end=3551,
 )
 
 
@@ -1343,8 +1473,8 @@ _UPDATESPEECHCONTEXTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3032,
-  serialized_end=3139,
+  serialized_start=3553,
+  serialized_end=3660,
 )
 
 
@@ -1368,8 +1498,674 @@ _UPDATESPEECHCONTEXTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3141,
-  serialized_end=3170,
+  serialized_start=3662,
+  serialized_end=3691,
+)
+
+
+_ADDSPEAKERREQUEST = _descriptor.Descriptor(
+  name='AddSpeakerRequest',
+  full_name='soniox.speech_service.AddSpeakerRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.AddSpeakerRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.AddSpeakerRequest.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3693,
+  serialized_end=3743,
+)
+
+
+_ADDSPEAKERRESPONSE = _descriptor.Descriptor(
+  name='AddSpeakerResponse',
+  full_name='soniox.speech_service.AddSpeakerResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.AddSpeakerResponse.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.AddSpeakerResponse.created', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3745,
+  serialized_end=3824,
+)
+
+
+_GETSPEAKERREQUEST = _descriptor.Descriptor(
+  name='GetSpeakerRequest',
+  full_name='soniox.speech_service.GetSpeakerRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.GetSpeakerRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.GetSpeakerRequest.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3826,
+  serialized_end=3876,
+)
+
+
+_GETSPEAKERRESPONSE = _descriptor.Descriptor(
+  name='GetSpeakerResponse',
+  full_name='soniox.speech_service.GetSpeakerResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.GetSpeakerResponse.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.GetSpeakerResponse.created', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audios', full_name='soniox.speech_service.GetSpeakerResponse.audios', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3879,
+  serialized_end=4022,
+)
+
+
+_GETSPEAKERRESPONSEAUDIO = _descriptor.Descriptor(
+  name='GetSpeakerResponseAudio',
+  full_name='soniox.speech_service.GetSpeakerResponseAudio',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.GetSpeakerResponseAudio.audio_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.GetSpeakerResponseAudio.created', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='duration_ms', full_name='soniox.speech_service.GetSpeakerResponseAudio.duration_ms', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4024,
+  serialized_end=4135,
+)
+
+
+_REMOVESPEAKERREQUEST = _descriptor.Descriptor(
+  name='RemoveSpeakerRequest',
+  full_name='soniox.speech_service.RemoveSpeakerRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.RemoveSpeakerRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.RemoveSpeakerRequest.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4137,
+  serialized_end=4190,
+)
+
+
+_REMOVESPEAKERRESPONSE = _descriptor.Descriptor(
+  name='RemoveSpeakerResponse',
+  full_name='soniox.speech_service.RemoveSpeakerResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4192,
+  serialized_end=4215,
+)
+
+
+_LISTSPEAKERSREQUEST = _descriptor.Descriptor(
+  name='ListSpeakersRequest',
+  full_name='soniox.speech_service.ListSpeakersRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.ListSpeakersRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4217,
+  serialized_end=4255,
+)
+
+
+_LISTSPEAKERSRESPONSE = _descriptor.Descriptor(
+  name='ListSpeakersResponse',
+  full_name='soniox.speech_service.ListSpeakersResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speakers', full_name='soniox.speech_service.ListSpeakersResponse.speakers', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4257,
+  serialized_end=4349,
+)
+
+
+_LISTSPEAKERSRESPONSESPEAKER = _descriptor.Descriptor(
+  name='ListSpeakersResponseSpeaker',
+  full_name='soniox.speech_service.ListSpeakersResponseSpeaker',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='soniox.speech_service.ListSpeakersResponseSpeaker.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.ListSpeakersResponseSpeaker.created', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='num_audios', full_name='soniox.speech_service.ListSpeakersResponseSpeaker.num_audios', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4351,
+  serialized_end=4459,
+)
+
+
+_ADDSPEAKERAUDIOREQUEST = _descriptor.Descriptor(
+  name='AddSpeakerAudioRequest',
+  full_name='soniox.speech_service.AddSpeakerAudioRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.AddSpeakerAudioRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='speaker_name', full_name='soniox.speech_service.AddSpeakerAudioRequest.speaker_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.AddSpeakerAudioRequest.audio_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio', full_name='soniox.speech_service.AddSpeakerAudioRequest.audio', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4461,
+  serialized_end=4559,
+)
+
+
+_ADDSPEAKERAUDIORESPONSE = _descriptor.Descriptor(
+  name='AddSpeakerAudioResponse',
+  full_name='soniox.speech_service.AddSpeakerAudioResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speaker_name', full_name='soniox.speech_service.AddSpeakerAudioResponse.speaker_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.AddSpeakerAudioResponse.audio_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.AddSpeakerAudioResponse.created', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='duration_ms', full_name='soniox.speech_service.AddSpeakerAudioResponse.duration_ms', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4562,
+  serialized_end=4695,
+)
+
+
+_GETSPEAKERAUDIOREQUEST = _descriptor.Descriptor(
+  name='GetSpeakerAudioRequest',
+  full_name='soniox.speech_service.GetSpeakerAudioRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.GetSpeakerAudioRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='speaker_name', full_name='soniox.speech_service.GetSpeakerAudioRequest.speaker_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.GetSpeakerAudioRequest.audio_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4697,
+  serialized_end=4780,
+)
+
+
+_GETSPEAKERAUDIORESPONSE = _descriptor.Descriptor(
+  name='GetSpeakerAudioResponse',
+  full_name='soniox.speech_service.GetSpeakerAudioResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speaker_name', full_name='soniox.speech_service.GetSpeakerAudioResponse.speaker_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.GetSpeakerAudioResponse.audio_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='soniox.speech_service.GetSpeakerAudioResponse.created', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='duration_ms', full_name='soniox.speech_service.GetSpeakerAudioResponse.duration_ms', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio', full_name='soniox.speech_service.GetSpeakerAudioResponse.audio', index=4,
+      number=5, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4783,
+  serialized_end=4931,
+)
+
+
+_REMOVESPEAKERAUDIOREQUEST = _descriptor.Descriptor(
+  name='RemoveSpeakerAudioRequest',
+  full_name='soniox.speech_service.RemoveSpeakerAudioRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='api_key', full_name='soniox.speech_service.RemoveSpeakerAudioRequest.api_key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='speaker_name', full_name='soniox.speech_service.RemoveSpeakerAudioRequest.speaker_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio_name', full_name='soniox.speech_service.RemoveSpeakerAudioRequest.audio_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4933,
+  serialized_end=5019,
+)
+
+
+_REMOVESPEAKERAUDIORESPONSE = _descriptor.Descriptor(
+  name='RemoveSpeakerAudioResponse',
+  full_name='soniox.speech_service.RemoveSpeakerAudioResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5021,
+  serialized_end=5049,
 )
 
 _TRANSCRIBEREQUEST.fields_by_name['config'].message_type = _TRANSCRIBECONFIG
@@ -1385,10 +2181,19 @@ _GETTRANSCRIBEASYNCSTATUSRESPONSE.fields_by_name['files'].message_type = _TRANSC
 _TRANSCRIBEASYNCFILESTATUS.fields_by_name['created_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETTRANSCRIBEASYNCRESULTRESPONSE.fields_by_name['result'].message_type = _RESULT
 _RESULT.fields_by_name['words'].message_type = _WORD
+_RESULT.fields_by_name['speakers'].message_type = _RESULTSPEAKER
 _SPEECHCONTEXT.fields_by_name['entries'].message_type = _SPEECHCONTEXTENTRY
 _CREATESPEECHCONTEXTREQUEST.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
 _GETSPEECHCONTEXTRESPONSE.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
 _UPDATESPEECHCONTEXTREQUEST.fields_by_name['speech_context'].message_type = _SPEECHCONTEXT
+_ADDSPEAKERRESPONSE.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GETSPEAKERRESPONSE.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GETSPEAKERRESPONSE.fields_by_name['audios'].message_type = _GETSPEAKERRESPONSEAUDIO
+_GETSPEAKERRESPONSEAUDIO.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_LISTSPEAKERSRESPONSE.fields_by_name['speakers'].message_type = _LISTSPEAKERSRESPONSESPEAKER
+_LISTSPEAKERSRESPONSESPEAKER.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_ADDSPEAKERAUDIORESPONSE.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GETSPEAKERAUDIORESPONSE.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name['TranscribeRequest'] = _TRANSCRIBEREQUEST
 DESCRIPTOR.message_types_by_name['TranscribeConfig'] = _TRANSCRIBECONFIG
 DESCRIPTOR.message_types_by_name['TranscribeResponse'] = _TRANSCRIBERESPONSE
@@ -1409,6 +2214,7 @@ DESCRIPTOR.message_types_by_name['DeleteTranscribeAsyncFileRequest'] = _DELETETR
 DESCRIPTOR.message_types_by_name['DeleteTranscribeAsyncFileResponse'] = _DELETETRANSCRIBEASYNCFILERESPONSE
 DESCRIPTOR.message_types_by_name['Result'] = _RESULT
 DESCRIPTOR.message_types_by_name['Word'] = _WORD
+DESCRIPTOR.message_types_by_name['ResultSpeaker'] = _RESULTSPEAKER
 DESCRIPTOR.message_types_by_name['SpeechContext'] = _SPEECHCONTEXT
 DESCRIPTOR.message_types_by_name['SpeechContextEntry'] = _SPEECHCONTEXTENTRY
 DESCRIPTOR.message_types_by_name['CreateSpeechContextRequest'] = _CREATESPEECHCONTEXTREQUEST
@@ -1421,6 +2227,22 @@ DESCRIPTOR.message_types_by_name['GetSpeechContextRequest'] = _GETSPEECHCONTEXTR
 DESCRIPTOR.message_types_by_name['GetSpeechContextResponse'] = _GETSPEECHCONTEXTRESPONSE
 DESCRIPTOR.message_types_by_name['UpdateSpeechContextRequest'] = _UPDATESPEECHCONTEXTREQUEST
 DESCRIPTOR.message_types_by_name['UpdateSpeechContextResponse'] = _UPDATESPEECHCONTEXTRESPONSE
+DESCRIPTOR.message_types_by_name['AddSpeakerRequest'] = _ADDSPEAKERREQUEST
+DESCRIPTOR.message_types_by_name['AddSpeakerResponse'] = _ADDSPEAKERRESPONSE
+DESCRIPTOR.message_types_by_name['GetSpeakerRequest'] = _GETSPEAKERREQUEST
+DESCRIPTOR.message_types_by_name['GetSpeakerResponse'] = _GETSPEAKERRESPONSE
+DESCRIPTOR.message_types_by_name['GetSpeakerResponseAudio'] = _GETSPEAKERRESPONSEAUDIO
+DESCRIPTOR.message_types_by_name['RemoveSpeakerRequest'] = _REMOVESPEAKERREQUEST
+DESCRIPTOR.message_types_by_name['RemoveSpeakerResponse'] = _REMOVESPEAKERRESPONSE
+DESCRIPTOR.message_types_by_name['ListSpeakersRequest'] = _LISTSPEAKERSREQUEST
+DESCRIPTOR.message_types_by_name['ListSpeakersResponse'] = _LISTSPEAKERSRESPONSE
+DESCRIPTOR.message_types_by_name['ListSpeakersResponseSpeaker'] = _LISTSPEAKERSRESPONSESPEAKER
+DESCRIPTOR.message_types_by_name['AddSpeakerAudioRequest'] = _ADDSPEAKERAUDIOREQUEST
+DESCRIPTOR.message_types_by_name['AddSpeakerAudioResponse'] = _ADDSPEAKERAUDIORESPONSE
+DESCRIPTOR.message_types_by_name['GetSpeakerAudioRequest'] = _GETSPEAKERAUDIOREQUEST
+DESCRIPTOR.message_types_by_name['GetSpeakerAudioResponse'] = _GETSPEAKERAUDIORESPONSE
+DESCRIPTOR.message_types_by_name['RemoveSpeakerAudioRequest'] = _REMOVESPEAKERAUDIOREQUEST
+DESCRIPTOR.message_types_by_name['RemoveSpeakerAudioResponse'] = _REMOVESPEAKERAUDIORESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 TranscribeRequest = _reflection.GeneratedProtocolMessageType('TranscribeRequest', (_message.Message,), {
@@ -1563,6 +2385,13 @@ Word = _reflection.GeneratedProtocolMessageType('Word', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Word)
 
+ResultSpeaker = _reflection.GeneratedProtocolMessageType('ResultSpeaker', (_message.Message,), {
+  'DESCRIPTOR' : _RESULTSPEAKER,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.ResultSpeaker)
+  })
+_sym_db.RegisterMessage(ResultSpeaker)
+
 SpeechContext = _reflection.GeneratedProtocolMessageType('SpeechContext', (_message.Message,), {
   'DESCRIPTOR' : _SPEECHCONTEXT,
   '__module__' : 'soniox.speech_service_pb2'
@@ -1647,6 +2476,118 @@ UpdateSpeechContextResponse = _reflection.GeneratedProtocolMessageType('UpdateSp
   })
 _sym_db.RegisterMessage(UpdateSpeechContextResponse)
 
+AddSpeakerRequest = _reflection.GeneratedProtocolMessageType('AddSpeakerRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ADDSPEAKERREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.AddSpeakerRequest)
+  })
+_sym_db.RegisterMessage(AddSpeakerRequest)
+
+AddSpeakerResponse = _reflection.GeneratedProtocolMessageType('AddSpeakerResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ADDSPEAKERRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.AddSpeakerResponse)
+  })
+_sym_db.RegisterMessage(AddSpeakerResponse)
+
+GetSpeakerRequest = _reflection.GeneratedProtocolMessageType('GetSpeakerRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETSPEAKERREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetSpeakerRequest)
+  })
+_sym_db.RegisterMessage(GetSpeakerRequest)
+
+GetSpeakerResponse = _reflection.GeneratedProtocolMessageType('GetSpeakerResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETSPEAKERRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetSpeakerResponse)
+  })
+_sym_db.RegisterMessage(GetSpeakerResponse)
+
+GetSpeakerResponseAudio = _reflection.GeneratedProtocolMessageType('GetSpeakerResponseAudio', (_message.Message,), {
+  'DESCRIPTOR' : _GETSPEAKERRESPONSEAUDIO,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetSpeakerResponseAudio)
+  })
+_sym_db.RegisterMessage(GetSpeakerResponseAudio)
+
+RemoveSpeakerRequest = _reflection.GeneratedProtocolMessageType('RemoveSpeakerRequest', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVESPEAKERREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.RemoveSpeakerRequest)
+  })
+_sym_db.RegisterMessage(RemoveSpeakerRequest)
+
+RemoveSpeakerResponse = _reflection.GeneratedProtocolMessageType('RemoveSpeakerResponse', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVESPEAKERRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.RemoveSpeakerResponse)
+  })
+_sym_db.RegisterMessage(RemoveSpeakerResponse)
+
+ListSpeakersRequest = _reflection.GeneratedProtocolMessageType('ListSpeakersRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSPEAKERSREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.ListSpeakersRequest)
+  })
+_sym_db.RegisterMessage(ListSpeakersRequest)
+
+ListSpeakersResponse = _reflection.GeneratedProtocolMessageType('ListSpeakersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSPEAKERSRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.ListSpeakersResponse)
+  })
+_sym_db.RegisterMessage(ListSpeakersResponse)
+
+ListSpeakersResponseSpeaker = _reflection.GeneratedProtocolMessageType('ListSpeakersResponseSpeaker', (_message.Message,), {
+  'DESCRIPTOR' : _LISTSPEAKERSRESPONSESPEAKER,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.ListSpeakersResponseSpeaker)
+  })
+_sym_db.RegisterMessage(ListSpeakersResponseSpeaker)
+
+AddSpeakerAudioRequest = _reflection.GeneratedProtocolMessageType('AddSpeakerAudioRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ADDSPEAKERAUDIOREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.AddSpeakerAudioRequest)
+  })
+_sym_db.RegisterMessage(AddSpeakerAudioRequest)
+
+AddSpeakerAudioResponse = _reflection.GeneratedProtocolMessageType('AddSpeakerAudioResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ADDSPEAKERAUDIORESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.AddSpeakerAudioResponse)
+  })
+_sym_db.RegisterMessage(AddSpeakerAudioResponse)
+
+GetSpeakerAudioRequest = _reflection.GeneratedProtocolMessageType('GetSpeakerAudioRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETSPEAKERAUDIOREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetSpeakerAudioRequest)
+  })
+_sym_db.RegisterMessage(GetSpeakerAudioRequest)
+
+GetSpeakerAudioResponse = _reflection.GeneratedProtocolMessageType('GetSpeakerAudioResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETSPEAKERAUDIORESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetSpeakerAudioResponse)
+  })
+_sym_db.RegisterMessage(GetSpeakerAudioResponse)
+
+RemoveSpeakerAudioRequest = _reflection.GeneratedProtocolMessageType('RemoveSpeakerAudioRequest', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVESPEAKERAUDIOREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.RemoveSpeakerAudioRequest)
+  })
+_sym_db.RegisterMessage(RemoveSpeakerAudioRequest)
+
+RemoveSpeakerAudioResponse = _reflection.GeneratedProtocolMessageType('RemoveSpeakerAudioResponse', (_message.Message,), {
+  'DESCRIPTOR' : _REMOVESPEAKERAUDIORESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.RemoveSpeakerAudioResponse)
+  })
+_sym_db.RegisterMessage(RemoveSpeakerAudioResponse)
+
 
 
 _SPEECHSERVICE = _descriptor.ServiceDescriptor(
@@ -1656,8 +2597,8 @@ _SPEECHSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=3173,
-  serialized_end=4734,
+  serialized_start=5052,
+  serialized_end=7389,
   methods=[
   _descriptor.MethodDescriptor(
     name='Transcribe',
@@ -1776,6 +2717,76 @@ _SPEECHSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_UPDATESPEECHCONTEXTREQUEST,
     output_type=_UPDATESPEECHCONTEXTRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddSpeaker',
+    full_name='soniox.speech_service.SpeechService.AddSpeaker',
+    index=12,
+    containing_service=None,
+    input_type=_ADDSPEAKERREQUEST,
+    output_type=_ADDSPEAKERRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetSpeaker',
+    full_name='soniox.speech_service.SpeechService.GetSpeaker',
+    index=13,
+    containing_service=None,
+    input_type=_GETSPEAKERREQUEST,
+    output_type=_GETSPEAKERRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RemoveSpeaker',
+    full_name='soniox.speech_service.SpeechService.RemoveSpeaker',
+    index=14,
+    containing_service=None,
+    input_type=_REMOVESPEAKERREQUEST,
+    output_type=_REMOVESPEAKERRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListSpeakers',
+    full_name='soniox.speech_service.SpeechService.ListSpeakers',
+    index=15,
+    containing_service=None,
+    input_type=_LISTSPEAKERSREQUEST,
+    output_type=_LISTSPEAKERSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddSpeakerAudio',
+    full_name='soniox.speech_service.SpeechService.AddSpeakerAudio',
+    index=16,
+    containing_service=None,
+    input_type=_ADDSPEAKERAUDIOREQUEST,
+    output_type=_ADDSPEAKERAUDIORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetSpeakerAudio',
+    full_name='soniox.speech_service.SpeechService.GetSpeakerAudio',
+    index=17,
+    containing_service=None,
+    input_type=_GETSPEAKERAUDIOREQUEST,
+    output_type=_GETSPEAKERAUDIORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RemoveSpeakerAudio',
+    full_name='soniox.speech_service.SpeechService.RemoveSpeakerAudio',
+    index=18,
+    containing_service=None,
+    input_type=_REMOVESPEAKERAUDIOREQUEST,
+    output_type=_REMOVESPEAKERAUDIORESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
