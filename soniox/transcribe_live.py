@@ -21,6 +21,7 @@ def transcribe_capture(
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
     enable_profanity_filter: bool = False,
+    profanity_filter_phrases: Optional[List[str]] = None,
     enable_streaming_speaker_diarization: bool = False,
     enable_global_speaker_diarization: bool = False,
     min_num_speakers: int = 0,
@@ -33,6 +34,9 @@ def transcribe_capture(
     assert isinstance(include_nonfinal, bool)
     assert speech_context is None or isinstance(speech_context, SpeechContext)
     assert isinstance(enable_profanity_filter, bool)
+    if profanity_filter_phrases is not None:
+        assert isinstance(profanity_filter_phrases, list)
+        assert all(isinstance(phrase, str) for phrase in profanity_filter_phrases)
     assert isinstance(enable_streaming_speaker_diarization, bool)
     assert isinstance(enable_global_speaker_diarization, bool)
     assert isinstance(min_num_speakers, int)
@@ -50,6 +54,8 @@ def transcribe_capture(
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
     config.enable_profanity_filter = enable_profanity_filter
+    if profanity_filter_phrases is not None:
+        config.profanity_filter_phrases.extend(profanity_filter_phrases)
     config.enable_streaming_speaker_diarization = enable_streaming_speaker_diarization
     config.enable_global_speaker_diarization = enable_global_speaker_diarization
     config.min_num_speakers = min_num_speakers
@@ -79,6 +85,7 @@ def transcribe_microphone(
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
     enable_profanity_filter: bool = False,
+    profanity_filter_phrases: Optional[List[str]] = None,
     enable_streaming_speaker_diarization: bool = False,
     enable_global_speaker_diarization: bool = False,
     min_num_speakers: int = 0,
@@ -93,6 +100,7 @@ def transcribe_microphone(
         speech_context,
         stop_event,
         enable_profanity_filter,
+        profanity_filter_phrases,
         enable_streaming_speaker_diarization,
         enable_global_speaker_diarization,
         min_num_speakers,
@@ -110,6 +118,7 @@ def transcribe_stream(
     num_audio_channels: int = 0,
     speech_context: Optional[SpeechContext] = None,
     enable_profanity_filter: bool = False,
+    profanity_filter_phrases: Optional[List[str]] = None,
     enable_streaming_speaker_diarization: bool = False,
     enable_global_speaker_diarization: bool = False,
     min_num_speakers: int = 0,
@@ -122,6 +131,9 @@ def transcribe_stream(
     assert isinstance(num_audio_channels, int)
     assert speech_context is None or isinstance(speech_context, SpeechContext)
     assert isinstance(enable_profanity_filter, bool)
+    if profanity_filter_phrases is not None:
+        assert isinstance(profanity_filter_phrases, list)
+        assert all(isinstance(phrase, str) for phrase in profanity_filter_phrases)
     assert isinstance(enable_streaming_speaker_diarization, bool)
     assert isinstance(enable_global_speaker_diarization, bool)
     assert isinstance(min_num_speakers, int)
@@ -139,6 +151,8 @@ def transcribe_stream(
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
     config.enable_profanity_filter = enable_profanity_filter
+    if profanity_filter_phrases is not None:
+        config.profanity_filter_phrases.extend(profanity_filter_phrases)
     config.enable_streaming_speaker_diarization = enable_streaming_speaker_diarization
     config.enable_global_speaker_diarization = enable_global_speaker_diarization
     config.min_num_speakers = min_num_speakers

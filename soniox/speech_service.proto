@@ -49,6 +49,7 @@ message TranscribeConfig {
   SpeechContext speech_context = 4;
 
   bool enable_profanity_filter = 8;
+  repeated string profanity_filter_phrases = 18;
 
   bool enable_global_speaker_diarization = 12;
   bool enable_streaming_speaker_diarization = 5;
@@ -81,6 +82,7 @@ message TranscribeStreamConfig {
   SpeechContext speech_context = 4;
 
   bool enable_profanity_filter = 9;
+  repeated string profanity_filter_phrases = 19;
 
   bool enable_global_speaker_diarization = 13;
   bool enable_streaming_speaker_diarization = 6;
@@ -106,12 +108,16 @@ message TranscribeMeetingRequest {
   bytes audio = 6;
   bool end_of_segment = 7;
 }
+
 message TranscribeMeetingConfig {
   string audio_format = 1;
   int32 sample_rate_hertz = 2;
   int32 num_audio_channels = 3;
+
   SpeechContext speech_context = 4;
+
   bool enable_profanity_filter = 5;
+  repeated string profanity_filter_phrases = 10;
 }
 
 message TranscribeMeetingResponse {
