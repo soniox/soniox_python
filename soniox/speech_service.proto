@@ -58,6 +58,9 @@ message TranscribeConfig {
 
   bool enable_speaker_identification = 16;
   repeated string cand_speaker_names = 17;
+
+  string model = 10;
+  bool enable_dictation = 11;
 }
 
 message TranscribeResponse {
@@ -91,6 +94,9 @@ message TranscribeStreamConfig {
 
   bool enable_speaker_identification = 17;
   repeated string cand_speaker_names = 18;
+
+  string model = 11;
+  bool enable_dictation = 12;
 }
 
 message TranscribeStreamResponse {
@@ -118,6 +124,9 @@ message TranscribeMeetingConfig {
 
   bool enable_profanity_filter = 5;
   repeated string profanity_filter_phrases = 10;
+
+  string model = 8;
+  bool enable_dictation = 9;
 }
 
 message TranscribeMeetingResponse {
