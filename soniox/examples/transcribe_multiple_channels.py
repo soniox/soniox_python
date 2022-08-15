@@ -3,7 +3,7 @@ import os
 import argparse
 import soundfile
 
-from soniox.speech_service import Client, Result, update_result
+from soniox.speech_service import Client, Result
 from soniox.transcribe_file import transcribe_bytes_stream
 from soniox.multi_channel_utils import get_multi_channel_transcript
 
@@ -19,16 +19,14 @@ def process_file(audio_file: str, silence_threshold_ms: int, client: Client) -> 
     results: Dict[int, Result] = {}
 
     for channel in range(num_channels):
-        result = Result()
-        for partial_result in transcribe_bytes_stream(
+        result = transcribe_bytes_stream(
             samples[:, channel].tobytes(),
             client,
             audio_format="pcm_s16le",
             sample_rate_hertz=sample_rate,
             num_audio_channels=1,
-        ):
-            update_result(result, partial_result)
-
+        )
+        assert isinstance(result, Result)
         results[channel] = result
 
     transcript = get_multi_channel_transcript(results, silence_threshold_ms)

@@ -7,9 +7,12 @@ set_api_key("<YOUR-API-KEY>")
 
 def main():
     with Client() as client:
-        result = transcribe_file_short(TEST_AUDIO_FLAC, client)
-        for word in result.words:
-            print(f"{word.text} {word.start_ms} {word.duration_ms}")
+        result = transcribe_file_short(
+            TEST_AUDIO_FLAC,
+            client,
+            content_moderation_phrases=["two years", "homesick"],
+        )
+        print("Words: " + " ".join(w.text for w in result.words))
 
 
 if __name__ == "__main__":

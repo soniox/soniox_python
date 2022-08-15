@@ -37,66 +37,21 @@ service SpeechService {
 
 message TranscribeRequest {
   string api_key = 1;
-  TranscribeConfig config = 2;
+  TranscriptionConfig config = 4;
   bytes audio = 3;
-}
-
-message TranscribeConfig {
-  string audio_format = 1;
-  int32 sample_rate_hertz = 2;
-  int32 num_audio_channels = 3;
-
-  SpeechContext speech_context = 4;
-
-  bool enable_profanity_filter = 8;
-  repeated string profanity_filter_phrases = 18;
-
-  bool enable_global_speaker_diarization = 12;
-  bool enable_streaming_speaker_diarization = 5;
-  int32 min_num_speakers = 13;
-  int32 max_num_speakers = 14;
-
-  bool enable_speaker_identification = 16;
-  repeated string cand_speaker_names = 17;
-
-  string model = 10;
-  bool enable_dictation = 11;
 }
 
 message TranscribeResponse {
   Result result = 1;
+  repeated Result channel_results = 2;
 }
 
 // TranscribeStream
 
 message TranscribeStreamRequest {
   string api_key = 1;
-  TranscribeStreamConfig config = 2;
+  TranscriptionConfig config = 4;
   bytes audio = 3;
-}
-
-message TranscribeStreamConfig {
-  string audio_format = 1;
-  int32 sample_rate_hertz = 2;
-  int32 num_audio_channels = 3;
-
-  bool include_nonfinal = 5;
-
-  SpeechContext speech_context = 4;
-
-  bool enable_profanity_filter = 9;
-  repeated string profanity_filter_phrases = 19;
-
-  bool enable_global_speaker_diarization = 13;
-  bool enable_streaming_speaker_diarization = 6;
-  int32 min_num_speakers = 14;
-  int32 max_num_speakers = 15;
-
-  bool enable_speaker_identification = 17;
-  repeated string cand_speaker_names = 18;
-
-  string model = 11;
-  bool enable_dictation = 12;
 }
 
 message TranscribeStreamResponse {
@@ -107,26 +62,12 @@ message TranscribeStreamResponse {
 
 message TranscribeMeetingRequest {
   string api_key = 1;
-  TranscribeMeetingConfig config = 2;
+  TranscriptionConfig config = 10;
   int32 seq_num = 3;
   int32 stream_id = 4;
   bool start_of_segment = 5;
   bytes audio = 6;
   bool end_of_segment = 7;
-}
-
-message TranscribeMeetingConfig {
-  string audio_format = 1;
-  int32 sample_rate_hertz = 2;
-  int32 num_audio_channels = 3;
-
-  SpeechContext speech_context = 4;
-
-  bool enable_profanity_filter = 5;
-  repeated string profanity_filter_phrases = 10;
-
-  string model = 8;
-  bool enable_dictation = 9;
 }
 
 message TranscribeMeetingResponse {
@@ -143,6 +84,7 @@ message TranscribeMeetingResponse {
 message TranscribeAsyncRequest {
   string api_key = 1;
   string reference_name = 3;
+  TranscriptionConfig config = 5;
   bytes audio = 4;
 }
 message TranscribeAsyncResponse {
@@ -165,6 +107,7 @@ message TranscribeAsyncFileStatus {
   string status = 3;
   // UTC timestamp
   google.protobuf.Timestamp created_time = 4;
+  string error_message = 5;
 }
 
 // GetTranscribeAsyncResult
@@ -174,6 +117,7 @@ message GetTranscribeAsyncResultRequest {
   string file_id = 2;
 }
 message GetTranscribeAsyncResultResponse {
+  bool separate_recognition_per_channel = 2;
   Result result = 1;
 }
 
@@ -188,11 +132,44 @@ message DeleteTranscribeAsyncFileResponse {
 
 // Common
 
+message TranscriptionConfig {
+  // Input options
+  string audio_format = 1;
+  int32 sample_rate_hertz = 2;
+  int32 num_audio_channels = 3;
+
+  // Output options
+  bool include_nonfinal = 4;
+  bool enable_separate_recognition_per_channel = 16;
+
+  // Speech adaptation
+  SpeechContext speech_context = 5;
+
+  // Content moderation
+  bool enable_profanity_filter = 6;
+  repeated string content_moderation_phrases = 7;
+
+  // Speaker diarization
+  bool enable_streaming_speaker_diarization = 8;
+  bool enable_global_speaker_diarization = 9;
+  int32 min_num_speakers = 10;
+  int32 max_num_speakers = 11;
+
+  // Speaker identification
+  bool enable_speaker_identification = 12;
+  repeated string cand_speaker_names = 13;
+
+  // Model options
+  string model = 14;
+  bool enable_dictation = 15;
+}
+
 message Result {
   repeated Word words = 1;
   int32 final_proc_time_ms = 2;
   int32 total_proc_time_ms = 3;
   repeated ResultSpeaker speakers = 6;
+  int32 channel = 7;
 }
 
 message Word {

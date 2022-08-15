@@ -25,6 +25,8 @@ setuptools.setup(
             "roots.pem",
             "test_data_files/test_audio_long.flac",
             "test_data_files/test_audio_long.raw",
+            "test_data_files/test_audio_multi_channel.flac",
+            "test_data_files/test_audio_profanity.mp3",
             "test_data_files/test_audio_sd_spk1.flac",
             "test_data_files/test_audio_sd_spk2.flac",
             "test_data_files/test_audio_sd.flac",

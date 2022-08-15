@@ -1,4 +1,4 @@
-from typing import Iterable, List, Optional
+from typing import Iterable, List, Optional, Union, Dict
 import os
 import grpc
 import soniox.speech_service_pb2 as speech_service_pb2
@@ -8,9 +8,7 @@ SpeechContext = speech_service_pb2.SpeechContext
 SpeechContextEntry = speech_service_pb2.SpeechContextEntry
 Result = speech_service_pb2.Result
 Word = speech_service_pb2.Word
-TranscribeConfig = speech_service_pb2.TranscribeConfig
-TranscribeStreamConfig = speech_service_pb2.TranscribeStreamConfig
-TranscribeMeetingConfig = speech_service_pb2.TranscribeMeetingConfig
+TranscriptionConfig = speech_service_pb2.TranscriptionConfig
 TranscribeMeetingRequest = speech_service_pb2.TranscribeMeetingRequest
 TranscribeMeetingResponse = speech_service_pb2.TranscribeMeetingResponse
 TranscribeAsyncFileStatus = speech_service_pb2.TranscribeAsyncFileStatus
@@ -101,8 +99,8 @@ class Client:
     def api_key(self) -> str:
         return self._api_key
 
-    def Transcribe(self, config: TranscribeConfig, audio: bytes) -> Result:
-        assert isinstance(config, TranscribeConfig)
+    def Transcribe(self, config: TranscriptionConfig, audio: bytes) -> Union[Result, List[Result]]:
+        assert isinstance(config, TranscriptionConfig)
         assert isinstance(audio, bytes)
 
         request = speech_service_pb2.TranscribeRequest()
@@ -112,12 +110,19 @@ class Client:
 
         response = self._client.Transcribe(request)
 
-        return response.result
+        if not config.enable_separate_recognition_per_channel:
+            assert response.HasField("result")
+            assert len(response.channel_results) == 0
+            return response.result
+        else:
+            assert not response.HasField("result")
+            assert len(response.channel_results) > 0
+            return list(response.channel_results)
 
     def TranscribeStream(
-        self, config: TranscribeStreamConfig, iter_audio: Iterable[bytes]
+        self, config: TranscriptionConfig, iter_audio: Iterable[bytes]
     ) -> Iterable[Result]:
-        assert isinstance(config, TranscribeStreamConfig)
+        assert isinstance(config, TranscriptionConfig)
 
         # If the request iterator throws an exception, gRPC throws its own exception
         # that does not have the original exception as the cause, which means one does
@@ -157,10 +162,39 @@ class Client:
                 raise e from iter_exception
             raise
 
+    def TranscribeStreamFile(
+        self, config: TranscriptionConfig, iter_audio: Iterable[bytes]
+    ) -> Union[Result, List[Result]]:
+        assert not config.include_nonfinal
+
+        if not config.enable_separate_recognition_per_channel:
+            got_result = False
+            result = Result()
+
+            for resp_result in self.TranscribeStream(config, iter_audio):
+                got_result = True
+                update_result(result, resp_result)
+
+            assert got_result
+            return result
+        else:
+            channel_results: Dict[int, Result] = {}
+
+            for resp_result in self.TranscribeStream(config, iter_audio):
+                channel = resp_result.channel
+                if channel not in channel_results:
+                    channel_results[channel] = Result(channel=channel)
+                update_result(channel_results[channel], resp_result)
+
+            assert len(channel_results) > 0
+            channels = sorted(channel_results.keys())
+            assert channels == list(range(len(channel_results)))
+            return [channel_results[channel] for channel in channels]
+
     def TranscribeMeeting(
-        self, config: TranscribeMeetingConfig, iter_requests: Iterable[TranscribeMeetingRequest]
+        self, config: TranscriptionConfig, iter_requests: Iterable[TranscribeMeetingRequest]
     ) -> Iterable[TranscribeMeetingResponse]:
-        assert isinstance(config, TranscribeMeetingConfig)
+        assert isinstance(config, TranscriptionConfig)
 
         iter_exception = None
 
@@ -197,7 +231,9 @@ class Client:
                 raise e from iter_exception
             raise
 
-    def TranscribeAsync(self, reference_name: str, iter_audio: Iterable[bytes]) -> str:
+    def TranscribeAsync(
+        self, reference_name: str, iter_audio: Iterable[bytes], config: TranscriptionConfig
+    ) -> str:
         assert isinstance(reference_name, str)
 
         # See TranscribeStream for an explanation.
@@ -210,6 +246,7 @@ class Client:
                 request = speech_service_pb2.TranscribeAsyncRequest()
                 request.api_key = self.api_key
                 request.reference_name = reference_name
+                request.config.CopyFrom(config)
                 yield request
 
                 for audio in iter_audio:
@@ -254,7 +291,7 @@ class Client:
 
         return list(response.files)
 
-    def GetTranscribeAsyncResult(self, file_id: str) -> Result:
+    def GetTranscribeAsyncResult(self, file_id: str) -> Union[Result, List[Result]]:
         assert isinstance(file_id, str)
         assert file_id != ""
 
@@ -263,18 +300,38 @@ class Client:
         request.file_id = file_id
 
         got_responses = False
-        result = Result()
+        result: Optional[Result] = None
+        channel_results: Optional[Dict[int, Result]] = None
 
         for response in self._client.GetTranscribeAsyncResult(request):
-            got_responses = True
-            result.words.extend(response.result.words)
-            result.final_proc_time_ms = response.result.final_proc_time_ms
-            result.total_proc_time_ms = response.result.total_proc_time_ms
+            if not got_responses:
+                if not response.separate_recognition_per_channel:
+                    result = Result()
+                else:
+                    channel_results = {}
+                got_responses = True
 
-        if not got_responses:
-            raise Exception("No responses received.")
+            assert response.HasField("result")
 
-        return result
+            if not response.separate_recognition_per_channel:
+                assert result is not None
+                update_result(result, response.result)
+            else:
+                assert channel_results is not None
+                channel = response.result.channel
+                if channel not in channel_results:
+                    channel_results[channel] = Result(channel=channel)
+                update_result(channel_results[channel], response.result)
+
+        assert got_responses
+        if result is not None:
+            return result
+        else:
+            assert channel_results is not None
+            assert len(channel_results) > 0
+            channels = sorted(channel_results.keys())
+            assert channels == list(range(len(channel_results)))
+            return [channel_results[channel] for channel in channels]
 
     def DeleteTranscribeAsyncFile(self, file_id: str) -> None:
         assert isinstance(file_id, str)
@@ -288,6 +345,7 @@ class Client:
 
 
 def update_result(result: Result, new_result: Result) -> None:
+    assert result.channel == new_result.channel
     i = len(result.words)
     while i > 0 and not result.words[i - 1].is_final:
         i -= 1
@@ -297,10 +355,3 @@ def update_result(result: Result, new_result: Result) -> None:
     result.total_proc_time_ms = new_result.total_proc_time_ms
     del result.speakers[:]
     result.speakers.extend(new_result.speakers)
-
-
-def merge_results(results: Iterable[Result]) -> Result:
-    result = Result()
-    for new_result in results:
-        update_result(result, new_result)
-    return result
