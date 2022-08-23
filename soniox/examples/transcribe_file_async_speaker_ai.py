@@ -12,12 +12,13 @@ def main():
         file_id = transcribe_file_async(
             TEST_AUDIO_SD_FLAC,
             client,
-            reference_name="test",
             enable_global_speaker_diarization=True,
             min_num_speakers=1,
             max_num_speakers=6,
             enable_speaker_identification=True,
             cand_speaker_names=["John", "Judy"],
+            transcribe_async_mode="instant_file",
+            reference_name="test",
         )
         print(f"File ID: {file_id}")
 

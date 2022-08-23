@@ -108,6 +108,7 @@ message TranscribeAsyncFileStatus {
   // UTC timestamp
   google.protobuf.Timestamp created_time = 4;
   string error_message = 5;
+  string transcribe_async_mode = 6;
 }
 
 // GetTranscribeAsyncResult
@@ -162,6 +163,9 @@ message TranscriptionConfig {
   // Model options
   string model = 14;
   bool enable_dictation = 15;
+
+  // Asynchronous transcription
+  string transcribe_async_mode = 17;
 }
 
 message Result {

@@ -289,6 +289,7 @@ def transcribe_file_async(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    transcribe_async_mode: str = "",
     reference_name: str = "",
     chunk_size: int = READ_CHUNK_SIZE,
 ) -> str:
@@ -310,6 +311,7 @@ def transcribe_file_async(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
+    assert isinstance(transcribe_async_mode, str)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -329,5 +331,6 @@ def transcribe_file_async(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
+    config.transcribe_async_mode = transcribe_async_mode
 
     return client.TranscribeAsync(reference_name, iter_file_chunks(file_path, chunk_size), config)

@@ -9,7 +9,12 @@ set_api_key("<YOUR-API-KEY>")
 def main():
     with Client() as client:
         print("Uploading file.")
-        file_id = transcribe_file_async(TEST_AUDIO_LONG_FLAC, client, reference_name="test")
+        file_id = transcribe_file_async(
+            TEST_AUDIO_LONG_FLAC,
+            client,
+            transcribe_async_mode="instant_file",
+            reference_name="test",
+        )
         print(f"File ID: {file_id}")
 
         while True:
