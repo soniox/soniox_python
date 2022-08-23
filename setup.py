@@ -23,6 +23,7 @@ setuptools.setup(
     package_data={
         "soniox": [
             "roots.pem",
+            "test_data_files/test_audio_dictation.mp3",
             "test_data_files/test_audio_long.flac",
             "test_data_files/test_audio_long.raw",
             "test_data_files/test_audio_multi_channel.flac",

@@ -49,6 +49,7 @@ def transcribe_file_short(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
 ) -> Union[Result, List[Result]]:
     assert isinstance(file_path, str)
 
@@ -72,6 +73,7 @@ def transcribe_file_short(
         cand_speaker_names,
         enable_separate_recognition_per_channel,
         model,
+        enable_dictation,
     )
 
 
@@ -92,6 +94,7 @@ def transcribe_bytes_short(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
 ) -> Union[Result, List[Result]]:
     assert isinstance(audio, bytes)
     assert isinstance(client, Client)
@@ -112,6 +115,7 @@ def transcribe_bytes_short(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
+    assert isinstance(enable_dictation, bool)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -131,6 +135,7 @@ def transcribe_bytes_short(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
+    config.enable_dictation = enable_dictation
 
     return client.Transcribe(config, audio)
 
@@ -152,6 +157,7 @@ def transcribe_file_stream(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
     chunk_size: int = READ_CHUNK_SIZE,
 ) -> Union[Result, List[Result]]:
     return transcribe_iter_bytes_stream(
@@ -171,6 +177,7 @@ def transcribe_file_stream(
         cand_speaker_names,
         enable_separate_recognition_per_channel,
         model,
+        enable_dictation,
     )
 
 
@@ -191,6 +198,7 @@ def transcribe_bytes_stream(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
     chunk_size: int = READ_CHUNK_SIZE,
 ) -> Union[Result, List[Result]]:
     return transcribe_iter_bytes_stream(
@@ -210,6 +218,7 @@ def transcribe_bytes_stream(
         cand_speaker_names,
         enable_separate_recognition_per_channel,
         model,
+        enable_dictation,
     )
 
 
@@ -230,6 +239,7 @@ def transcribe_iter_bytes_stream(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
 ) -> Union[Result, List[Result]]:
     assert isinstance(client, Client)
     assert isinstance(sample_rate_hertz, int)
@@ -249,6 +259,7 @@ def transcribe_iter_bytes_stream(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
+    assert isinstance(enable_dictation, bool)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -268,6 +279,7 @@ def transcribe_iter_bytes_stream(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
+    config.enable_dictation = enable_dictation
 
     return client.TranscribeStreamFile(config, iter_audio)
 
@@ -289,6 +301,7 @@ def transcribe_file_async(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
     transcribe_async_mode: str = "",
     reference_name: str = "",
     chunk_size: int = READ_CHUNK_SIZE,
@@ -311,6 +324,7 @@ def transcribe_file_async(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
+    assert isinstance(enable_dictation, bool)
     assert isinstance(transcribe_async_mode, str)
 
     config = TranscriptionConfig()
@@ -331,6 +345,7 @@ def transcribe_file_async(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
+    config.enable_dictation = enable_dictation
     config.transcribe_async_mode = transcribe_async_mode
 
     return client.TranscribeAsync(reference_name, iter_file_chunks(file_path, chunk_size), config)

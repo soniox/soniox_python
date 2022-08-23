@@ -29,6 +29,7 @@ def transcribe_capture(
     enable_speaker_identification: bool = False,
     cand_speaker_names: Optional[List[str]] = None,
     model: str = "",
+    enable_dictation: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(capture_device, AbstractCaptureDevice)
     assert isinstance(client, Client)
@@ -47,6 +48,7 @@ def transcribe_capture(
         assert isinstance(cand_speaker_names, list)
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(model, str)
+    assert isinstance(enable_dictation, bool)
 
     config = TranscriptionConfig()
     config.audio_format = "pcm_s16le"
@@ -66,6 +68,7 @@ def transcribe_capture(
     if cand_speaker_names is not None:
         config.cand_speaker_names.extend(cand_speaker_names)
     config.model = model
+    config.enable_dictation = enable_dictation
 
     if stop_event is None:
         stop_event = threading.Event()
@@ -96,6 +99,7 @@ def transcribe_microphone(
     enable_speaker_identification: bool = False,
     cand_speaker_names: Optional[List[str]] = None,
     model: str = "",
+    enable_dictation: bool = False,
 ):
     return transcribe_capture(
         MicrophoneCaptureDevice(),
@@ -112,6 +116,7 @@ def transcribe_microphone(
         enable_speaker_identification,
         cand_speaker_names,
         model,
+        enable_dictation,
     )
 
 
@@ -132,6 +137,7 @@ def transcribe_stream(
     cand_speaker_names: Optional[List[str]] = None,
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
+    enable_dictation: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(client, Client)
     assert isinstance(sample_rate_hertz, int)
@@ -151,6 +157,7 @@ def transcribe_stream(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
+    assert isinstance(enable_dictation, bool)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -171,5 +178,6 @@ def transcribe_stream(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
+    config.enable_dictation = enable_dictation
 
     yield from client.TranscribeStream(config, iter_audio)
