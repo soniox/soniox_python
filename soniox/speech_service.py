@@ -72,7 +72,7 @@ def create_channel(api_host: Optional[str]) -> grpc.Channel:
         return grpc.insecure_channel(api_host)
 
 
-class Client:
+class SpeechClient:
     def __init__(self, api_host: Optional[str] = None, api_key: Optional[str] = None) -> None:
         self._channel = create_channel(api_host)
         try:
@@ -85,7 +85,7 @@ class Client:
     def close(self) -> None:
         self._channel.close()
 
-    def __enter__(self) -> "Client":
+    def __enter__(self) -> "SpeechClient":
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
@@ -162,7 +162,7 @@ class Client:
                 raise e from iter_exception
             raise
 
-    def TranscribeStreamFile(
+    def TranscribeCompleteStream(
         self, config: TranscriptionConfig, iter_audio: Iterable[bytes]
     ) -> Union[Result, List[Result]]:
         assert not config.include_nonfinal
@@ -279,7 +279,7 @@ class Client:
         response = self._client.GetTranscribeAsyncStatus(request)
 
         if len(response.files) != 1:
-            raise Exception(f"Unexpected number of files returned.")
+            raise Exception("Unexpected number of files returned.")
 
         return response.files[0]
 
@@ -355,3 +355,7 @@ def update_result(result: Result, new_result: Result) -> None:
     result.total_proc_time_ms = new_result.total_proc_time_ms
     del result.speakers[:]
     result.speakers.extend(new_result.speakers)
+
+
+# For backward compatibility.
+Client = SpeechClient

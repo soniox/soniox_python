@@ -1,5 +1,5 @@
 import time
-from soniox.speech_service import Client, set_api_key
+from soniox.speech_service import SpeechClient, set_api_key
 from soniox.transcribe_file import transcribe_file_async
 from soniox.test_data import TEST_AUDIO_LONG_RAW
 
@@ -7,7 +7,7 @@ set_api_key("<YOUR-API-KEY>")
 
 
 def main():
-    with Client() as client:
+    with SpeechClient() as client:
         print("Uploading file.")
         file_id = transcribe_file_async(
             TEST_AUDIO_LONG_RAW,

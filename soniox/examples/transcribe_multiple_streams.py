@@ -1,7 +1,7 @@
 import threading
 from typing import Iterable
 from soniox.transcribe_live import transcribe_stream
-from soniox.speech_service import Client, set_api_key
+from soniox.speech_service import SpeechClient, set_api_key
 from soniox.test_data import TEST_AUDIO_LONG_RAW
 
 set_api_key("<YOUR-API-KEY>")
@@ -11,7 +11,7 @@ NUM_CHANNELS = 4
 
 
 class Channel:
-    def __init__(self, idx: int, client: Client) -> None:
+    def __init__(self, idx: int, client: SpeechClient) -> None:
         self._idx = idx
         self._client = client
 
@@ -37,7 +37,7 @@ class Channel:
 
 def main():
     # Create a single client for all channels / threads.
-    with Client() as client:
+    with SpeechClient() as client:
         # Create channels and start threads that run Channel.run().
         threads = []
         for channel_num in range(NUM_CHANNELS):

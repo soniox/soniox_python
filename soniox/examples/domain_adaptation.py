@@ -1,6 +1,6 @@
 import os
 from soniox.transcribe_file import transcribe_file_short
-from soniox.speech_service import Client, SpeechContext, SpeechContextEntry, set_api_key
+from soniox.speech_service import SpeechClient, SpeechContext, SpeechContextEntry, set_api_key
 from soniox.test_data import TEST_AUDIO_FLAC
 
 
@@ -23,7 +23,12 @@ def load_domain_vocabulary(vocab_path: str) -> SpeechContext:
                 raise Exception("Incorrect line.")
             phrase = parts[0]
             boost = int(parts[1])
-            speech_context.entries.append(SpeechContextEntry(phrases=[phrase], boost=boost,))
+            speech_context.entries.append(
+                SpeechContextEntry(
+                    phrases=[phrase],
+                    boost=boost,
+                )
+            )
 
     return speech_context
 
@@ -34,7 +39,7 @@ def main():
     speech_context = load_domain_vocabulary(os.path.join(THIS_DIR, "domain_vocabulary.tsv"))
 
     # Trainscribe a file using the speech context.
-    with Client() as client:
+    with SpeechClient() as client:
         result = transcribe_file_short(TEST_AUDIO_FLAC, client, speech_context=speech_context)
         print(" ".join(w.text for w in result.words))
 

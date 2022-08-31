@@ -3,7 +3,7 @@ import signal
 import threading
 import sys
 from soniox.transcribe_live import transcribe_microphone
-from soniox.speech_service import Client, Result, set_api_key
+from soniox.speech_service import SpeechClient, Result, set_api_key
 
 
 set_api_key("<YOUR-API-KEY>")
@@ -67,7 +67,7 @@ def main():
 
     signal.signal(signal.SIGINT, sigint_handler)
 
-    with Client() as client:
+    with SpeechClient() as client:
         print("Transcribing from your microphone ...\n\n")
 
         final_words_last_line = []

@@ -2,7 +2,7 @@ import sys
 import argparse
 import json
 from google.protobuf.json_format import MessageToDict
-from soniox.speech_service import Client
+from soniox.speech_service import SpeechClient
 from soniox.speech_service_pb2 import (
     SpeechContext,
     SpeechContextEntry,
@@ -51,7 +51,7 @@ def main():
         print("Incorrect usage: more than one command specified.", file=sys.stderr)
         sys.exit(1)
 
-    with Client() as client:
+    with SpeechClient() as client:
         if args.list:
             print("Listing names of speech contexts.")
 

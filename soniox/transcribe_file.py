@@ -1,6 +1,6 @@
 from typing import Optional, Iterable, List, Union
 from soniox.speech_service import (
-    Client,
+    SpeechClient,
     Result,
     TranscriptionConfig,
     SpeechContext,
@@ -34,7 +34,7 @@ def iter_bytes_chunks(data: bytes, chunk_size: int = READ_CHUNK_SIZE) -> Iterabl
 
 def transcribe_file_short(
     file_path: str,
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -79,7 +79,7 @@ def transcribe_file_short(
 
 def transcribe_bytes_short(
     audio: bytes,
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -97,7 +97,7 @@ def transcribe_bytes_short(
     enable_dictation: bool = False,
 ) -> Union[Result, List[Result]]:
     assert isinstance(audio, bytes)
-    assert isinstance(client, Client)
+    assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
     assert isinstance(num_audio_channels, int)
     assert speech_context is None or isinstance(speech_context, SpeechContext)
@@ -142,7 +142,7 @@ def transcribe_bytes_short(
 
 def transcribe_file_stream(
     file_path: str,
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -183,7 +183,7 @@ def transcribe_file_stream(
 
 def transcribe_bytes_stream(
     audio: bytes,
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -224,7 +224,7 @@ def transcribe_bytes_stream(
 
 def transcribe_iter_bytes_stream(
     iter_audio: Iterable[bytes],
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -241,7 +241,7 @@ def transcribe_iter_bytes_stream(
     model: str = "",
     enable_dictation: bool = False,
 ) -> Union[Result, List[Result]]:
-    assert isinstance(client, Client)
+    assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
     assert isinstance(num_audio_channels, int)
     assert speech_context is None or isinstance(speech_context, SpeechContext)
@@ -281,12 +281,12 @@ def transcribe_iter_bytes_stream(
     config.model = model
     config.enable_dictation = enable_dictation
 
-    return client.TranscribeStreamFile(config, iter_audio)
+    return client.TranscribeCompleteStream(config, iter_audio)
 
 
 def transcribe_file_async(
     file_path: str,
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -306,7 +306,7 @@ def transcribe_file_async(
     reference_name: str = "",
     chunk_size: int = READ_CHUNK_SIZE,
 ) -> str:
-    assert isinstance(client, Client)
+    assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
     assert isinstance(num_audio_channels, int)
     assert speech_context is None or isinstance(speech_context, SpeechContext)

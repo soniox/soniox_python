@@ -2,7 +2,7 @@ import threading
 import signal
 from soniox.capture_device import SimulatedCaptureDevice
 from soniox.transcribe_live import transcribe_capture
-from soniox.speech_service import Client
+from soniox.speech_service import SpeechClient
 from soniox.test_data import TEST_AUDIO_RAW
 
 # Number of channels we transcribe in parallel.
@@ -13,7 +13,7 @@ print_lock = threading.Lock()
 
 
 class Channel:
-    def __init__(self, channel_num: int, client: Client, stop_event: threading.Event) -> None:
+    def __init__(self, channel_num: int, client: SpeechClient, stop_event: threading.Event) -> None:
         self._channel_num = channel_num
         self._client = client
         self._stop_event = stop_event
@@ -50,7 +50,7 @@ def main():
     signal.signal(signal.SIGINT, sigint_handler)
 
     # Create a client to use for all transcriptions.
-    with Client() as client:
+    with SpeechClient() as client:
         # Create channels and start threads that run Channel.run.
         threads = []
         for channel_num in range(NUM_CHANNELS):

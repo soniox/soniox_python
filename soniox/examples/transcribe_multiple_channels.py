@@ -3,12 +3,12 @@ import os
 import argparse
 import soundfile
 
-from soniox.speech_service import Client, Result
+from soniox.speech_service import SpeechClient, Result
 from soniox.transcribe_file import transcribe_bytes_stream
 from soniox.multi_channel_utils import get_multi_channel_transcript
 
 
-def process_file(audio_file: str, silence_threshold_ms: int, client: Client) -> None:
+def process_file(audio_file: str, silence_threshold_ms: int, client: SpeechClient) -> None:
     samples, sample_rate = soundfile.read(audio_file, dtype="int16", always_2d=True)
     assert len(samples.shape) == 2
 
@@ -50,7 +50,7 @@ def main():
     audio_files: List[str] = args.audio_files
     print(f"Transcribing {len(audio_files)} audio files.")
 
-    with Client() as client:
+    with SpeechClient() as client:
         for audio_file in audio_files:
             process_file(audio_file, args.silence_threshold_ms, client)
 

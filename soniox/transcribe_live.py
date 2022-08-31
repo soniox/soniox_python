@@ -7,7 +7,7 @@ from soniox.capture_device import (
     SAMPLE_RATE,
 )
 from soniox.speech_service import (
-    Client,
+    SpeechClient,
     TranscriptionConfig,
     Result,
     SpeechContext,
@@ -16,7 +16,7 @@ from soniox.speech_service import (
 
 def transcribe_capture(
     capture_device: AbstractCaptureDevice,
-    client: Client,
+    client: SpeechClient,
     include_nonfinal: bool = True,
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
@@ -32,7 +32,7 @@ def transcribe_capture(
     enable_dictation: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(capture_device, AbstractCaptureDevice)
-    assert isinstance(client, Client)
+    assert isinstance(client, SpeechClient)
     assert isinstance(include_nonfinal, bool)
     assert speech_context is None or isinstance(speech_context, SpeechContext)
     assert isinstance(enable_profanity_filter, bool)
@@ -86,7 +86,7 @@ def transcribe_capture(
 
 
 def transcribe_microphone(
-    client: Client,
+    client: SpeechClient,
     include_nonfinal: bool = True,
     speech_context: Optional[SpeechContext] = None,
     stop_event: Optional[threading.Event] = None,
@@ -122,7 +122,7 @@ def transcribe_microphone(
 
 def transcribe_stream(
     iter_audio: Iterable[bytes],
-    client: Client,
+    client: SpeechClient,
     audio_format: str = "",
     sample_rate_hertz: int = 0,
     num_audio_channels: int = 0,
@@ -139,7 +139,7 @@ def transcribe_stream(
     model: str = "",
     enable_dictation: bool = False,
 ) -> Iterable[Result]:
-    assert isinstance(client, Client)
+    assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
     assert isinstance(num_audio_channels, int)
     assert speech_context is None or isinstance(speech_context, SpeechContext)

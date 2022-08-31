@@ -1,11 +1,11 @@
 from soniox.transcribe_live import transcribe_microphone
-from soniox.speech_service import Client, set_api_key
+from soniox.speech_service import SpeechClient, set_api_key
 
 set_api_key("<YOUR-API-KEY>")
 
 
 def main():
-    with Client() as client:
+    with SpeechClient() as client:
         print("Transcribing from your microphone ...")
         for result in transcribe_microphone(client):
             print(" ".join(w.text for w in result.words))

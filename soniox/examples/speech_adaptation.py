@@ -1,11 +1,11 @@
 from soniox.transcribe_file import transcribe_file_short
-from soniox.speech_service import Client, SpeechContext, SpeechContextEntry, set_api_key
+from soniox.speech_service import SpeechClient, SpeechContext, SpeechContextEntry, set_api_key
 from soniox.test_data import TEST_AUDIO_SPEECH_ADAPTATION_FLAC
 
 set_api_key("<YOUR-API-KEY>")
 
 
-def test(client: Client, audio_file: str, speech_context: SpeechContext) -> None:
+def test(client: SpeechClient, audio_file: str, speech_context: SpeechContext) -> None:
     base_result = transcribe_file_short(audio_file, client)
     base_text = " ".join(w.text for w in base_result.words)
 
@@ -19,11 +19,22 @@ def test(client: Client, audio_file: str, speech_context: SpeechContext) -> None
 
 
 def main():
-    with Client() as client:
+    with SpeechClient() as client:
         test(
             client,
             TEST_AUDIO_SPEECH_ADAPTATION_FLAC,
-            SpeechContext(entries=[SpeechContextEntry(phrases=["see is"], boost=10.0,),]),
+            SpeechContext(
+                entries=[
+                    SpeechContextEntry(
+                        phrases=["air"],
+                        boost=-15.0,
+                    ),
+                    SpeechContextEntry(
+                        phrases=["heir"],
+                        boost=15.0,
+                    ),
+                ]
+            ),
         )
 
 

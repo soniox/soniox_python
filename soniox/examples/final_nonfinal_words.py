@@ -1,5 +1,5 @@
 from soniox.transcribe_live import transcribe_stream
-from soniox.speech_service import Client, set_api_key
+from soniox.speech_service import SpeechClient, set_api_key
 from soniox.test_data import TEST_AUDIO_LONG_FLAC
 
 set_api_key("<YOUR-API-KEY>")
@@ -15,7 +15,7 @@ def iter_audio():
 
 
 def main():
-    with Client() as client:
+    with SpeechClient() as client:
         all_final_words = []
 
         for result in transcribe_stream(iter_audio(), client):

@@ -1,7 +1,7 @@
 import sys
 import argparse
 from google.protobuf.json_format import MessageToDict
-from soniox.speech_service import Client
+from soniox.speech_service import SpeechClient
 from soniox.speech_service_pb2 import (
     AddSpeakerRequest,
     GetSpeakerRequest,
@@ -58,7 +58,7 @@ def main():
         parser.print_help()
         sys.exit(0)
 
-    with Client() as client:
+    with SpeechClient() as client:
         if args.list:
             print("Listing speakers and audios.")
 

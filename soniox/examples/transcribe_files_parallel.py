@@ -1,14 +1,14 @@
 import argparse
 import glob
 from multiprocessing import Pool
-from soniox.speech_service import Result, Client, set_api_key
+from soniox.speech_service import Result, SpeechClient, set_api_key
 from soniox.transcribe_file import transcribe_file_stream
 
 set_api_key("<YOUR-API-KEY>")
 
 
 def process_file(audio_fn: str) -> None:
-    with Client() as client:
+    with SpeechClient() as client:
         # Create output text file.
         output_fn = audio_fn + ".txt"
         with open(output_fn, "w") as output_file:
@@ -25,8 +25,7 @@ def process_file(audio_fn: str) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Transcribe audio files in parallel.")
+    parser = argparse.ArgumentParser(description="Transcribe audio files in parallel.")
     parser.add_argument(
         "--glob_pathname", type=str, required=True, help="Audio files to transcribe."
     )
