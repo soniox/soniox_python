@@ -1,0 +1,14 @@
+build==0.8.0
+cffi==1.15.1
+grpcio==1.48.1
+grpcio-tools==1.48.1
+numpy==1.23.2
+packaging==21.3
+pep517==0.13.0
+protobuf==3.20.1
+pycparser==2.21
+pyparsing==3.0.9
+six==1.16.0
+SoundCard==0.4.2
+SoundFile==0.10.3.post1
+tomli==2.0.1
