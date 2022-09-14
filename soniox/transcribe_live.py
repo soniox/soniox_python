@@ -30,6 +30,7 @@ def transcribe_capture(
     cand_speaker_names: Optional[List[str]] = None,
     model: str = "",
     enable_dictation: bool = False,
+    enable_endpoint_detection: bool = False,
 ) -> Iterable[Result]:
     assert isinstance(capture_device, AbstractCaptureDevice)
     assert isinstance(client, SpeechClient)
@@ -49,6 +50,7 @@ def transcribe_capture(
         assert all(isinstance(name, str) for name in cand_speaker_names)
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
+    assert isinstance(enable_endpoint_detection, bool)
 
     config = TranscriptionConfig()
     config.audio_format = "pcm_s16le"
@@ -69,6 +71,7 @@ def transcribe_capture(
         config.cand_speaker_names.extend(cand_speaker_names)
     config.model = model
     config.enable_dictation = enable_dictation
+    config.enable_endpoint_detection = enable_endpoint_detection
 
     if stop_event is None:
         stop_event = threading.Event()
@@ -100,6 +103,7 @@ def transcribe_microphone(
     cand_speaker_names: Optional[List[str]] = None,
     model: str = "",
     enable_dictation: bool = False,
+    enable_endpoint_detection: bool = False,
 ):
     return transcribe_capture(
         MicrophoneCaptureDevice(),
@@ -117,6 +121,7 @@ def transcribe_microphone(
         cand_speaker_names,
         model,
         enable_dictation,
+        enable_endpoint_detection,
     )
 
 
@@ -138,6 +143,8 @@ def transcribe_stream(
     enable_separate_recognition_per_channel: bool = False,
     model: str = "",
     enable_dictation: bool = False,
+    enable_endpoint_detection: bool = False,
+    include_nonfinal: bool = True,
 ) -> Iterable[Result]:
     assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
@@ -158,12 +165,14 @@ def transcribe_stream(
     assert isinstance(enable_separate_recognition_per_channel, bool)
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
+    assert isinstance(enable_endpoint_detection, bool)
+    assert isinstance(include_nonfinal, bool)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
     config.sample_rate_hertz = sample_rate_hertz
     config.num_audio_channels = num_audio_channels
-    config.include_nonfinal = True
+    config.include_nonfinal = include_nonfinal
     if speech_context is not None:
         config.speech_context.CopyFrom(speech_context)
     config.enable_profanity_filter = enable_profanity_filter
@@ -179,5 +188,6 @@ def transcribe_stream(
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
     config.enable_dictation = enable_dictation
+    config.enable_endpoint_detection = enable_endpoint_detection
 
     yield from client.TranscribeStream(config, iter_audio)

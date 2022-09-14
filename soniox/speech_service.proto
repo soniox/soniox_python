@@ -142,6 +142,7 @@ message TranscriptionConfig {
   // Output options
   bool include_nonfinal = 4;
   bool enable_separate_recognition_per_channel = 16;
+  bool enable_endpoint_detection = 18;
 
   // Speech adaptation
   SpeechContext speech_context = 5;
