@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="soniox",
-    version="1.4.1",
+    version="1.4.2",
     author="Soniox Inc",
     author_email="support@soniox.com",
     description="Soniox speech recognition service client library",

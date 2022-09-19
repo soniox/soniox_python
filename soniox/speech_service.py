@@ -1,4 +1,4 @@
-from typing import Iterable, List, Optional, Union, Dict
+from typing import Any, Iterable, List, Optional, Union, Dict
 import os
 import grpc
 import soniox.speech_service_pb2 as speech_service_pb2
@@ -18,7 +18,7 @@ SpeechServiceStub = speech_service_pb2_grpc.SpeechServiceStub
 _API_HOST = ""
 _API_KEY = ""
 _DEFAULT_API_HOST = "https://api.soniox.com:443"
-
+_GRPC_MAX_MESSAGE_LENGTH = 6291456
 
 _CREDENTIALS = grpc.ssl_channel_credentials()
 
@@ -63,20 +63,26 @@ def get_api_key(api_key: Optional[str]) -> str:
     return api_key
 
 
-def create_channel(api_host: Optional[str]) -> grpc.Channel:
+def create_channel(api_host: Optional[str], options: Any) -> grpc.Channel:
     api_host = get_api_host(api_host)
 
     if api_host.startswith("http://"):
-        return grpc.insecure_channel(api_host[7:])
+        return grpc.insecure_channel(api_host[7:], options=options)
     elif api_host.startswith("https://"):
-        return grpc.secure_channel(api_host[8:], _CREDENTIALS)
+        return grpc.secure_channel(api_host[8:], _CREDENTIALS, options=options)
     else:
-        return grpc.insecure_channel(api_host)
+        return grpc.insecure_channel(api_host, options=options)
 
 
 class SpeechClient:
     def __init__(self, api_host: Optional[str] = None, api_key: Optional[str] = None) -> None:
-        self._channel = create_channel(api_host)
+        self._channel = create_channel(
+            api_host,
+            options=[
+                ("grpc.max_send_message_length", _GRPC_MAX_MESSAGE_LENGTH),
+                ("grpc.max_receive_message_length", _GRPC_MAX_MESSAGE_LENGTH),
+            ],
+        )
         try:
             self._client = SpeechServiceStub(self._channel)
             self._api_key = get_api_key(api_key)
