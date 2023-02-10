@@ -109,6 +109,21 @@ class SpeechServiceStub(object):
                 request_serializer=soniox_dot_speech__service__pb2.RemoveSpeakerAudioRequest.SerializeToString,
                 response_deserializer=soniox_dot_speech__service__pb2.RemoveSpeakerAudioResponse.FromString,
                 )
+        self.Search = channel.unary_unary(
+                '/soniox.speech_service.SpeechService/Search',
+                request_serializer=soniox_dot_speech__service__pb2.SearchRequest.SerializeToString,
+                response_deserializer=soniox_dot_speech__service__pb2.SearchResponse.FromString,
+                )
+        self.GetObject = channel.unary_unary(
+                '/soniox.speech_service.SpeechService/GetObject',
+                request_serializer=soniox_dot_speech__service__pb2.GetObjectRequest.SerializeToString,
+                response_deserializer=soniox_dot_speech__service__pb2.GetObjectResponse.FromString,
+                )
+        self.GetAudio = channel.unary_stream(
+                '/soniox.speech_service.SpeechService/GetAudio',
+                request_serializer=soniox_dot_speech__service__pb2.GetAudioRequest.SerializeToString,
+                response_deserializer=soniox_dot_speech__service__pb2.GetAudioResponse.FromString,
+                )
 
 
 class SpeechServiceServicer(object):
@@ -232,6 +247,25 @@ class SpeechServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Search(self, request, context):
+        """Storage
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetObject(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAudio(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_SpeechServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -329,6 +363,21 @@ def add_SpeechServiceServicer_to_server(servicer, server):
                     servicer.RemoveSpeakerAudio,
                     request_deserializer=soniox_dot_speech__service__pb2.RemoveSpeakerAudioRequest.FromString,
                     response_serializer=soniox_dot_speech__service__pb2.RemoveSpeakerAudioResponse.SerializeToString,
+            ),
+            'Search': grpc.unary_unary_rpc_method_handler(
+                    servicer.Search,
+                    request_deserializer=soniox_dot_speech__service__pb2.SearchRequest.FromString,
+                    response_serializer=soniox_dot_speech__service__pb2.SearchResponse.SerializeToString,
+            ),
+            'GetObject': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetObject,
+                    request_deserializer=soniox_dot_speech__service__pb2.GetObjectRequest.FromString,
+                    response_serializer=soniox_dot_speech__service__pb2.GetObjectResponse.SerializeToString,
+            ),
+            'GetAudio': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetAudio,
+                    request_deserializer=soniox_dot_speech__service__pb2.GetAudioRequest.FromString,
+                    response_serializer=soniox_dot_speech__service__pb2.GetAudioResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -660,5 +709,56 @@ class SpeechService(object):
         return grpc.experimental.unary_unary(request, target, '/soniox.speech_service.SpeechService/RemoveSpeakerAudio',
             soniox_dot_speech__service__pb2.RemoveSpeakerAudioRequest.SerializeToString,
             soniox_dot_speech__service__pb2.RemoveSpeakerAudioResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Search(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/soniox.speech_service.SpeechService/Search',
+            soniox_dot_speech__service__pb2.SearchRequest.SerializeToString,
+            soniox_dot_speech__service__pb2.SearchResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetObject(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/soniox.speech_service.SpeechService/GetObject',
+            soniox_dot_speech__service__pb2.GetObjectRequest.SerializeToString,
+            soniox_dot_speech__service__pb2.GetObjectResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAudio(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/soniox.speech_service.SpeechService/GetAudio',
+            soniox_dot_speech__service__pb2.GetAudioRequest.SerializeToString,
+            soniox_dot_speech__service__pb2.GetAudioResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

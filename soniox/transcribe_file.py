@@ -4,6 +4,7 @@ from soniox.speech_service import (
     Result,
     TranscriptionConfig,
     SpeechContext,
+    StorageConfig,
 )
 
 READ_CHUNK_SIZE = 131072
@@ -51,6 +52,7 @@ def transcribe_file_short(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
+    storage_config: Optional[StorageConfig] = None
 ) -> Union[Result, List[Result]]:
     assert isinstance(file_path, str)
 
@@ -76,6 +78,7 @@ def transcribe_file_short(
         model,
         enable_dictation,
         enable_endpoint_detection,
+        storage_config
     )
 
 
@@ -98,6 +101,7 @@ def transcribe_bytes_short(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
+    storage_config: Optional[StorageConfig] = None
 ) -> Union[Result, List[Result]]:
     assert isinstance(audio, bytes)
     assert isinstance(client, SpeechClient)
@@ -120,6 +124,7 @@ def transcribe_bytes_short(
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
+    assert storage_config is None or isinstance(storage_config, StorageConfig)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -141,6 +146,8 @@ def transcribe_bytes_short(
     config.model = model
     config.enable_dictation = enable_dictation
     config.enable_endpoint_detection = enable_endpoint_detection
+    if storage_config is not None:
+        config.storage_config.CopyFrom(storage_config)
 
     return client.Transcribe(config, audio)
 
@@ -165,6 +172,7 @@ def transcribe_file_stream(
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
     chunk_size: int = READ_CHUNK_SIZE,
+    storage_config: Optional[StorageConfig] = None
 ) -> Union[Result, List[Result]]:
     return transcribe_iter_bytes_stream(
         iter_file_chunks(file_path, chunk_size),
@@ -185,6 +193,7 @@ def transcribe_file_stream(
         model,
         enable_dictation,
         enable_endpoint_detection,
+        storage_config,
     )
 
 
@@ -208,6 +217,7 @@ def transcribe_bytes_stream(
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
     chunk_size: int = READ_CHUNK_SIZE,
+    storage_config: Optional[StorageConfig] = None
 ) -> Union[Result, List[Result]]:
     return transcribe_iter_bytes_stream(
         iter_bytes_chunks(audio, chunk_size),
@@ -228,6 +238,7 @@ def transcribe_bytes_stream(
         model,
         enable_dictation,
         enable_endpoint_detection,
+        storage_config
     )
 
 
@@ -250,6 +261,7 @@ def transcribe_iter_bytes_stream(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
+    storage_config: Optional[StorageConfig] = None
 ) -> Union[Result, List[Result]]:
     assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
@@ -271,6 +283,7 @@ def transcribe_iter_bytes_stream(
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
+    assert storage_config is None or isinstance(storage_config, StorageConfig)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -292,6 +305,8 @@ def transcribe_iter_bytes_stream(
     config.model = model
     config.enable_dictation = enable_dictation
     config.enable_endpoint_detection = enable_endpoint_detection
+    if storage_config is not None:
+        config.storage_config.CopyFrom(storage_config)
 
     return client.TranscribeCompleteStream(config, iter_audio)
 
@@ -315,9 +330,9 @@ def transcribe_file_async(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
-    transcribe_async_mode: str = "",
     reference_name: str = "",
     chunk_size: int = READ_CHUNK_SIZE,
+    storage_config: Optional[StorageConfig] = None
 ) -> str:
     assert isinstance(client, SpeechClient)
     assert isinstance(sample_rate_hertz, int)
@@ -339,7 +354,7 @@ def transcribe_file_async(
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
-    assert isinstance(transcribe_async_mode, str)
+    assert storage_config is None or isinstance(storage_config, StorageConfig)
 
     config = TranscriptionConfig()
     config.audio_format = audio_format
@@ -360,7 +375,8 @@ def transcribe_file_async(
     config.enable_separate_recognition_per_channel = enable_separate_recognition_per_channel
     config.model = model
     config.enable_dictation = enable_dictation
-    config.transcribe_async_mode = transcribe_async_mode
     config.enable_endpoint_detection = enable_endpoint_detection
+    if storage_config is not None:
+        config.storage_config.CopyFrom(storage_config)
 
     return client.TranscribeAsync(reference_name, iter_file_chunks(file_path, chunk_size), config)

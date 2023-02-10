@@ -31,6 +31,11 @@ service SpeechService {
   rpc AddSpeakerAudio(AddSpeakerAudioRequest) returns (AddSpeakerAudioResponse) {}
   rpc GetSpeakerAudio(GetSpeakerAudioRequest) returns (GetSpeakerAudioResponse) {}
   rpc RemoveSpeakerAudio(RemoveSpeakerAudioRequest) returns (RemoveSpeakerAudioResponse) {}
+
+  // Storage
+  rpc Search(SearchRequest) returns (SearchResponse) {}
+  rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {}
+  rpc GetAudio(GetAudioRequest) returns (stream GetAudioResponse) {}
 }
 
 // Transcribe
@@ -108,7 +113,6 @@ message TranscribeAsyncFileStatus {
   // UTC timestamp
   google.protobuf.Timestamp created_time = 4;
   string error_message = 5;
-  string transcribe_async_mode = 6;
 }
 
 // GetTranscribeAsyncResult
@@ -165,8 +169,8 @@ message TranscriptionConfig {
   string model = 14;
   bool enable_dictation = 15;
 
-  // Asynchronous transcription
-  string transcribe_async_mode = 17;
+  // Object storage configuration
+  StorageConfig storage_config = 1006;
 }
 
 message Result {
@@ -340,3 +344,127 @@ message RemoveSpeakerAudioRequest {
 
 message RemoveSpeakerAudioResponse {}
 
+
+
+// Storage
+
+// This object is set to TranscriptionConfig.storage_config
+message StorageConfig {
+  string object_id = 1;
+  map<string, string> metadata = 2;
+  string title = 3;
+  google.protobuf.Timestamp datetime = 4;
+  bool disable_store_audio = 5; // Stores audio to storage
+  bool disable_store_transcript = 6; // Stores transcript
+  bool disable_search = 7; // Indexes transcript
+}
+
+// Represent a spoken token in audio.
+message Token {
+  int32 idx = 1;
+  int32 text_start = 2;
+  int32 text_end = 3;
+  // Spoken text.
+  string text = 4;
+  int32 start_ms = 5;
+  int32 duration_ms = 6;
+  double confidence = 7;
+  int32 speaker_id = 8;
+  bool profane = 9;
+}
+
+// Punctuation based.
+message Sentence {
+  int32 token_start = 1;
+  int32 token_end = 2;
+}
+
+// Punctuation + Time based.
+message Paragraph {
+  int32 sentence_start = 1;
+  int32 sentence_end = 2;
+}
+
+message Transcript {
+    string text = 1;
+    repeated Token tokens = 2;
+    repeated Sentence sentences = 3;
+    repeated Paragraph paragraphs = 4;
+    map<int32, string> speaker_names = 7;
+}
+
+message StoredObject {
+    string object_id = 1;
+    map<string, string> metadata = 2;
+    string title = 3;
+    google.protobuf.Timestamp datetime = 4;
+    google.protobuf.Timestamp stored_datetime = 5;
+    int32 duration_ms = 6;
+    Transcript transcript = 7;
+}
+
+message SearchRequest {
+    string api_key = 1;
+    string object_id = 2;
+    string metadata_query = 3;
+    google.protobuf.Timestamp datetime_from = 4;
+    google.protobuf.Timestamp datetime_to = 5;
+    string text_query = 6;
+    int32 start = 7;
+    int32 num = 8;
+}
+
+message SearchResult {
+    string object_id = 1;
+    map<string, string> metadata = 2;
+    string title = 3;
+    google.protobuf.Timestamp datetime = 4;
+    int32 duration_ms = 5;
+    string preview = 6;
+}
+
+message SearchResponse {
+    int32 num_found = 1;
+    int32 start = 2;
+    repeated SearchResult results = 3;
+}
+
+message GetObjectRequest {
+    string api_key = 1;
+    string object_id = 2;
+}
+  
+message GetObjectResponse {
+    StoredObject object = 1;
+}
+
+
+// Retrieve Audio
+  
+message GetAudioRequest {
+    message TimeSegment {
+        int32 start_ms = 1;
+        int32 duration_ms = 2;
+    }
+
+    message TokenSegment {
+        int32 token_start = 1;
+        int32 token_end = 2;
+    }
+
+    string api_key = 1;
+    string object_id = 2;
+    oneof oneof_segment {
+        TimeSegment time_segment = 3;
+        TokenSegment token_segment = 4;
+    }
+    string audio_bytes_format = 5;
+}
+
+message GetAudioResponse {
+    string object_id = 1;
+    int32 start_ms = 2;
+    int32 duration_ms = 3;
+    int32 total_duration_ms = 4;
+    bytes data = 5;
+}

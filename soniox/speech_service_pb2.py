@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\x1a\x1fgoogle/protobuf/timestamp.proto\"o\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\x04 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"{\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\x36\n\x0f\x63hannel_results\x18\x02 \x03(\x0b\x32\x1d.soniox.speech_service.Result\"u\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\x04 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"\xcc\x01\n\x18TranscribeMeetingRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\n \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\x0f\n\x07seq_num\x18\x03 \x01(\x05\x12\x11\n\tstream_id\x18\x04 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x05 \x01(\x08\x12\r\n\x05\x61udio\x18\x06 \x01(\x0c\x12\x16\n\x0e\x65nd_of_segment\x18\x07 \x01(\x08\"\xaf\x01\n\x19TranscribeMeetingResponse\x12\x0f\n\x07seq_num\x18\x01 \x01(\x05\x12\x11\n\tstream_id\x18\x02 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x03 \x01(\x08\x12\x16\n\x0e\x65nd_of_segment\x18\x04 \x01(\x08\x12-\n\x06result\x18\x05 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\r\n\x05\x65rror\x18\x06 \x01(\t\"\x8c\x01\n\x16TranscribeAsyncRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12:\n\x06\x63onfig\x18\x05 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"*\n\x17TranscribeAsyncResponse\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\"C\n\x1fGetTranscribeAsyncStatusRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"c\n GetTranscribeAsyncStatusResponse\x12?\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x30.soniox.speech_service.TranscribeAsyncFileStatus\"\xbc\x01\n\x19TranscribeAsyncFileStatus\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\x30\n\x0c\x63reated_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rerror_message\x18\x05 \x01(\t\x12\x1d\n\x15transcribe_async_mode\x18\x06 \x01(\t\"C\n\x1fGetTranscribeAsyncResultRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"{\n GetTranscribeAsyncResultResponse\x12(\n separate_recognition_per_channel\x18\x02 \x01(\x08\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"D\n DeleteTranscribeAsyncFileRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"#\n!DeleteTranscribeAsyncFileResponse\"\xeb\x04\n\x13TranscriptionConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12\x18\n\x10include_nonfinal\x18\x04 \x01(\x08\x12/\n\'enable_separate_recognition_per_channel\x18\x10 \x01(\x08\x12!\n\x19\x65nable_endpoint_detection\x18\x12 \x01(\x08\x12<\n\x0espeech_context\x18\x05 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x06 \x01(\x08\x12\"\n\x1a\x63ontent_moderation_phrases\x18\x07 \x03(\t\x12,\n$enable_streaming_speaker_diarization\x18\x08 \x01(\x08\x12)\n!enable_global_speaker_diarization\x18\t \x01(\x08\x12\x18\n\x10min_num_speakers\x18\n \x01(\x05\x12\x18\n\x10max_num_speakers\x18\x0b \x01(\x05\x12%\n\x1d\x65nable_speaker_identification\x18\x0c \x01(\x08\x12\x1a\n\x12\x63\x61nd_speaker_names\x18\r \x03(\t\x12\r\n\x05model\x18\x0e \x01(\t\x12\x18\n\x10\x65nable_dictation\x18\x0f \x01(\x08\x12\x1d\n\x15transcribe_async_mode\x18\x11 \x01(\t\"\xb5\x01\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\x12\x36\n\x08speakers\x18\x06 \x03(\x0b\x32$.soniox.speech_service.ResultSpeaker\x12\x0f\n\x07\x63hannel\x18\x07 \x01(\x05\"\x85\x01\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\x12\x0f\n\x07speaker\x18\x05 \x01(\x05\x12\x11\n\torig_text\x18\x08 \x01(\t\x12\x12\n\nconfidence\x18\t \x01(\x01\".\n\rResultSpeaker\x12\x0f\n\x07speaker\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse\"2\n\x11\x41\x64\x64SpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"O\n\x12\x41\x64\x64SpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"2\n\x11GetSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x8f\x01\n\x12GetSpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12>\n\x06\x61udios\x18\x03 \x03(\x0b\x32..soniox.speech_service.GetSpeakerResponseAudio\"o\n\x17GetSpeakerResponseAudio\x12\x12\n\naudio_name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\"5\n\x14RemoveSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x17\n\x15RemoveSpeakerResponse\"&\n\x13ListSpeakersRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"\\\n\x14ListSpeakersResponse\x12\x44\n\x08speakers\x18\x01 \x03(\x0b\x32\x32.soniox.speech_service.ListSpeakersResponseSpeaker\"l\n\x1bListSpeakersResponseSpeaker\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nnum_audios\x18\x03 \x01(\x05\"b\n\x16\x41\x64\x64SpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"\x85\x01\n\x17\x41\x64\x64SpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\"S\n\x16GetSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x94\x01\n\x17GetSpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\x12\r\n\x05\x61udio\x18\x05 \x01(\x0c\"V\n\x19RemoveSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x1c\n\x1aRemoveSpeakerAudioResponse2\xa1\x12\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12|\n\x11TranscribeMeeting\x12/.soniox.speech_service.TranscribeMeetingRequest\x1a\x30.soniox.speech_service.TranscribeMeetingResponse\"\x00(\x01\x30\x01\x12t\n\x0fTranscribeAsync\x12-.soniox.speech_service.TranscribeAsyncRequest\x1a..soniox.speech_service.TranscribeAsyncResponse\"\x00(\x01\x12\x8d\x01\n\x18GetTranscribeAsyncStatus\x12\x36.soniox.speech_service.GetTranscribeAsyncStatusRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncStatusResponse\"\x00\x12\x8f\x01\n\x18GetTranscribeAsyncResult\x12\x36.soniox.speech_service.GetTranscribeAsyncResultRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncResultResponse\"\x00\x30\x01\x12\x90\x01\n\x19\x44\x65leteTranscribeAsyncFile\x12\x37.soniox.speech_service.DeleteTranscribeAsyncFileRequest\x1a\x38.soniox.speech_service.DeleteTranscribeAsyncFileResponse\"\x00\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x12\x63\n\nAddSpeaker\x12(.soniox.speech_service.AddSpeakerRequest\x1a).soniox.speech_service.AddSpeakerResponse\"\x00\x12\x63\n\nGetSpeaker\x12(.soniox.speech_service.GetSpeakerRequest\x1a).soniox.speech_service.GetSpeakerResponse\"\x00\x12l\n\rRemoveSpeaker\x12+.soniox.speech_service.RemoveSpeakerRequest\x1a,.soniox.speech_service.RemoveSpeakerResponse\"\x00\x12i\n\x0cListSpeakers\x12*.soniox.speech_service.ListSpeakersRequest\x1a+.soniox.speech_service.ListSpeakersResponse\"\x00\x12r\n\x0f\x41\x64\x64SpeakerAudio\x12-.soniox.speech_service.AddSpeakerAudioRequest\x1a..soniox.speech_service.AddSpeakerAudioResponse\"\x00\x12r\n\x0fGetSpeakerAudio\x12-.soniox.speech_service.GetSpeakerAudioRequest\x1a..soniox.speech_service.GetSpeakerAudioResponse\"\x00\x12{\n\x12RemoveSpeakerAudio\x12\x30.soniox.speech_service.RemoveSpeakerAudioRequest\x1a\x31.soniox.speech_service.RemoveSpeakerAudioResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bsoniox/speech_service.proto\x12\x15soniox.speech_service\x1a\x1fgoogle/protobuf/timestamp.proto\"o\n\x11TranscribeRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\x04 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"{\n\x12TranscribeResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\x36\n\x0f\x63hannel_results\x18\x02 \x03(\x0b\x32\x1d.soniox.speech_service.Result\"u\n\x17TranscribeStreamRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\x04 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x03 \x01(\x0c\"I\n\x18TranscribeStreamResponse\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"\xcc\x01\n\x18TranscribeMeetingRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12:\n\x06\x63onfig\x18\n \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\x0f\n\x07seq_num\x18\x03 \x01(\x05\x12\x11\n\tstream_id\x18\x04 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x05 \x01(\x08\x12\r\n\x05\x61udio\x18\x06 \x01(\x0c\x12\x16\n\x0e\x65nd_of_segment\x18\x07 \x01(\x08\"\xaf\x01\n\x19TranscribeMeetingResponse\x12\x0f\n\x07seq_num\x18\x01 \x01(\x05\x12\x11\n\tstream_id\x18\x02 \x01(\x05\x12\x18\n\x10start_of_segment\x18\x03 \x01(\x08\x12\x16\n\x0e\x65nd_of_segment\x18\x04 \x01(\x08\x12-\n\x06result\x18\x05 \x01(\x0b\x32\x1d.soniox.speech_service.Result\x12\r\n\x05\x65rror\x18\x06 \x01(\t\"\x8c\x01\n\x16TranscribeAsyncRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x03 \x01(\t\x12:\n\x06\x63onfig\x18\x05 \x01(\x0b\x32*.soniox.speech_service.TranscriptionConfig\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"*\n\x17TranscribeAsyncResponse\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\"C\n\x1fGetTranscribeAsyncStatusRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"c\n GetTranscribeAsyncStatusResponse\x12?\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x30.soniox.speech_service.TranscribeAsyncFileStatus\"\x9d\x01\n\x19TranscribeAsyncFileStatus\x12\x0f\n\x07\x66ile_id\x18\x01 \x01(\t\x12\x16\n\x0ereference_name\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\x30\n\x0c\x63reated_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rerror_message\x18\x05 \x01(\t\"C\n\x1fGetTranscribeAsyncResultRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"{\n GetTranscribeAsyncResultResponse\x12(\n separate_recognition_per_channel\x18\x02 \x01(\x08\x12-\n\x06result\x18\x01 \x01(\x0b\x32\x1d.soniox.speech_service.Result\"D\n DeleteTranscribeAsyncFileRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0f\n\x07\x66ile_id\x18\x02 \x01(\t\"#\n!DeleteTranscribeAsyncFileResponse\"\x8b\x05\n\x13TranscriptionConfig\x12\x14\n\x0c\x61udio_format\x18\x01 \x01(\t\x12\x19\n\x11sample_rate_hertz\x18\x02 \x01(\x05\x12\x1a\n\x12num_audio_channels\x18\x03 \x01(\x05\x12\x18\n\x10include_nonfinal\x18\x04 \x01(\x08\x12/\n\'enable_separate_recognition_per_channel\x18\x10 \x01(\x08\x12!\n\x19\x65nable_endpoint_detection\x18\x12 \x01(\x08\x12<\n\x0espeech_context\x18\x05 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\x12\x1f\n\x17\x65nable_profanity_filter\x18\x06 \x01(\x08\x12\"\n\x1a\x63ontent_moderation_phrases\x18\x07 \x03(\t\x12,\n$enable_streaming_speaker_diarization\x18\x08 \x01(\x08\x12)\n!enable_global_speaker_diarization\x18\t \x01(\x08\x12\x18\n\x10min_num_speakers\x18\n \x01(\x05\x12\x18\n\x10max_num_speakers\x18\x0b \x01(\x05\x12%\n\x1d\x65nable_speaker_identification\x18\x0c \x01(\x08\x12\x1a\n\x12\x63\x61nd_speaker_names\x18\r \x03(\t\x12\r\n\x05model\x18\x0e \x01(\t\x12\x18\n\x10\x65nable_dictation\x18\x0f \x01(\x08\x12=\n\x0estorage_config\x18\xee\x07 \x01(\x0b\x32$.soniox.speech_service.StorageConfig\"\xb5\x01\n\x06Result\x12*\n\x05words\x18\x01 \x03(\x0b\x32\x1b.soniox.speech_service.Word\x12\x1a\n\x12\x66inal_proc_time_ms\x18\x02 \x01(\x05\x12\x1a\n\x12total_proc_time_ms\x18\x03 \x01(\x05\x12\x36\n\x08speakers\x18\x06 \x03(\x0b\x32$.soniox.speech_service.ResultSpeaker\x12\x0f\n\x07\x63hannel\x18\x07 \x01(\x05\"\x85\x01\n\x04Word\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x10\n\x08is_final\x18\x04 \x01(\x08\x12\x0f\n\x07speaker\x18\x05 \x01(\x05\x12\x11\n\torig_text\x18\x08 \x01(\t\x12\x12\n\nconfidence\x18\t \x01(\x01\".\n\rResultSpeaker\x12\x0f\n\x07speaker\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\"Y\n\rSpeechContext\x12:\n\x07\x65ntries\x18\x01 \x03(\x0b\x32).soniox.speech_service.SpeechContextEntry\x12\x0c\n\x04name\x18\x02 \x01(\t\"4\n\x12SpeechContextEntry\x12\x0f\n\x07phrases\x18\x01 \x03(\t\x12\r\n\x05\x62oost\x18\x02 \x01(\x01\"k\n\x1a\x43reateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1b\x43reateSpeechContextResponse\";\n\x1a\x44\x65leteSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1d\n\x1b\x44\x65leteSpeechContextResponse\"0\n\x1dListSpeechContextNamesRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"/\n\x1eListSpeechContextNamesResponse\x12\r\n\x05names\x18\x01 \x03(\t\"8\n\x17GetSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"X\n\x18GetSpeechContextResponse\x12<\n\x0espeech_context\x18\x01 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"k\n\x1aUpdateSpeechContextRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12<\n\x0espeech_context\x18\x02 \x01(\x0b\x32$.soniox.speech_service.SpeechContext\"\x1d\n\x1bUpdateSpeechContextResponse\"2\n\x11\x41\x64\x64SpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"O\n\x12\x41\x64\x64SpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"2\n\x11GetSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x8f\x01\n\x12GetSpeakerResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12>\n\x06\x61udios\x18\x03 \x03(\x0b\x32..soniox.speech_service.GetSpeakerResponseAudio\"o\n\x17GetSpeakerResponseAudio\x12\x12\n\naudio_name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\"5\n\x14RemoveSpeakerRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x17\n\x15RemoveSpeakerResponse\"&\n\x13ListSpeakersRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\"\\\n\x14ListSpeakersResponse\x12\x44\n\x08speakers\x18\x01 \x03(\x0b\x32\x32.soniox.speech_service.ListSpeakersResponseSpeaker\"l\n\x1bListSpeakersResponseSpeaker\x12\x0c\n\x04name\x18\x01 \x01(\t\x12+\n\x07\x63reated\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nnum_audios\x18\x03 \x01(\x05\"b\n\x16\x41\x64\x64SpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"\x85\x01\n\x17\x41\x64\x64SpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\"S\n\x16GetSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x94\x01\n\x17GetSpeakerAudioResponse\x12\x14\n\x0cspeaker_name\x18\x01 \x01(\t\x12\x12\n\naudio_name\x18\x02 \x01(\t\x12+\n\x07\x63reated\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x04 \x01(\x05\x12\r\n\x05\x61udio\x18\x05 \x01(\x0c\"V\n\x19RemoveSpeakerAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x14\n\x0cspeaker_name\x18\x02 \x01(\t\x12\x12\n\naudio_name\x18\x03 \x01(\t\"\x1c\n\x1aRemoveSpeakerAudioResponse\"\xad\x02\n\rStorageConfig\x12\x11\n\tobject_id\x18\x01 \x01(\t\x12\x44\n\x08metadata\x18\x02 \x03(\x0b\x32\x32.soniox.speech_service.StorageConfig.MetadataEntry\x12\r\n\x05title\x18\x03 \x01(\t\x12,\n\x08\x64\x61tetime\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x13\x64isable_store_audio\x18\x05 \x01(\x08\x12 \n\x18\x64isable_store_transcript\x18\x06 \x01(\x08\x12\x16\n\x0e\x64isable_search\x18\x07 \x01(\x08\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xa8\x01\n\x05Token\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x12\n\ntext_start\x18\x02 \x01(\x05\x12\x10\n\x08text_end\x18\x03 \x01(\x05\x12\x0c\n\x04text\x18\x04 \x01(\t\x12\x10\n\x08start_ms\x18\x05 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x06 \x01(\x05\x12\x12\n\nconfidence\x18\x07 \x01(\x01\x12\x12\n\nspeaker_id\x18\x08 \x01(\x05\x12\x0f\n\x07profane\x18\t \x01(\x08\"2\n\x08Sentence\x12\x13\n\x0btoken_start\x18\x01 \x01(\x05\x12\x11\n\ttoken_end\x18\x02 \x01(\x05\"9\n\tParagraph\x12\x16\n\x0esentence_start\x18\x01 \x01(\x05\x12\x14\n\x0csentence_end\x18\x02 \x01(\x05\"\xb3\x02\n\nTranscript\x12\x0c\n\x04text\x18\x01 \x01(\t\x12,\n\x06tokens\x18\x02 \x03(\x0b\x32\x1c.soniox.speech_service.Token\x12\x32\n\tsentences\x18\x03 \x03(\x0b\x32\x1f.soniox.speech_service.Sentence\x12\x34\n\nparagraphs\x18\x04 \x03(\x0b\x32 .soniox.speech_service.Paragraph\x12J\n\rspeaker_names\x18\x07 \x03(\x0b\x32\x33.soniox.speech_service.Transcript.SpeakerNamesEntry\x1a\x33\n\x11SpeakerNamesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xd5\x02\n\x0cStoredObject\x12\x11\n\tobject_id\x18\x01 \x01(\t\x12\x43\n\x08metadata\x18\x02 \x03(\x0b\x32\x31.soniox.speech_service.StoredObject.MetadataEntry\x12\r\n\x05title\x18\x03 \x01(\t\x12,\n\x08\x64\x61tetime\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0fstored_datetime\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x06 \x01(\x05\x12\x35\n\ntranscript\x18\x07 \x01(\x0b\x32!.soniox.speech_service.Transcript\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xdf\x01\n\rSearchRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x11\n\tobject_id\x18\x02 \x01(\t\x12\x16\n\x0emetadata_query\x18\x03 \x01(\t\x12\x31\n\rdatetime_from\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12/\n\x0b\x64\x61tetime_to\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\ntext_query\x18\x06 \x01(\t\x12\r\n\x05start\x18\x07 \x01(\x05\x12\x0b\n\x03num\x18\x08 \x01(\x05\"\xfa\x01\n\x0cSearchResult\x12\x11\n\tobject_id\x18\x01 \x01(\t\x12\x43\n\x08metadata\x18\x02 \x03(\x0b\x32\x31.soniox.speech_service.SearchResult.MetadataEntry\x12\r\n\x05title\x18\x03 \x01(\t\x12,\n\x08\x64\x61tetime\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x64uration_ms\x18\x05 \x01(\x05\x12\x0f\n\x07preview\x18\x06 \x01(\t\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"h\n\x0eSearchResponse\x12\x11\n\tnum_found\x18\x01 \x01(\x05\x12\r\n\x05start\x18\x02 \x01(\x05\x12\x34\n\x07results\x18\x03 \x03(\x0b\x32#.soniox.speech_service.SearchResult\"6\n\x10GetObjectRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x11\n\tobject_id\x18\x02 \x01(\t\"H\n\x11GetObjectResponse\x12\x33\n\x06object\x18\x01 \x01(\x0b\x32#.soniox.speech_service.StoredObject\"\xea\x02\n\x0fGetAudioRequest\x12\x0f\n\x07\x61pi_key\x18\x01 \x01(\t\x12\x11\n\tobject_id\x18\x02 \x01(\t\x12J\n\x0ctime_segment\x18\x03 \x01(\x0b\x32\x32.soniox.speech_service.GetAudioRequest.TimeSegmentH\x00\x12L\n\rtoken_segment\x18\x04 \x01(\x0b\x32\x33.soniox.speech_service.GetAudioRequest.TokenSegmentH\x00\x12\x1a\n\x12\x61udio_bytes_format\x18\x05 \x01(\t\x1a\x34\n\x0bTimeSegment\x12\x10\n\x08start_ms\x18\x01 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x02 \x01(\x05\x1a\x36\n\x0cTokenSegment\x12\x13\n\x0btoken_start\x18\x01 \x01(\x05\x12\x11\n\ttoken_end\x18\x02 \x01(\x05\x42\x0f\n\roneof_segment\"u\n\x10GetAudioResponse\x12\x11\n\tobject_id\x18\x01 \x01(\t\x12\x10\n\x08start_ms\x18\x02 \x01(\x05\x12\x13\n\x0b\x64uration_ms\x18\x03 \x01(\x05\x12\x19\n\x11total_duration_ms\x18\x04 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\x32\xbd\x14\n\rSpeechService\x12\x63\n\nTranscribe\x12(.soniox.speech_service.TranscribeRequest\x1a).soniox.speech_service.TranscribeResponse\"\x00\x12y\n\x10TranscribeStream\x12..soniox.speech_service.TranscribeStreamRequest\x1a/.soniox.speech_service.TranscribeStreamResponse\"\x00(\x01\x30\x01\x12|\n\x11TranscribeMeeting\x12/.soniox.speech_service.TranscribeMeetingRequest\x1a\x30.soniox.speech_service.TranscribeMeetingResponse\"\x00(\x01\x30\x01\x12t\n\x0fTranscribeAsync\x12-.soniox.speech_service.TranscribeAsyncRequest\x1a..soniox.speech_service.TranscribeAsyncResponse\"\x00(\x01\x12\x8d\x01\n\x18GetTranscribeAsyncStatus\x12\x36.soniox.speech_service.GetTranscribeAsyncStatusRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncStatusResponse\"\x00\x12\x8f\x01\n\x18GetTranscribeAsyncResult\x12\x36.soniox.speech_service.GetTranscribeAsyncResultRequest\x1a\x37.soniox.speech_service.GetTranscribeAsyncResultResponse\"\x00\x30\x01\x12\x90\x01\n\x19\x44\x65leteTranscribeAsyncFile\x12\x37.soniox.speech_service.DeleteTranscribeAsyncFileRequest\x1a\x38.soniox.speech_service.DeleteTranscribeAsyncFileResponse\"\x00\x12~\n\x13\x43reateSpeechContext\x12\x31.soniox.speech_service.CreateSpeechContextRequest\x1a\x32.soniox.speech_service.CreateSpeechContextResponse\"\x00\x12~\n\x13\x44\x65leteSpeechContext\x12\x31.soniox.speech_service.DeleteSpeechContextRequest\x1a\x32.soniox.speech_service.DeleteSpeechContextResponse\"\x00\x12\x87\x01\n\x16ListSpeechContextNames\x12\x34.soniox.speech_service.ListSpeechContextNamesRequest\x1a\x35.soniox.speech_service.ListSpeechContextNamesResponse\"\x00\x12u\n\x10GetSpeechContext\x12..soniox.speech_service.GetSpeechContextRequest\x1a/.soniox.speech_service.GetSpeechContextResponse\"\x00\x12~\n\x13UpdateSpeechContext\x12\x31.soniox.speech_service.UpdateSpeechContextRequest\x1a\x32.soniox.speech_service.UpdateSpeechContextResponse\"\x00\x12\x63\n\nAddSpeaker\x12(.soniox.speech_service.AddSpeakerRequest\x1a).soniox.speech_service.AddSpeakerResponse\"\x00\x12\x63\n\nGetSpeaker\x12(.soniox.speech_service.GetSpeakerRequest\x1a).soniox.speech_service.GetSpeakerResponse\"\x00\x12l\n\rRemoveSpeaker\x12+.soniox.speech_service.RemoveSpeakerRequest\x1a,.soniox.speech_service.RemoveSpeakerResponse\"\x00\x12i\n\x0cListSpeakers\x12*.soniox.speech_service.ListSpeakersRequest\x1a+.soniox.speech_service.ListSpeakersResponse\"\x00\x12r\n\x0f\x41\x64\x64SpeakerAudio\x12-.soniox.speech_service.AddSpeakerAudioRequest\x1a..soniox.speech_service.AddSpeakerAudioResponse\"\x00\x12r\n\x0fGetSpeakerAudio\x12-.soniox.speech_service.GetSpeakerAudioRequest\x1a..soniox.speech_service.GetSpeakerAudioResponse\"\x00\x12{\n\x12RemoveSpeakerAudio\x12\x30.soniox.speech_service.RemoveSpeakerAudioRequest\x1a\x31.soniox.speech_service.RemoveSpeakerAudioResponse\"\x00\x12W\n\x06Search\x12$.soniox.speech_service.SearchRequest\x1a%.soniox.speech_service.SearchResponse\"\x00\x12`\n\tGetObject\x12\'.soniox.speech_service.GetObjectRequest\x1a(.soniox.speech_service.GetObjectResponse\"\x00\x12_\n\x08GetAudio\x12&.soniox.speech_service.GetAudioRequest\x1a\'.soniox.speech_service.GetAudioResponse\"\x00\x30\x01\x62\x06proto3')
 
 
 
@@ -66,6 +66,25 @@ _GETSPEAKERAUDIOREQUEST = DESCRIPTOR.message_types_by_name['GetSpeakerAudioReque
 _GETSPEAKERAUDIORESPONSE = DESCRIPTOR.message_types_by_name['GetSpeakerAudioResponse']
 _REMOVESPEAKERAUDIOREQUEST = DESCRIPTOR.message_types_by_name['RemoveSpeakerAudioRequest']
 _REMOVESPEAKERAUDIORESPONSE = DESCRIPTOR.message_types_by_name['RemoveSpeakerAudioResponse']
+_STORAGECONFIG = DESCRIPTOR.message_types_by_name['StorageConfig']
+_STORAGECONFIG_METADATAENTRY = _STORAGECONFIG.nested_types_by_name['MetadataEntry']
+_TOKEN = DESCRIPTOR.message_types_by_name['Token']
+_SENTENCE = DESCRIPTOR.message_types_by_name['Sentence']
+_PARAGRAPH = DESCRIPTOR.message_types_by_name['Paragraph']
+_TRANSCRIPT = DESCRIPTOR.message_types_by_name['Transcript']
+_TRANSCRIPT_SPEAKERNAMESENTRY = _TRANSCRIPT.nested_types_by_name['SpeakerNamesEntry']
+_STOREDOBJECT = DESCRIPTOR.message_types_by_name['StoredObject']
+_STOREDOBJECT_METADATAENTRY = _STOREDOBJECT.nested_types_by_name['MetadataEntry']
+_SEARCHREQUEST = DESCRIPTOR.message_types_by_name['SearchRequest']
+_SEARCHRESULT = DESCRIPTOR.message_types_by_name['SearchResult']
+_SEARCHRESULT_METADATAENTRY = _SEARCHRESULT.nested_types_by_name['MetadataEntry']
+_SEARCHRESPONSE = DESCRIPTOR.message_types_by_name['SearchResponse']
+_GETOBJECTREQUEST = DESCRIPTOR.message_types_by_name['GetObjectRequest']
+_GETOBJECTRESPONSE = DESCRIPTOR.message_types_by_name['GetObjectResponse']
+_GETAUDIOREQUEST = DESCRIPTOR.message_types_by_name['GetAudioRequest']
+_GETAUDIOREQUEST_TIMESEGMENT = _GETAUDIOREQUEST.nested_types_by_name['TimeSegment']
+_GETAUDIOREQUEST_TOKENSEGMENT = _GETAUDIOREQUEST.nested_types_by_name['TokenSegment']
+_GETAUDIORESPONSE = DESCRIPTOR.message_types_by_name['GetAudioResponse']
 TranscribeRequest = _reflection.GeneratedProtocolMessageType('TranscribeRequest', (_message.Message,), {
   'DESCRIPTOR' : _TRANSCRIBEREQUEST,
   '__module__' : 'soniox.speech_service_pb2'
@@ -395,10 +414,157 @@ RemoveSpeakerAudioResponse = _reflection.GeneratedProtocolMessageType('RemoveSpe
   })
 _sym_db.RegisterMessage(RemoveSpeakerAudioResponse)
 
+StorageConfig = _reflection.GeneratedProtocolMessageType('StorageConfig', (_message.Message,), {
+
+  'MetadataEntry' : _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STORAGECONFIG_METADATAENTRY,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.StorageConfig.MetadataEntry)
+    })
+  ,
+  'DESCRIPTOR' : _STORAGECONFIG,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.StorageConfig)
+  })
+_sym_db.RegisterMessage(StorageConfig)
+_sym_db.RegisterMessage(StorageConfig.MetadataEntry)
+
+Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), {
+  'DESCRIPTOR' : _TOKEN,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.Token)
+  })
+_sym_db.RegisterMessage(Token)
+
+Sentence = _reflection.GeneratedProtocolMessageType('Sentence', (_message.Message,), {
+  'DESCRIPTOR' : _SENTENCE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.Sentence)
+  })
+_sym_db.RegisterMessage(Sentence)
+
+Paragraph = _reflection.GeneratedProtocolMessageType('Paragraph', (_message.Message,), {
+  'DESCRIPTOR' : _PARAGRAPH,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.Paragraph)
+  })
+_sym_db.RegisterMessage(Paragraph)
+
+Transcript = _reflection.GeneratedProtocolMessageType('Transcript', (_message.Message,), {
+
+  'SpeakerNamesEntry' : _reflection.GeneratedProtocolMessageType('SpeakerNamesEntry', (_message.Message,), {
+    'DESCRIPTOR' : _TRANSCRIPT_SPEAKERNAMESENTRY,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.Transcript.SpeakerNamesEntry)
+    })
+  ,
+  'DESCRIPTOR' : _TRANSCRIPT,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.Transcript)
+  })
+_sym_db.RegisterMessage(Transcript)
+_sym_db.RegisterMessage(Transcript.SpeakerNamesEntry)
+
+StoredObject = _reflection.GeneratedProtocolMessageType('StoredObject', (_message.Message,), {
+
+  'MetadataEntry' : _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STOREDOBJECT_METADATAENTRY,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.StoredObject.MetadataEntry)
+    })
+  ,
+  'DESCRIPTOR' : _STOREDOBJECT,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.StoredObject)
+  })
+_sym_db.RegisterMessage(StoredObject)
+_sym_db.RegisterMessage(StoredObject.MetadataEntry)
+
+SearchRequest = _reflection.GeneratedProtocolMessageType('SearchRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SEARCHREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.SearchRequest)
+  })
+_sym_db.RegisterMessage(SearchRequest)
+
+SearchResult = _reflection.GeneratedProtocolMessageType('SearchResult', (_message.Message,), {
+
+  'MetadataEntry' : _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SEARCHRESULT_METADATAENTRY,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.SearchResult.MetadataEntry)
+    })
+  ,
+  'DESCRIPTOR' : _SEARCHRESULT,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.SearchResult)
+  })
+_sym_db.RegisterMessage(SearchResult)
+_sym_db.RegisterMessage(SearchResult.MetadataEntry)
+
+SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SEARCHRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.SearchResponse)
+  })
+_sym_db.RegisterMessage(SearchResponse)
+
+GetObjectRequest = _reflection.GeneratedProtocolMessageType('GetObjectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETOBJECTREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetObjectRequest)
+  })
+_sym_db.RegisterMessage(GetObjectRequest)
+
+GetObjectResponse = _reflection.GeneratedProtocolMessageType('GetObjectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETOBJECTRESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetObjectResponse)
+  })
+_sym_db.RegisterMessage(GetObjectResponse)
+
+GetAudioRequest = _reflection.GeneratedProtocolMessageType('GetAudioRequest', (_message.Message,), {
+
+  'TimeSegment' : _reflection.GeneratedProtocolMessageType('TimeSegment', (_message.Message,), {
+    'DESCRIPTOR' : _GETAUDIOREQUEST_TIMESEGMENT,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.GetAudioRequest.TimeSegment)
+    })
+  ,
+
+  'TokenSegment' : _reflection.GeneratedProtocolMessageType('TokenSegment', (_message.Message,), {
+    'DESCRIPTOR' : _GETAUDIOREQUEST_TOKENSEGMENT,
+    '__module__' : 'soniox.speech_service_pb2'
+    # @@protoc_insertion_point(class_scope:soniox.speech_service.GetAudioRequest.TokenSegment)
+    })
+  ,
+  'DESCRIPTOR' : _GETAUDIOREQUEST,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetAudioRequest)
+  })
+_sym_db.RegisterMessage(GetAudioRequest)
+_sym_db.RegisterMessage(GetAudioRequest.TimeSegment)
+_sym_db.RegisterMessage(GetAudioRequest.TokenSegment)
+
+GetAudioResponse = _reflection.GeneratedProtocolMessageType('GetAudioResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETAUDIORESPONSE,
+  '__module__' : 'soniox.speech_service_pb2'
+  # @@protoc_insertion_point(class_scope:soniox.speech_service.GetAudioResponse)
+  })
+_sym_db.RegisterMessage(GetAudioResponse)
+
 _SPEECHSERVICE = DESCRIPTOR.services_by_name['SpeechService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
+  _STORAGECONFIG_METADATAENTRY._options = None
+  _STORAGECONFIG_METADATAENTRY._serialized_options = b'8\001'
+  _TRANSCRIPT_SPEAKERNAMESENTRY._options = None
+  _TRANSCRIPT_SPEAKERNAMESENTRY._serialized_options = b'8\001'
+  _STOREDOBJECT_METADATAENTRY._options = None
+  _STOREDOBJECT_METADATAENTRY._serialized_options = b'8\001'
+  _SEARCHRESULT_METADATAENTRY._options = None
+  _SEARCHRESULT_METADATAENTRY._serialized_options = b'8\001'
   _TRANSCRIBEREQUEST._serialized_start=87
   _TRANSCRIBEREQUEST._serialized_end=198
   _TRANSCRIBERESPONSE._serialized_start=200
@@ -420,79 +586,117 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETTRANSCRIBEASYNCSTATUSRESPONSE._serialized_start=1160
   _GETTRANSCRIBEASYNCSTATUSRESPONSE._serialized_end=1259
   _TRANSCRIBEASYNCFILESTATUS._serialized_start=1262
-  _TRANSCRIBEASYNCFILESTATUS._serialized_end=1450
-  _GETTRANSCRIBEASYNCRESULTREQUEST._serialized_start=1452
-  _GETTRANSCRIBEASYNCRESULTREQUEST._serialized_end=1519
-  _GETTRANSCRIBEASYNCRESULTRESPONSE._serialized_start=1521
-  _GETTRANSCRIBEASYNCRESULTRESPONSE._serialized_end=1644
-  _DELETETRANSCRIBEASYNCFILEREQUEST._serialized_start=1646
-  _DELETETRANSCRIBEASYNCFILEREQUEST._serialized_end=1714
-  _DELETETRANSCRIBEASYNCFILERESPONSE._serialized_start=1716
-  _DELETETRANSCRIBEASYNCFILERESPONSE._serialized_end=1751
-  _TRANSCRIPTIONCONFIG._serialized_start=1754
-  _TRANSCRIPTIONCONFIG._serialized_end=2373
-  _RESULT._serialized_start=2376
-  _RESULT._serialized_end=2557
-  _WORD._serialized_start=2560
-  _WORD._serialized_end=2693
-  _RESULTSPEAKER._serialized_start=2695
-  _RESULTSPEAKER._serialized_end=2741
-  _SPEECHCONTEXT._serialized_start=2743
-  _SPEECHCONTEXT._serialized_end=2832
-  _SPEECHCONTEXTENTRY._serialized_start=2834
-  _SPEECHCONTEXTENTRY._serialized_end=2886
-  _CREATESPEECHCONTEXTREQUEST._serialized_start=2888
-  _CREATESPEECHCONTEXTREQUEST._serialized_end=2995
-  _CREATESPEECHCONTEXTRESPONSE._serialized_start=2997
-  _CREATESPEECHCONTEXTRESPONSE._serialized_end=3026
-  _DELETESPEECHCONTEXTREQUEST._serialized_start=3028
-  _DELETESPEECHCONTEXTREQUEST._serialized_end=3087
-  _DELETESPEECHCONTEXTRESPONSE._serialized_start=3089
-  _DELETESPEECHCONTEXTRESPONSE._serialized_end=3118
-  _LISTSPEECHCONTEXTNAMESREQUEST._serialized_start=3120
-  _LISTSPEECHCONTEXTNAMESREQUEST._serialized_end=3168
-  _LISTSPEECHCONTEXTNAMESRESPONSE._serialized_start=3170
-  _LISTSPEECHCONTEXTNAMESRESPONSE._serialized_end=3217
-  _GETSPEECHCONTEXTREQUEST._serialized_start=3219
-  _GETSPEECHCONTEXTREQUEST._serialized_end=3275
-  _GETSPEECHCONTEXTRESPONSE._serialized_start=3277
-  _GETSPEECHCONTEXTRESPONSE._serialized_end=3365
-  _UPDATESPEECHCONTEXTREQUEST._serialized_start=3367
-  _UPDATESPEECHCONTEXTREQUEST._serialized_end=3474
-  _UPDATESPEECHCONTEXTRESPONSE._serialized_start=3476
-  _UPDATESPEECHCONTEXTRESPONSE._serialized_end=3505
-  _ADDSPEAKERREQUEST._serialized_start=3507
-  _ADDSPEAKERREQUEST._serialized_end=3557
-  _ADDSPEAKERRESPONSE._serialized_start=3559
-  _ADDSPEAKERRESPONSE._serialized_end=3638
-  _GETSPEAKERREQUEST._serialized_start=3640
-  _GETSPEAKERREQUEST._serialized_end=3690
-  _GETSPEAKERRESPONSE._serialized_start=3693
-  _GETSPEAKERRESPONSE._serialized_end=3836
-  _GETSPEAKERRESPONSEAUDIO._serialized_start=3838
-  _GETSPEAKERRESPONSEAUDIO._serialized_end=3949
-  _REMOVESPEAKERREQUEST._serialized_start=3951
-  _REMOVESPEAKERREQUEST._serialized_end=4004
-  _REMOVESPEAKERRESPONSE._serialized_start=4006
-  _REMOVESPEAKERRESPONSE._serialized_end=4029
-  _LISTSPEAKERSREQUEST._serialized_start=4031
-  _LISTSPEAKERSREQUEST._serialized_end=4069
-  _LISTSPEAKERSRESPONSE._serialized_start=4071
-  _LISTSPEAKERSRESPONSE._serialized_end=4163
-  _LISTSPEAKERSRESPONSESPEAKER._serialized_start=4165
-  _LISTSPEAKERSRESPONSESPEAKER._serialized_end=4273
-  _ADDSPEAKERAUDIOREQUEST._serialized_start=4275
-  _ADDSPEAKERAUDIOREQUEST._serialized_end=4373
-  _ADDSPEAKERAUDIORESPONSE._serialized_start=4376
-  _ADDSPEAKERAUDIORESPONSE._serialized_end=4509
-  _GETSPEAKERAUDIOREQUEST._serialized_start=4511
-  _GETSPEAKERAUDIOREQUEST._serialized_end=4594
-  _GETSPEAKERAUDIORESPONSE._serialized_start=4597
-  _GETSPEAKERAUDIORESPONSE._serialized_end=4745
-  _REMOVESPEAKERAUDIOREQUEST._serialized_start=4747
-  _REMOVESPEAKERAUDIOREQUEST._serialized_end=4833
-  _REMOVESPEAKERAUDIORESPONSE._serialized_start=4835
-  _REMOVESPEAKERAUDIORESPONSE._serialized_end=4863
-  _SPEECHSERVICE._serialized_start=4866
-  _SPEECHSERVICE._serialized_end=7203
+  _TRANSCRIBEASYNCFILESTATUS._serialized_end=1419
+  _GETTRANSCRIBEASYNCRESULTREQUEST._serialized_start=1421
+  _GETTRANSCRIBEASYNCRESULTREQUEST._serialized_end=1488
+  _GETTRANSCRIBEASYNCRESULTRESPONSE._serialized_start=1490
+  _GETTRANSCRIBEASYNCRESULTRESPONSE._serialized_end=1613
+  _DELETETRANSCRIBEASYNCFILEREQUEST._serialized_start=1615
+  _DELETETRANSCRIBEASYNCFILEREQUEST._serialized_end=1683
+  _DELETETRANSCRIBEASYNCFILERESPONSE._serialized_start=1685
+  _DELETETRANSCRIBEASYNCFILERESPONSE._serialized_end=1720
+  _TRANSCRIPTIONCONFIG._serialized_start=1723
+  _TRANSCRIPTIONCONFIG._serialized_end=2374
+  _RESULT._serialized_start=2377
+  _RESULT._serialized_end=2558
+  _WORD._serialized_start=2561
+  _WORD._serialized_end=2694
+  _RESULTSPEAKER._serialized_start=2696
+  _RESULTSPEAKER._serialized_end=2742
+  _SPEECHCONTEXT._serialized_start=2744
+  _SPEECHCONTEXT._serialized_end=2833
+  _SPEECHCONTEXTENTRY._serialized_start=2835
+  _SPEECHCONTEXTENTRY._serialized_end=2887
+  _CREATESPEECHCONTEXTREQUEST._serialized_start=2889
+  _CREATESPEECHCONTEXTREQUEST._serialized_end=2996
+  _CREATESPEECHCONTEXTRESPONSE._serialized_start=2998
+  _CREATESPEECHCONTEXTRESPONSE._serialized_end=3027
+  _DELETESPEECHCONTEXTREQUEST._serialized_start=3029
+  _DELETESPEECHCONTEXTREQUEST._serialized_end=3088
+  _DELETESPEECHCONTEXTRESPONSE._serialized_start=3090
+  _DELETESPEECHCONTEXTRESPONSE._serialized_end=3119
+  _LISTSPEECHCONTEXTNAMESREQUEST._serialized_start=3121
+  _LISTSPEECHCONTEXTNAMESREQUEST._serialized_end=3169
+  _LISTSPEECHCONTEXTNAMESRESPONSE._serialized_start=3171
+  _LISTSPEECHCONTEXTNAMESRESPONSE._serialized_end=3218
+  _GETSPEECHCONTEXTREQUEST._serialized_start=3220
+  _GETSPEECHCONTEXTREQUEST._serialized_end=3276
+  _GETSPEECHCONTEXTRESPONSE._serialized_start=3278
+  _GETSPEECHCONTEXTRESPONSE._serialized_end=3366
+  _UPDATESPEECHCONTEXTREQUEST._serialized_start=3368
+  _UPDATESPEECHCONTEXTREQUEST._serialized_end=3475
+  _UPDATESPEECHCONTEXTRESPONSE._serialized_start=3477
+  _UPDATESPEECHCONTEXTRESPONSE._serialized_end=3506
+  _ADDSPEAKERREQUEST._serialized_start=3508
+  _ADDSPEAKERREQUEST._serialized_end=3558
+  _ADDSPEAKERRESPONSE._serialized_start=3560
+  _ADDSPEAKERRESPONSE._serialized_end=3639
+  _GETSPEAKERREQUEST._serialized_start=3641
+  _GETSPEAKERREQUEST._serialized_end=3691
+  _GETSPEAKERRESPONSE._serialized_start=3694
+  _GETSPEAKERRESPONSE._serialized_end=3837
+  _GETSPEAKERRESPONSEAUDIO._serialized_start=3839
+  _GETSPEAKERRESPONSEAUDIO._serialized_end=3950
+  _REMOVESPEAKERREQUEST._serialized_start=3952
+  _REMOVESPEAKERREQUEST._serialized_end=4005
+  _REMOVESPEAKERRESPONSE._serialized_start=4007
+  _REMOVESPEAKERRESPONSE._serialized_end=4030
+  _LISTSPEAKERSREQUEST._serialized_start=4032
+  _LISTSPEAKERSREQUEST._serialized_end=4070
+  _LISTSPEAKERSRESPONSE._serialized_start=4072
+  _LISTSPEAKERSRESPONSE._serialized_end=4164
+  _LISTSPEAKERSRESPONSESPEAKER._serialized_start=4166
+  _LISTSPEAKERSRESPONSESPEAKER._serialized_end=4274
+  _ADDSPEAKERAUDIOREQUEST._serialized_start=4276
+  _ADDSPEAKERAUDIOREQUEST._serialized_end=4374
+  _ADDSPEAKERAUDIORESPONSE._serialized_start=4377
+  _ADDSPEAKERAUDIORESPONSE._serialized_end=4510
+  _GETSPEAKERAUDIOREQUEST._serialized_start=4512
+  _GETSPEAKERAUDIOREQUEST._serialized_end=4595
+  _GETSPEAKERAUDIORESPONSE._serialized_start=4598
+  _GETSPEAKERAUDIORESPONSE._serialized_end=4746
+  _REMOVESPEAKERAUDIOREQUEST._serialized_start=4748
+  _REMOVESPEAKERAUDIOREQUEST._serialized_end=4834
+  _REMOVESPEAKERAUDIORESPONSE._serialized_start=4836
+  _REMOVESPEAKERAUDIORESPONSE._serialized_end=4864
+  _STORAGECONFIG._serialized_start=4867
+  _STORAGECONFIG._serialized_end=5168
+  _STORAGECONFIG_METADATAENTRY._serialized_start=5121
+  _STORAGECONFIG_METADATAENTRY._serialized_end=5168
+  _TOKEN._serialized_start=5171
+  _TOKEN._serialized_end=5339
+  _SENTENCE._serialized_start=5341
+  _SENTENCE._serialized_end=5391
+  _PARAGRAPH._serialized_start=5393
+  _PARAGRAPH._serialized_end=5450
+  _TRANSCRIPT._serialized_start=5453
+  _TRANSCRIPT._serialized_end=5760
+  _TRANSCRIPT_SPEAKERNAMESENTRY._serialized_start=5709
+  _TRANSCRIPT_SPEAKERNAMESENTRY._serialized_end=5760
+  _STOREDOBJECT._serialized_start=5763
+  _STOREDOBJECT._serialized_end=6104
+  _STOREDOBJECT_METADATAENTRY._serialized_start=5121
+  _STOREDOBJECT_METADATAENTRY._serialized_end=5168
+  _SEARCHREQUEST._serialized_start=6107
+  _SEARCHREQUEST._serialized_end=6330
+  _SEARCHRESULT._serialized_start=6333
+  _SEARCHRESULT._serialized_end=6583
+  _SEARCHRESULT_METADATAENTRY._serialized_start=5121
+  _SEARCHRESULT_METADATAENTRY._serialized_end=5168
+  _SEARCHRESPONSE._serialized_start=6585
+  _SEARCHRESPONSE._serialized_end=6689
+  _GETOBJECTREQUEST._serialized_start=6691
+  _GETOBJECTREQUEST._serialized_end=6745
+  _GETOBJECTRESPONSE._serialized_start=6747
+  _GETOBJECTRESPONSE._serialized_end=6819
+  _GETAUDIOREQUEST._serialized_start=6822
+  _GETAUDIOREQUEST._serialized_end=7184
+  _GETAUDIOREQUEST_TIMESEGMENT._serialized_start=7059
+  _GETAUDIOREQUEST_TIMESEGMENT._serialized_end=7111
+  _GETAUDIOREQUEST_TOKENSEGMENT._serialized_start=7113
+  _GETAUDIOREQUEST_TOKENSEGMENT._serialized_end=7167
+  _GETAUDIORESPONSE._serialized_start=7186
+  _GETAUDIORESPONSE._serialized_end=7303
+  _SPEECHSERVICE._serialized_start=7306
+  _SPEECHSERVICE._serialized_end=9927
 # @@protoc_insertion_point(module_scope)
