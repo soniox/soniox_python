@@ -138,6 +138,11 @@ message DeleteTranscribeAsyncFileResponse {
 // Common
 
 message TranscriptionConfig {
+  // Optional field to enable the client to identify this request
+  // in request logs. It must not exceed 256 bytes (in UTF-8),
+  // otherwise all values are valid and uniqueness is not required.
+  string client_request_reference = 19;
+
   // Input options
   string audio_format = 1;
   int32 sample_rate_hertz = 2;
