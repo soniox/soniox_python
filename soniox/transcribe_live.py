@@ -11,6 +11,7 @@ from soniox.speech_service import (
     TranscriptionConfig,
     Result,
     SpeechContext,
+    StorageConfig,
 )
 
 
@@ -31,6 +32,7 @@ def transcribe_capture(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
+    storage_config: Optional[StorageConfig] = None,
     client_request_reference: str = "",
 ) -> Iterable[Result]:
     assert isinstance(capture_device, AbstractCaptureDevice)
@@ -52,6 +54,7 @@ def transcribe_capture(
     assert isinstance(model, str)
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
+    assert storage_config is None or isinstance(storage_config, StorageConfig)
     assert isinstance(client_request_reference, str)
 
     config = TranscriptionConfig()
@@ -74,6 +77,8 @@ def transcribe_capture(
     config.model = model
     config.enable_dictation = enable_dictation
     config.enable_endpoint_detection = enable_endpoint_detection
+    if storage_config is not None:
+        config.storage_config.CopyFrom(storage_config)
     config.client_request_reference = client_request_reference
 
     if stop_event is None:
@@ -107,6 +112,7 @@ def transcribe_microphone(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
+    storage_config: Optional[StorageConfig] = None,
     client_request_reference: str = "",
 ):
     return transcribe_capture(
@@ -126,6 +132,7 @@ def transcribe_microphone(
         model,
         enable_dictation,
         enable_endpoint_detection,
+        storage_config,
         client_request_reference,
     )
 
@@ -150,6 +157,7 @@ def transcribe_stream(
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
     include_nonfinal: bool = True,
+    storage_config: Optional[StorageConfig] = None,
     client_request_reference: str = "",
 ) -> Iterable[Result]:
     assert isinstance(client, SpeechClient)
@@ -173,6 +181,7 @@ def transcribe_stream(
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
     assert isinstance(include_nonfinal, bool)
+    assert storage_config is None or isinstance(storage_config, StorageConfig)
     assert isinstance(client_request_reference, str)
 
     config = TranscriptionConfig()
@@ -196,6 +205,8 @@ def transcribe_stream(
     config.model = model
     config.enable_dictation = enable_dictation
     config.enable_endpoint_detection = enable_endpoint_detection
+    if storage_config is not None:
+        config.storage_config.CopyFrom(storage_config)
     config.client_request_reference = client_request_reference
 
     yield from client.TranscribeStream(config, iter_audio)
