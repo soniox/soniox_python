@@ -5,7 +5,7 @@ recognition service. Please see the [tutorials](https://soniox.com/docs).
 
 ### Requirements
 
-Python 3.6 or higher.
+Python 3.7 or higher.
 For development, we require Python 3.8 or higher.
 
 ### Usage

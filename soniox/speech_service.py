@@ -255,6 +255,7 @@ class SpeechClient:
                 request.api_key = self.api_key
                 request.reference_name = reference_name
                 request.config.CopyFrom(config)
+                request.enable_eof = True
                 yield request
 
                 for audio in iter_audio:
@@ -262,6 +263,10 @@ class SpeechClient:
                     request = speech_service_pb2.TranscribeAsyncRequest()
                     request.audio = audio
                     yield request
+
+                request = speech_service_pb2.TranscribeAsyncRequest()
+                request.eof = True
+                yield request
 
             except Exception as e:
                 iter_exception = e

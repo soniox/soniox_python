@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="soniox",
-    version="1.5.0",
+    version="1.6.2",
     author="Soniox Inc",
     author_email="support@soniox.com",
     description="Soniox speech recognition service client library",
@@ -18,6 +18,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
-    install_requires=["grpcio", "protobuf", "numpy", "SoundCard"],
+    python_requires=">=3.7",
+    install_requires=["protobuf>=3.20.0", "grpcio>=1.46.0", "numpy", "SoundCard"],
 )
