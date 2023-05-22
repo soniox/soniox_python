@@ -12,6 +12,7 @@ TranscriptionConfig = speech_service_pb2.TranscriptionConfig
 TranscribeMeetingRequest = speech_service_pb2.TranscribeMeetingRequest
 TranscribeMeetingResponse = speech_service_pb2.TranscribeMeetingResponse
 TranscribeAsyncFileStatus = speech_service_pb2.TranscribeAsyncFileStatus
+StorageConfig = speech_service_pb2.StorageConfig
 
 SpeechServiceStub = speech_service_pb2_grpc.SpeechServiceStub
 

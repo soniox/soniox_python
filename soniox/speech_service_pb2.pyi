@@ -58,6 +58,18 @@ class CreateSpeechContextResponse(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 
+class DeleteObjectRequest(_message.Message):
+    __slots__ = ["api_key", "object_id"]
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    object_id: str
+    def __init__(self, api_key: _Optional[str] = ..., object_id: _Optional[str] = ...) -> None: ...
+
+class DeleteObjectResponse(_message.Message):
+    __slots__ = []
+    def __init__(self) -> None: ...
+
 class DeleteSpeechContextRequest(_message.Message):
     __slots__ = ["api_key", "name"]
     API_KEY_FIELD_NUMBER: _ClassVar[int]
@@ -81,6 +93,64 @@ class DeleteTranscribeAsyncFileRequest(_message.Message):
 class DeleteTranscribeAsyncFileResponse(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
+
+class GetAudioRequest(_message.Message):
+    __slots__ = ["api_key", "audio_bytes_format", "object_id", "time_segment", "token_segment"]
+    class TimeSegment(_message.Message):
+        __slots__ = ["duration_ms", "start_ms"]
+        DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+        START_MS_FIELD_NUMBER: _ClassVar[int]
+        duration_ms: int
+        start_ms: int
+        def __init__(self, start_ms: _Optional[int] = ..., duration_ms: _Optional[int] = ...) -> None: ...
+    class TokenSegment(_message.Message):
+        __slots__ = ["token_end", "token_start"]
+        TOKEN_END_FIELD_NUMBER: _ClassVar[int]
+        TOKEN_START_FIELD_NUMBER: _ClassVar[int]
+        token_end: int
+        token_start: int
+        def __init__(self, token_start: _Optional[int] = ..., token_end: _Optional[int] = ...) -> None: ...
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    AUDIO_BYTES_FORMAT_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    TIME_SEGMENT_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_SEGMENT_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    audio_bytes_format: str
+    object_id: str
+    time_segment: GetAudioRequest.TimeSegment
+    token_segment: GetAudioRequest.TokenSegment
+    def __init__(self, api_key: _Optional[str] = ..., object_id: _Optional[str] = ..., time_segment: _Optional[_Union[GetAudioRequest.TimeSegment, _Mapping]] = ..., token_segment: _Optional[_Union[GetAudioRequest.TokenSegment, _Mapping]] = ..., audio_bytes_format: _Optional[str] = ...) -> None: ...
+
+class GetAudioResponse(_message.Message):
+    __slots__ = ["data", "duration_ms", "num_audio_channels", "object_id", "start_ms", "total_duration_ms"]
+    DATA_FIELD_NUMBER: _ClassVar[int]
+    DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    NUM_AUDIO_CHANNELS_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    START_MS_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    data: bytes
+    duration_ms: int
+    num_audio_channels: int
+    object_id: str
+    start_ms: int
+    total_duration_ms: int
+    def __init__(self, object_id: _Optional[str] = ..., start_ms: _Optional[int] = ..., duration_ms: _Optional[int] = ..., total_duration_ms: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., data: _Optional[bytes] = ...) -> None: ...
+
+class GetObjectRequest(_message.Message):
+    __slots__ = ["api_key", "object_id"]
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    object_id: str
+    def __init__(self, api_key: _Optional[str] = ..., object_id: _Optional[str] = ...) -> None: ...
+
+class GetObjectResponse(_message.Message):
+    __slots__ = ["object"]
+    OBJECT_FIELD_NUMBER: _ClassVar[int]
+    object: StoredObject
+    def __init__(self, object: _Optional[_Union[StoredObject, _Mapping]] = ...) -> None: ...
 
 class GetSpeakerAudioRequest(_message.Message):
     __slots__ = ["api_key", "audio_name", "speaker_name"]
@@ -180,6 +250,54 @@ class GetTranscribeAsyncStatusResponse(_message.Message):
     files: _containers.RepeatedCompositeFieldContainer[TranscribeAsyncFileStatus]
     def __init__(self, files: _Optional[_Iterable[_Union[TranscribeAsyncFileStatus, _Mapping]]] = ...) -> None: ...
 
+class Keyterm(_message.Message):
+    __slots__ = ["score", "text", "token_start_indexes"]
+    SCORE_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_START_INDEXES_FIELD_NUMBER: _ClassVar[int]
+    score: float
+    text: str
+    token_start_indexes: _containers.RepeatedScalarFieldContainer[int]
+    def __init__(self, text: _Optional[str] = ..., score: _Optional[float] = ..., token_start_indexes: _Optional[_Iterable[int]] = ...) -> None: ...
+
+class ListObjectsRequest(_message.Message):
+    __slots__ = ["api_key", "num", "start", "stored_datetime_from", "stored_datetime_to"]
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    NUM_FIELD_NUMBER: _ClassVar[int]
+    START_FIELD_NUMBER: _ClassVar[int]
+    STORED_DATETIME_FROM_FIELD_NUMBER: _ClassVar[int]
+    STORED_DATETIME_TO_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    num: int
+    start: int
+    stored_datetime_from: _timestamp_pb2.Timestamp
+    stored_datetime_to: _timestamp_pb2.Timestamp
+    def __init__(self, api_key: _Optional[str] = ..., stored_datetime_from: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., stored_datetime_to: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., start: _Optional[int] = ..., num: _Optional[int] = ...) -> None: ...
+
+class ListObjectsResponse(_message.Message):
+    __slots__ = ["objects", "start"]
+    OBJECTS_FIELD_NUMBER: _ClassVar[int]
+    START_FIELD_NUMBER: _ClassVar[int]
+    objects: _containers.RepeatedCompositeFieldContainer[ListObjectsResponseObject]
+    start: int
+    def __init__(self, start: _Optional[int] = ..., objects: _Optional[_Iterable[_Union[ListObjectsResponseObject, _Mapping]]] = ...) -> None: ...
+
+class ListObjectsResponseObject(_message.Message):
+    __slots__ = ["audio_duration_ms", "audio_stored", "object_id", "stored_audio_ms", "stored_datetime", "transcript_stored"]
+    AUDIO_DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    AUDIO_STORED_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    STORED_AUDIO_MS_FIELD_NUMBER: _ClassVar[int]
+    STORED_DATETIME_FIELD_NUMBER: _ClassVar[int]
+    TRANSCRIPT_STORED_FIELD_NUMBER: _ClassVar[int]
+    audio_duration_ms: int
+    audio_stored: bool
+    object_id: str
+    stored_audio_ms: int
+    stored_datetime: _timestamp_pb2.Timestamp
+    transcript_stored: bool
+    def __init__(self, object_id: _Optional[str] = ..., stored_datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., audio_stored: bool = ..., transcript_stored: bool = ..., audio_duration_ms: _Optional[int] = ..., stored_audio_ms: _Optional[int] = ...) -> None: ...
+
 class ListSpeakersRequest(_message.Message):
     __slots__ = ["api_key"]
     API_KEY_FIELD_NUMBER: _ClassVar[int]
@@ -213,6 +331,14 @@ class ListSpeechContextNamesResponse(_message.Message):
     NAMES_FIELD_NUMBER: _ClassVar[int]
     names: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, names: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class Paragraph(_message.Message):
+    __slots__ = ["sentence_end", "sentence_start"]
+    SENTENCE_END_FIELD_NUMBER: _ClassVar[int]
+    SENTENCE_START_FIELD_NUMBER: _ClassVar[int]
+    sentence_end: int
+    sentence_start: int
+    def __init__(self, sentence_start: _Optional[int] = ..., sentence_end: _Optional[int] = ...) -> None: ...
 
 class RemoveSpeakerAudioRequest(_message.Message):
     __slots__ = ["api_key", "audio_name", "speaker_name"]
@@ -262,6 +388,67 @@ class ResultSpeaker(_message.Message):
     speaker: int
     def __init__(self, speaker: _Optional[int] = ..., name: _Optional[str] = ...) -> None: ...
 
+class SearchRequest(_message.Message):
+    __slots__ = ["api_key", "datetime_from", "datetime_to", "metadata_query", "num", "object_id", "start", "text_query"]
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    DATETIME_FROM_FIELD_NUMBER: _ClassVar[int]
+    DATETIME_TO_FIELD_NUMBER: _ClassVar[int]
+    METADATA_QUERY_FIELD_NUMBER: _ClassVar[int]
+    NUM_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    START_FIELD_NUMBER: _ClassVar[int]
+    TEXT_QUERY_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    datetime_from: _timestamp_pb2.Timestamp
+    datetime_to: _timestamp_pb2.Timestamp
+    metadata_query: str
+    num: int
+    object_id: str
+    start: int
+    text_query: str
+    def __init__(self, api_key: _Optional[str] = ..., object_id: _Optional[str] = ..., metadata_query: _Optional[str] = ..., datetime_from: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., datetime_to: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., text_query: _Optional[str] = ..., start: _Optional[int] = ..., num: _Optional[int] = ...) -> None: ...
+
+class SearchResponse(_message.Message):
+    __slots__ = ["num_found", "results", "start"]
+    NUM_FOUND_FIELD_NUMBER: _ClassVar[int]
+    RESULTS_FIELD_NUMBER: _ClassVar[int]
+    START_FIELD_NUMBER: _ClassVar[int]
+    num_found: int
+    results: _containers.RepeatedCompositeFieldContainer[SearchResult]
+    start: int
+    def __init__(self, num_found: _Optional[int] = ..., start: _Optional[int] = ..., results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ...) -> None: ...
+
+class SearchResult(_message.Message):
+    __slots__ = ["datetime", "duration_ms", "metadata", "object_id", "preview", "title"]
+    class MetadataEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
+    DATETIME_FIELD_NUMBER: _ClassVar[int]
+    DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    PREVIEW_FIELD_NUMBER: _ClassVar[int]
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    datetime: _timestamp_pb2.Timestamp
+    duration_ms: int
+    metadata: _containers.ScalarMap[str, str]
+    object_id: str
+    preview: str
+    title: str
+    def __init__(self, object_id: _Optional[str] = ..., metadata: _Optional[_Mapping[str, str]] = ..., title: _Optional[str] = ..., datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., duration_ms: _Optional[int] = ..., preview: _Optional[str] = ...) -> None: ...
+
+class Sentence(_message.Message):
+    __slots__ = ["token_end", "token_start"]
+    TOKEN_END_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_START_FIELD_NUMBER: _ClassVar[int]
+    token_end: int
+    token_start: int
+    def __init__(self, token_start: _Optional[int] = ..., token_end: _Optional[int] = ...) -> None: ...
+
 class SpeechContext(_message.Message):
     __slots__ = ["entries", "name"]
     ENTRIES_FIELD_NUMBER: _ClassVar[int]
@@ -277,6 +464,80 @@ class SpeechContextEntry(_message.Message):
     boost: float
     phrases: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, phrases: _Optional[_Iterable[str]] = ..., boost: _Optional[float] = ...) -> None: ...
+
+class StorageConfig(_message.Message):
+    __slots__ = ["datetime", "disable_store_audio", "disable_store_transcript", "metadata", "object_id", "title"]
+    class MetadataEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
+    DATETIME_FIELD_NUMBER: _ClassVar[int]
+    DISABLE_STORE_AUDIO_FIELD_NUMBER: _ClassVar[int]
+    DISABLE_STORE_TRANSCRIPT_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    datetime: _timestamp_pb2.Timestamp
+    disable_store_audio: bool
+    disable_store_transcript: bool
+    metadata: _containers.ScalarMap[str, str]
+    object_id: str
+    title: str
+    def __init__(self, object_id: _Optional[str] = ..., metadata: _Optional[_Mapping[str, str]] = ..., title: _Optional[str] = ..., datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., disable_store_audio: bool = ..., disable_store_transcript: bool = ...) -> None: ...
+
+class StoredObject(_message.Message):
+    __slots__ = ["audio_stored", "datetime", "duration_ms", "metadata", "num_audio_channels", "object_id", "stored_datetime", "title", "transcript"]
+    class MetadataEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
+    AUDIO_STORED_FIELD_NUMBER: _ClassVar[int]
+    DATETIME_FIELD_NUMBER: _ClassVar[int]
+    DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    METADATA_FIELD_NUMBER: _ClassVar[int]
+    NUM_AUDIO_CHANNELS_FIELD_NUMBER: _ClassVar[int]
+    OBJECT_ID_FIELD_NUMBER: _ClassVar[int]
+    STORED_DATETIME_FIELD_NUMBER: _ClassVar[int]
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    TRANSCRIPT_FIELD_NUMBER: _ClassVar[int]
+    audio_stored: bool
+    datetime: _timestamp_pb2.Timestamp
+    duration_ms: int
+    metadata: _containers.ScalarMap[str, str]
+    num_audio_channels: int
+    object_id: str
+    stored_datetime: _timestamp_pb2.Timestamp
+    title: str
+    transcript: Transcript
+    def __init__(self, object_id: _Optional[str] = ..., metadata: _Optional[_Mapping[str, str]] = ..., title: _Optional[str] = ..., datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., stored_datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., duration_ms: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., audio_stored: bool = ..., transcript: _Optional[_Union[Transcript, _Mapping]] = ...) -> None: ...
+
+class Token(_message.Message):
+    __slots__ = ["confidence", "duration_ms", "idx", "profane", "speaker_id", "start_ms", "text", "text_end", "text_start"]
+    CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
+    DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    IDX_FIELD_NUMBER: _ClassVar[int]
+    PROFANE_FIELD_NUMBER: _ClassVar[int]
+    SPEAKER_ID_FIELD_NUMBER: _ClassVar[int]
+    START_MS_FIELD_NUMBER: _ClassVar[int]
+    TEXT_END_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    TEXT_START_FIELD_NUMBER: _ClassVar[int]
+    confidence: float
+    duration_ms: int
+    idx: int
+    profane: bool
+    speaker_id: int
+    start_ms: int
+    text: str
+    text_end: int
+    text_start: int
+    def __init__(self, idx: _Optional[int] = ..., text_start: _Optional[int] = ..., text_end: _Optional[int] = ..., text: _Optional[str] = ..., start_ms: _Optional[int] = ..., duration_ms: _Optional[int] = ..., confidence: _Optional[float] = ..., speaker_id: _Optional[int] = ..., profane: bool = ...) -> None: ...
 
 class TranscribeAsyncFileStatus(_message.Message):
     __slots__ = ["created_time", "error_message", "file_id", "reference_name", "status"]
@@ -388,8 +649,31 @@ class TranscribeStreamResponse(_message.Message):
     result: Result
     def __init__(self, result: _Optional[_Union[Result, _Mapping]] = ..., metadata: _Optional[_Union[TranscriptionMetadata, _Mapping]] = ...) -> None: ...
 
+class Transcript(_message.Message):
+    __slots__ = ["keyterms", "paragraphs", "sentences", "speaker_names", "text", "tokens"]
+    class SpeakerNamesEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: int
+        value: str
+        def __init__(self, key: _Optional[int] = ..., value: _Optional[str] = ...) -> None: ...
+    KEYTERMS_FIELD_NUMBER: _ClassVar[int]
+    PARAGRAPHS_FIELD_NUMBER: _ClassVar[int]
+    SENTENCES_FIELD_NUMBER: _ClassVar[int]
+    SPEAKER_NAMES_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    TOKENS_FIELD_NUMBER: _ClassVar[int]
+    keyterms: _containers.RepeatedCompositeFieldContainer[Keyterm]
+    paragraphs: _containers.RepeatedCompositeFieldContainer[Paragraph]
+    sentences: _containers.RepeatedCompositeFieldContainer[Sentence]
+    speaker_names: _containers.ScalarMap[int, str]
+    text: str
+    tokens: _containers.RepeatedCompositeFieldContainer[Token]
+    def __init__(self, text: _Optional[str] = ..., tokens: _Optional[_Iterable[_Union[Token, _Mapping]]] = ..., sentences: _Optional[_Iterable[_Union[Sentence, _Mapping]]] = ..., paragraphs: _Optional[_Iterable[_Union[Paragraph, _Mapping]]] = ..., keyterms: _Optional[_Iterable[_Union[Keyterm, _Mapping]]] = ..., speaker_names: _Optional[_Mapping[int, str]] = ...) -> None: ...
+
 class TranscriptionConfig(_message.Message):
-    __slots__ = ["audio_format", "cand_speaker_names", "client_request_reference", "content_moderation_phrases", "enable_dictation", "enable_endpoint_detection", "enable_global_speaker_diarization", "enable_profanity_filter", "enable_separate_recognition_per_channel", "enable_speaker_identification", "enable_streaming_speaker_diarization", "include_nonfinal", "max_num_speakers", "min_num_speakers", "model", "num_audio_channels", "sample_rate_hertz", "speech_context"]
+    __slots__ = ["audio_format", "cand_speaker_names", "client_request_reference", "content_moderation_phrases", "enable_dictation", "enable_endpoint_detection", "enable_global_speaker_diarization", "enable_profanity_filter", "enable_separate_recognition_per_channel", "enable_speaker_identification", "enable_streaming_speaker_diarization", "include_nonfinal", "max_num_speakers", "min_num_speakers", "model", "num_audio_channels", "sample_rate_hertz", "speech_context", "storage_config"]
     AUDIO_FORMAT_FIELD_NUMBER: _ClassVar[int]
     CAND_SPEAKER_NAMES_FIELD_NUMBER: _ClassVar[int]
     CLIENT_REQUEST_REFERENCE_FIELD_NUMBER: _ClassVar[int]
@@ -408,6 +692,7 @@ class TranscriptionConfig(_message.Message):
     NUM_AUDIO_CHANNELS_FIELD_NUMBER: _ClassVar[int]
     SAMPLE_RATE_HERTZ_FIELD_NUMBER: _ClassVar[int]
     SPEECH_CONTEXT_FIELD_NUMBER: _ClassVar[int]
+    STORAGE_CONFIG_FIELD_NUMBER: _ClassVar[int]
     audio_format: str
     cand_speaker_names: _containers.RepeatedScalarFieldContainer[str]
     client_request_reference: str
@@ -426,7 +711,8 @@ class TranscriptionConfig(_message.Message):
     num_audio_channels: int
     sample_rate_hertz: int
     speech_context: SpeechContext
-    def __init__(self, client_request_reference: _Optional[str] = ..., audio_format: _Optional[str] = ..., sample_rate_hertz: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., include_nonfinal: bool = ..., enable_separate_recognition_per_channel: bool = ..., enable_endpoint_detection: bool = ..., speech_context: _Optional[_Union[SpeechContext, _Mapping]] = ..., enable_profanity_filter: bool = ..., content_moderation_phrases: _Optional[_Iterable[str]] = ..., enable_streaming_speaker_diarization: bool = ..., enable_global_speaker_diarization: bool = ..., min_num_speakers: _Optional[int] = ..., max_num_speakers: _Optional[int] = ..., enable_speaker_identification: bool = ..., cand_speaker_names: _Optional[_Iterable[str]] = ..., model: _Optional[str] = ..., enable_dictation: bool = ...) -> None: ...
+    storage_config: StorageConfig
+    def __init__(self, client_request_reference: _Optional[str] = ..., audio_format: _Optional[str] = ..., sample_rate_hertz: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., include_nonfinal: bool = ..., enable_separate_recognition_per_channel: bool = ..., enable_endpoint_detection: bool = ..., speech_context: _Optional[_Union[SpeechContext, _Mapping]] = ..., enable_profanity_filter: bool = ..., content_moderation_phrases: _Optional[_Iterable[str]] = ..., enable_streaming_speaker_diarization: bool = ..., enable_global_speaker_diarization: bool = ..., min_num_speakers: _Optional[int] = ..., max_num_speakers: _Optional[int] = ..., enable_speaker_identification: bool = ..., cand_speaker_names: _Optional[_Iterable[str]] = ..., model: _Optional[str] = ..., enable_dictation: bool = ..., storage_config: _Optional[_Union[StorageConfig, _Mapping]] = ...) -> None: ...
 
 class TranscriptionMetadata(_message.Message):
     __slots__ = ["package_version"]
