@@ -534,6 +534,7 @@ message GetAudioResponse {
 message CreateTemporaryApiKeyRequest {
   string api_key = 1;
   string usage_type = 2;
+  int32 expires_in_s = 4;
   string client_request_reference = 3;
 }
 

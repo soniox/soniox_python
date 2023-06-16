@@ -361,11 +361,13 @@ class SpeechClient:
     def CreateTemporaryApiKey(
         self,
         usage_type: str,
+        expires_in_s: int,
         client_request_reference: str = "",
     ) -> CreateTemporaryApiKeyResponse:
         request = speech_service_pb2.CreateTemporaryApiKeyRequest()
         request.api_key = self.api_key
         request.usage_type = usage_type
+        request.expires_in_s = expires_in_s
         request.client_request_reference = client_request_reference
 
         return self._client.CreateTemporaryApiKey(request)

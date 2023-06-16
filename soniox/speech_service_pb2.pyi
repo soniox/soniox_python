@@ -59,14 +59,16 @@ class CreateSpeechContextResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class CreateTemporaryApiKeyRequest(_message.Message):
-    __slots__ = ["api_key", "client_request_reference", "usage_type"]
+    __slots__ = ["api_key", "client_request_reference", "expires_in_s", "usage_type"]
     API_KEY_FIELD_NUMBER: _ClassVar[int]
     CLIENT_REQUEST_REFERENCE_FIELD_NUMBER: _ClassVar[int]
+    EXPIRES_IN_S_FIELD_NUMBER: _ClassVar[int]
     USAGE_TYPE_FIELD_NUMBER: _ClassVar[int]
     api_key: str
     client_request_reference: str
+    expires_in_s: int
     usage_type: str
-    def __init__(self, api_key: _Optional[str] = ..., usage_type: _Optional[str] = ..., client_request_reference: _Optional[str] = ...) -> None: ...
+    def __init__(self, api_key: _Optional[str] = ..., usage_type: _Optional[str] = ..., expires_in_s: _Optional[int] = ..., client_request_reference: _Optional[str] = ...) -> None: ...
 
 class CreateTemporaryApiKeyResponse(_message.Message):
     __slots__ = ["expires_datetime", "key"]
