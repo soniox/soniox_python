@@ -134,6 +134,11 @@ class SpeechServiceStub(object):
                 request_serializer=soniox_dot_speech__service__pb2.GetAudioRequest.SerializeToString,
                 response_deserializer=soniox_dot_speech__service__pb2.GetAudioResponse.FromString,
                 )
+        self.CreateTemporaryApiKey = channel.unary_unary(
+                '/soniox.speech_service.SpeechService/CreateTemporaryApiKey',
+                request_serializer=soniox_dot_speech__service__pb2.CreateTemporaryApiKeyRequest.SerializeToString,
+                response_deserializer=soniox_dot_speech__service__pb2.CreateTemporaryApiKeyResponse.FromString,
+                )
 
 
 class SpeechServiceServicer(object):
@@ -288,6 +293,13 @@ class SpeechServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateTemporaryApiKey(self, request, context):
+        """Temporary API key
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_SpeechServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -410,6 +422,11 @@ def add_SpeechServiceServicer_to_server(servicer, server):
                     servicer.GetAudio,
                     request_deserializer=soniox_dot_speech__service__pb2.GetAudioRequest.FromString,
                     response_serializer=soniox_dot_speech__service__pb2.GetAudioResponse.SerializeToString,
+            ),
+            'CreateTemporaryApiKey': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateTemporaryApiKey,
+                    request_deserializer=soniox_dot_speech__service__pb2.CreateTemporaryApiKeyRequest.FromString,
+                    response_serializer=soniox_dot_speech__service__pb2.CreateTemporaryApiKeyResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -826,5 +843,22 @@ class SpeechService(object):
         return grpc.experimental.unary_stream(request, target, '/soniox.speech_service.SpeechService/GetAudio',
             soniox_dot_speech__service__pb2.GetAudioRequest.SerializeToString,
             soniox_dot_speech__service__pb2.GetAudioResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateTemporaryApiKey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/soniox.speech_service.SpeechService/CreateTemporaryApiKey',
+            soniox_dot_speech__service__pb2.CreateTemporaryApiKeyRequest.SerializeToString,
+            soniox_dot_speech__service__pb2.CreateTemporaryApiKeyResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -58,6 +58,24 @@ class CreateSpeechContextResponse(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 
+class CreateTemporaryApiKeyRequest(_message.Message):
+    __slots__ = ["api_key", "client_request_reference", "usage_type"]
+    API_KEY_FIELD_NUMBER: _ClassVar[int]
+    CLIENT_REQUEST_REFERENCE_FIELD_NUMBER: _ClassVar[int]
+    USAGE_TYPE_FIELD_NUMBER: _ClassVar[int]
+    api_key: str
+    client_request_reference: str
+    usage_type: str
+    def __init__(self, api_key: _Optional[str] = ..., usage_type: _Optional[str] = ..., client_request_reference: _Optional[str] = ...) -> None: ...
+
+class CreateTemporaryApiKeyResponse(_message.Message):
+    __slots__ = ["expires_datetime", "key"]
+    EXPIRES_DATETIME_FIELD_NUMBER: _ClassVar[int]
+    KEY_FIELD_NUMBER: _ClassVar[int]
+    expires_datetime: _timestamp_pb2.Timestamp
+    key: str
+    def __init__(self, key: _Optional[str] = ..., expires_datetime: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+
 class DeleteObjectRequest(_message.Message):
     __slots__ = ["api_key", "object_id"]
     API_KEY_FIELD_NUMBER: _ClassVar[int]

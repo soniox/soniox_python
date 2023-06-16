@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
@@ -10,4 +10,4 @@ def timestamp_from_datetime(dt: datetime) -> Timestamp:
 
 
 def timestamp_to_datetime(ts: Timestamp) -> datetime:
-    return ts.ToDatetime()
+    return ts.ToDatetime(tzinfo=timezone.utc)

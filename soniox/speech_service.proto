@@ -38,6 +38,9 @@ service SpeechService {
   rpc ListObjects(ListObjectsRequest) returns (ListObjectsResponse) {}
   rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {}
   rpc GetAudio(GetAudioRequest) returns (stream GetAudioResponse) {}
+
+  // Temporary API key
+  rpc CreateTemporaryApiKey(CreateTemporaryApiKeyRequest) returns (CreateTemporaryApiKeyResponse) {}
 }
 
 // Transcribe
@@ -524,4 +527,17 @@ message GetAudioResponse {
   int32 total_duration_ms = 4;
   int32 num_audio_channels = 6;
   bytes data = 5;
+}
+
+// CreateTemporaryApiKey
+
+message CreateTemporaryApiKeyRequest {
+  string api_key = 1;
+  string usage_type = 2;
+  string client_request_reference = 3;
+}
+
+message CreateTemporaryApiKeyResponse {
+  string key = 1;
+  google.protobuf.Timestamp expires_datetime = 2;
 }
