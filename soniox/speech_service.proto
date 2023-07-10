@@ -136,6 +136,7 @@ message GetTranscribeAsyncResultResponse {
   bool separate_recognition_per_channel = 2;
   Result result = 1;
   TranscriptionMetadata metadata = 3;
+  Document document = 4;
 }
 
 // DeleteTranscribeAsyncFile
@@ -188,6 +189,9 @@ message TranscriptionConfig {
 
   // Storage and Search options
   StorageConfig storage_config = 1006;
+
+  // Document formatting configuration.
+  DocumentFormattingConfig document_formatting_config = 17;
 }
 
 message TranscriptionMetadata {
@@ -263,6 +267,31 @@ message UpdateSpeechContextRequest {
   SpeechContext speech_context = 2;
 }
 message UpdateSpeechContextResponse {
+}
+
+// Document formatting
+
+message DocumentFormattingConfig {
+  string config_json = 1;
+}
+
+message DocumentToken {
+  string text = 1;
+  int32 start_ms = 2;
+  int32 duration_ms = 3;
+  double confidence = 4;
+}
+
+message DocumentSection {
+  string section_id = 1;
+  string title = 2;
+  string text = 3;
+  repeated DocumentToken tokens = 4;
+}
+
+message Document {
+  repeated DocumentSection sections = 1;
+  float qscore = 2;
 }
 
 // Speaker AI

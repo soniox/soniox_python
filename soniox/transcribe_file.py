@@ -5,6 +5,7 @@ from soniox.speech_service import (
     TranscriptionConfig,
     SpeechContext,
     StorageConfig,
+    DocumentFormattingConfig,
 )
 
 READ_CHUNK_SIZE = 131072
@@ -344,6 +345,7 @@ def transcribe_file_async(
     enable_endpoint_detection: bool = False,
     reference_name: str = "",
     storage_config: Optional[StorageConfig] = None,
+    document_formatting_config: Optional[DocumentFormattingConfig] = None,
     client_request_reference: str = "",
     chunk_size: int = READ_CHUNK_SIZE,
 ) -> str:
@@ -368,6 +370,9 @@ def transcribe_file_async(
     assert isinstance(enable_dictation, bool)
     assert isinstance(enable_endpoint_detection, bool)
     assert storage_config is None or isinstance(storage_config, StorageConfig)
+    assert document_formatting_config is None or isinstance(
+        document_formatting_config, DocumentFormattingConfig
+    )
     assert isinstance(reference_name, str)
     assert isinstance(client_request_reference, str)
 
@@ -393,6 +398,8 @@ def transcribe_file_async(
     config.enable_endpoint_detection = enable_endpoint_detection
     if storage_config is not None:
         config.storage_config.CopyFrom(storage_config)
+    if document_formatting_config is not None:
+        config.document_formatting_config.CopyFrom(document_formatting_config)
     config.client_request_reference = client_request_reference
 
     return client.TranscribeAsync(reference_name, iter_file_chunks(file_path, chunk_size), config)

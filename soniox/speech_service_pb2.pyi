@@ -114,6 +114,44 @@ class DeleteTranscribeAsyncFileResponse(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 
+class Document(_message.Message):
+    __slots__ = ["qscore", "sections"]
+    QSCORE_FIELD_NUMBER: _ClassVar[int]
+    SECTIONS_FIELD_NUMBER: _ClassVar[int]
+    qscore: float
+    sections: _containers.RepeatedCompositeFieldContainer[DocumentSection]
+    def __init__(self, sections: _Optional[_Iterable[_Union[DocumentSection, _Mapping]]] = ..., qscore: _Optional[float] = ...) -> None: ...
+
+class DocumentFormattingConfig(_message.Message):
+    __slots__ = ["config_json"]
+    CONFIG_JSON_FIELD_NUMBER: _ClassVar[int]
+    config_json: str
+    def __init__(self, config_json: _Optional[str] = ...) -> None: ...
+
+class DocumentSection(_message.Message):
+    __slots__ = ["section_id", "text", "title", "tokens"]
+    SECTION_ID_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    TITLE_FIELD_NUMBER: _ClassVar[int]
+    TOKENS_FIELD_NUMBER: _ClassVar[int]
+    section_id: str
+    text: str
+    title: str
+    tokens: _containers.RepeatedCompositeFieldContainer[DocumentToken]
+    def __init__(self, section_id: _Optional[str] = ..., title: _Optional[str] = ..., text: _Optional[str] = ..., tokens: _Optional[_Iterable[_Union[DocumentToken, _Mapping]]] = ...) -> None: ...
+
+class DocumentToken(_message.Message):
+    __slots__ = ["confidence", "duration_ms", "start_ms", "text"]
+    CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
+    DURATION_MS_FIELD_NUMBER: _ClassVar[int]
+    START_MS_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    confidence: float
+    duration_ms: int
+    start_ms: int
+    text: str
+    def __init__(self, text: _Optional[str] = ..., start_ms: _Optional[int] = ..., duration_ms: _Optional[int] = ..., confidence: _Optional[float] = ...) -> None: ...
+
 class GetAudioRequest(_message.Message):
     __slots__ = ["api_key", "audio_bytes_format", "object_id", "time_segment", "token_segment"]
     class TimeSegment(_message.Message):
@@ -247,14 +285,16 @@ class GetTranscribeAsyncResultRequest(_message.Message):
     def __init__(self, api_key: _Optional[str] = ..., file_id: _Optional[str] = ...) -> None: ...
 
 class GetTranscribeAsyncResultResponse(_message.Message):
-    __slots__ = ["metadata", "result", "separate_recognition_per_channel"]
+    __slots__ = ["document", "metadata", "result", "separate_recognition_per_channel"]
+    DOCUMENT_FIELD_NUMBER: _ClassVar[int]
     METADATA_FIELD_NUMBER: _ClassVar[int]
     RESULT_FIELD_NUMBER: _ClassVar[int]
     SEPARATE_RECOGNITION_PER_CHANNEL_FIELD_NUMBER: _ClassVar[int]
+    document: Document
     metadata: TranscriptionMetadata
     result: Result
     separate_recognition_per_channel: bool
-    def __init__(self, separate_recognition_per_channel: bool = ..., result: _Optional[_Union[Result, _Mapping]] = ..., metadata: _Optional[_Union[TranscriptionMetadata, _Mapping]] = ...) -> None: ...
+    def __init__(self, separate_recognition_per_channel: bool = ..., result: _Optional[_Union[Result, _Mapping]] = ..., metadata: _Optional[_Union[TranscriptionMetadata, _Mapping]] = ..., document: _Optional[_Union[Document, _Mapping]] = ...) -> None: ...
 
 class GetTranscribeAsyncStatusRequest(_message.Message):
     __slots__ = ["api_key", "file_id"]
@@ -693,11 +733,12 @@ class Transcript(_message.Message):
     def __init__(self, text: _Optional[str] = ..., tokens: _Optional[_Iterable[_Union[Token, _Mapping]]] = ..., sentences: _Optional[_Iterable[_Union[Sentence, _Mapping]]] = ..., paragraphs: _Optional[_Iterable[_Union[Paragraph, _Mapping]]] = ..., keyterms: _Optional[_Iterable[_Union[Keyterm, _Mapping]]] = ..., speaker_names: _Optional[_Mapping[int, str]] = ...) -> None: ...
 
 class TranscriptionConfig(_message.Message):
-    __slots__ = ["audio_format", "cand_speaker_names", "client_request_reference", "content_moderation_phrases", "enable_dictation", "enable_endpoint_detection", "enable_global_speaker_diarization", "enable_profanity_filter", "enable_separate_recognition_per_channel", "enable_speaker_identification", "enable_streaming_speaker_diarization", "include_nonfinal", "max_num_speakers", "min_num_speakers", "model", "num_audio_channels", "sample_rate_hertz", "speech_context", "storage_config"]
+    __slots__ = ["audio_format", "cand_speaker_names", "client_request_reference", "content_moderation_phrases", "document_formatting_config", "enable_dictation", "enable_endpoint_detection", "enable_global_speaker_diarization", "enable_profanity_filter", "enable_separate_recognition_per_channel", "enable_speaker_identification", "enable_streaming_speaker_diarization", "include_nonfinal", "max_num_speakers", "min_num_speakers", "model", "num_audio_channels", "sample_rate_hertz", "speech_context", "storage_config"]
     AUDIO_FORMAT_FIELD_NUMBER: _ClassVar[int]
     CAND_SPEAKER_NAMES_FIELD_NUMBER: _ClassVar[int]
     CLIENT_REQUEST_REFERENCE_FIELD_NUMBER: _ClassVar[int]
     CONTENT_MODERATION_PHRASES_FIELD_NUMBER: _ClassVar[int]
+    DOCUMENT_FORMATTING_CONFIG_FIELD_NUMBER: _ClassVar[int]
     ENABLE_DICTATION_FIELD_NUMBER: _ClassVar[int]
     ENABLE_ENDPOINT_DETECTION_FIELD_NUMBER: _ClassVar[int]
     ENABLE_GLOBAL_SPEAKER_DIARIZATION_FIELD_NUMBER: _ClassVar[int]
@@ -717,6 +758,7 @@ class TranscriptionConfig(_message.Message):
     cand_speaker_names: _containers.RepeatedScalarFieldContainer[str]
     client_request_reference: str
     content_moderation_phrases: _containers.RepeatedScalarFieldContainer[str]
+    document_formatting_config: DocumentFormattingConfig
     enable_dictation: bool
     enable_endpoint_detection: bool
     enable_global_speaker_diarization: bool
@@ -732,7 +774,7 @@ class TranscriptionConfig(_message.Message):
     sample_rate_hertz: int
     speech_context: SpeechContext
     storage_config: StorageConfig
-    def __init__(self, client_request_reference: _Optional[str] = ..., audio_format: _Optional[str] = ..., sample_rate_hertz: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., include_nonfinal: bool = ..., enable_separate_recognition_per_channel: bool = ..., enable_endpoint_detection: bool = ..., speech_context: _Optional[_Union[SpeechContext, _Mapping]] = ..., enable_profanity_filter: bool = ..., content_moderation_phrases: _Optional[_Iterable[str]] = ..., enable_streaming_speaker_diarization: bool = ..., enable_global_speaker_diarization: bool = ..., min_num_speakers: _Optional[int] = ..., max_num_speakers: _Optional[int] = ..., enable_speaker_identification: bool = ..., cand_speaker_names: _Optional[_Iterable[str]] = ..., model: _Optional[str] = ..., enable_dictation: bool = ..., storage_config: _Optional[_Union[StorageConfig, _Mapping]] = ...) -> None: ...
+    def __init__(self, client_request_reference: _Optional[str] = ..., audio_format: _Optional[str] = ..., sample_rate_hertz: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., include_nonfinal: bool = ..., enable_separate_recognition_per_channel: bool = ..., enable_endpoint_detection: bool = ..., speech_context: _Optional[_Union[SpeechContext, _Mapping]] = ..., enable_profanity_filter: bool = ..., content_moderation_phrases: _Optional[_Iterable[str]] = ..., enable_streaming_speaker_diarization: bool = ..., enable_global_speaker_diarization: bool = ..., min_num_speakers: _Optional[int] = ..., max_num_speakers: _Optional[int] = ..., enable_speaker_identification: bool = ..., cand_speaker_names: _Optional[_Iterable[str]] = ..., model: _Optional[str] = ..., enable_dictation: bool = ..., storage_config: _Optional[_Union[StorageConfig, _Mapping]] = ..., document_formatting_config: _Optional[_Union[DocumentFormattingConfig, _Mapping]] = ...) -> None: ...
 
 class TranscriptionMetadata(_message.Message):
     __slots__ = ["package_version"]

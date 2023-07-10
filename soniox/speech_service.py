@@ -1,4 +1,5 @@
 from typing import Any, Iterable, List, Optional, Union, Dict
+from dataclasses import dataclass
 import os
 import grpc
 import soniox.speech_service_pb2 as speech_service_pb2
@@ -13,6 +14,8 @@ TranscribeMeetingRequest = speech_service_pb2.TranscribeMeetingRequest
 TranscribeMeetingResponse = speech_service_pb2.TranscribeMeetingResponse
 TranscribeAsyncFileStatus = speech_service_pb2.TranscribeAsyncFileStatus
 StorageConfig = speech_service_pb2.StorageConfig
+DocumentFormattingConfig = speech_service_pb2.DocumentFormattingConfig
+Document = speech_service_pb2.Document
 CreateTemporaryApiKeyResponse = speech_service_pb2.CreateTemporaryApiKeyResponse
 
 SpeechServiceStub = speech_service_pb2_grpc.SpeechServiceStub
@@ -74,6 +77,13 @@ def create_channel(api_host: Optional[str], options: Any) -> grpc.Channel:
         return grpc.secure_channel(api_host[8:], _CREDENTIALS, options=options)
     else:
         return grpc.insecure_channel(api_host, options=options)
+
+
+@dataclass
+class GetTranscribeAsyncResultData:
+    result: Optional[Result]
+    channel_results: List[Result]
+    document: Optional[Document]
 
 
 class SpeechClient:
@@ -307,6 +317,16 @@ class SpeechClient:
         return list(response.files)
 
     def GetTranscribeAsyncResult(self, file_id: str) -> Union[Result, List[Result]]:
+        data = self.GetTranscribeAsyncResultAll(file_id)
+        if data.result is not None:
+            assert len(data.channel_results) == 0
+            return data.result
+        elif len(data.channel_results) > 0:
+            return data.channel_results
+        else:
+            assert False
+
+    def GetTranscribeAsyncResultAll(self, file_id: str) -> GetTranscribeAsyncResultData:
         assert isinstance(file_id, str)
         assert file_id != ""
 
@@ -317,6 +337,7 @@ class SpeechClient:
         got_responses = False
         result: Optional[Result] = None
         channel_results: Optional[Dict[int, Result]] = None
+        document: Optional[Document] = None
 
         for response in self._client.GetTranscribeAsyncResult(request):
             if not got_responses:
@@ -324,6 +345,8 @@ class SpeechClient:
                     result = Result()
                 else:
                     channel_results = {}
+                if response.HasField("document"):
+                    document = response.document
                 got_responses = True
 
             assert response.HasField("result")
@@ -339,14 +362,20 @@ class SpeechClient:
                 update_result(channel_results[channel], response.result)
 
         assert got_responses
-        if result is not None:
-            return result
-        else:
-            assert channel_results is not None
+
+        if result is None:
             assert len(channel_results) > 0
             channels = sorted(channel_results.keys())
             assert channels == list(range(len(channel_results)))
-            return [channel_results[channel] for channel in channels]
+            channel_results_list = [channel_results[channel] for channel in channels]
+        else:
+            channel_results_list = []
+
+        return GetTranscribeAsyncResultData(
+            result=result,
+            channel_results=channel_results_list,
+            document=document,
+        )
 
     def DeleteTranscribeAsyncFile(self, file_id: str) -> None:
         assert isinstance(file_id, str)
