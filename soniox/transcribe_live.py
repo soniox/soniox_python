@@ -156,7 +156,7 @@ def transcribe_stream(
     model: str = "",
     enable_dictation: bool = False,
     enable_endpoint_detection: bool = False,
-    include_nonfinal: bool = True,
+    include_nonfinal: bool = False,
     storage_config: Optional[StorageConfig] = None,
     client_request_reference: str = "",
 ) -> Iterable[Result]:

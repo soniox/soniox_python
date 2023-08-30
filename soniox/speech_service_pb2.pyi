@@ -777,10 +777,12 @@ class TranscriptionConfig(_message.Message):
     def __init__(self, client_request_reference: _Optional[str] = ..., audio_format: _Optional[str] = ..., sample_rate_hertz: _Optional[int] = ..., num_audio_channels: _Optional[int] = ..., include_nonfinal: bool = ..., enable_separate_recognition_per_channel: bool = ..., enable_endpoint_detection: bool = ..., speech_context: _Optional[_Union[SpeechContext, _Mapping]] = ..., enable_profanity_filter: bool = ..., content_moderation_phrases: _Optional[_Iterable[str]] = ..., enable_streaming_speaker_diarization: bool = ..., enable_global_speaker_diarization: bool = ..., min_num_speakers: _Optional[int] = ..., max_num_speakers: _Optional[int] = ..., enable_speaker_identification: bool = ..., cand_speaker_names: _Optional[_Iterable[str]] = ..., model: _Optional[str] = ..., enable_dictation: bool = ..., storage_config: _Optional[_Union[StorageConfig, _Mapping]] = ..., document_formatting_config: _Optional[_Union[DocumentFormattingConfig, _Mapping]] = ...) -> None: ...
 
 class TranscriptionMetadata(_message.Message):
-    __slots__ = ["package_version"]
+    __slots__ = ["explicit_space", "package_version"]
+    EXPLICIT_SPACE_FIELD_NUMBER: _ClassVar[int]
     PACKAGE_VERSION_FIELD_NUMBER: _ClassVar[int]
+    explicit_space: bool
     package_version: str
-    def __init__(self, package_version: _Optional[str] = ...) -> None: ...
+    def __init__(self, package_version: _Optional[str] = ..., explicit_space: bool = ...) -> None: ...
 
 class UpdateSpeechContextRequest(_message.Message):
     __slots__ = ["api_key", "speech_context"]

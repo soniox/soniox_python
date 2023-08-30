@@ -196,6 +196,7 @@ message TranscriptionConfig {
 
 message TranscriptionMetadata {
   string package_version = 1;
+  bool explicit_space = 2;
 }
 
 message Result {
