@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="soniox",
-    version="1.10.0",
+    version="1.10.1",
     author="Soniox Inc",
     author_email="support@soniox.com",
     description="Soniox speech recognition service client library",
@@ -13,6 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://soniox.com/",
     packages=setuptools.find_packages(),
+    package_data={"soniox": ["speech_service_pb2.pyi"]},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
